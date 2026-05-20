@@ -14,8 +14,6 @@ export async function generateStaticParams() {
 }
 
 import { getBlogPostMetadata } from '@/lib/seo';
-import { LegacyNavbar } from '@/components/LegacyNavbar';
-import { LegacyFooter } from '@/components/LegacyFooter';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -34,7 +32,6 @@ export default async function BlogPost({ params }: Props) {
 
   return (
     <>
-      <LegacyNavbar />
       <div className="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuemin={0} aria-valuemax={100}></div>
       
       {/* Inject JSON-LD Scripts */}
@@ -66,8 +63,6 @@ export default async function BlogPost({ params }: Props) {
           </Link>
         </div>
       </div>
-
-      <LegacyFooter />
     </>
   );
 }
