@@ -43,7 +43,7 @@ The optimized static output is generated in the `.next` directory, ready for dep
 - **Hybrid Storage & Analysis**: While uncompressed clothing photos remain encrypted and stored locally on your device, specific image-based analysis is performed via the **Google Gemini Vision API** in the cloud. This process is transient; we use a "Zero-Training" configuration that prevents AI providers from storing or using your images for model training.
 - **Zero Tracker Tracking**: Your personal fashion data is never shared with analytics or advertising platforms. We maintain a strict boundary between AI analysis APIs (Gemini/Groq) and cloud trackers. Analytics (GA4) are restricted to site performance metrics and do not contain wardrobe metadata.
 - **Consent & Privacy Compliance**: Use of AI features requires explicit user consent within the app. Transient images sent for analysis are handled according to our [Privacy Policy](https://fitwardrobe.me/privacy), with zero persistent server-side storage of personal photos. Basic features remain functional offline, though AI-powered styling will be limited.
-- **Enterprise Hardening**: Configured with strict Security Headers (CSP, HSTS) via `vercel.json`.
+- **Enterprise Hardening**: Configured with strict Security Header (CSP, HSTS) via `vercel.json`.
 
 ---
 
