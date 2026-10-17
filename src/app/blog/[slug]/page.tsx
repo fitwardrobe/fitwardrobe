@@ -11,7 +11,7 @@ import { PageHero } from "@/components/site/page-hero"
 import { JoinBand } from "@/components/site/join-band"
 import { Picture } from "@/components/home/picture"
 import { LogoMark } from "@/components/site/logo"
-import { coverFor, TOPICS } from "@/data/images"
+import { coverFor, coverUrl, TOPICS } from "@/data/images"
 import type { Post } from "@/types/blog"
 
 interface Props {
@@ -87,7 +87,7 @@ export default async function BlogPost({ params }: Props) {
       wordCount: post.words,
       articleSection: post.topic,
       inLanguage: "en",
-      image: `${BASE_URL}/images/${cover.dir === "/images/blog" ? "blog" : "home"}/${cover.name}-1280.webp`,
+      image: `${BASE_URL}${coverUrl(cover)}`,
       author: { "@type": "Person", name: "Aryan Panwar", url: "https://aryanpanwar.in", jobTitle: "Founder, FitWardrobe" },
       publisher: { "@type": "Organization", name: "FitWardrobe", url: `${BASE_URL}/`, logo: { "@type": "ImageObject", url: `${BASE_URL}/brand/icon-512.png` } },
     },

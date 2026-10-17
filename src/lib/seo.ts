@@ -1,6 +1,7 @@
 import { posts } from '@/data/posts';
 import { Metadata } from 'next';
 import { SITE_CONFIG } from './config';
+import { coverFor, coverUrl } from '@/data/images';
 
 export const BASE_URL = SITE_CONFIG.landingUrl;
 
@@ -34,6 +35,8 @@ export function getBlogPostMetadata(slug: string): Metadata {
   if (!post) return {};
 
   const url = `${BASE_URL}/blog/${slug}/`;
+  const cover = coverFor(post.slug, post.topic);
+  const image = { url: coverUrl(cover), width: 1280, height: 853, alt: post.h1 };
 
   return {
     title: post.title,
@@ -50,14 +53,14 @@ export function getBlogPostMetadata(slug: string): Metadata {
       publishedTime: post.date,
       ...(post.updated ? { modifiedTime: post.updated } : {}),
       authors: ['Aryan Panwar'],
-      images: [DEFAULT_OG_IMAGE],
+      images: [image],
       section: post.topic,
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [DEFAULT_OG_IMAGE.url],
+      images: [image.url],
     },
   };
 }
