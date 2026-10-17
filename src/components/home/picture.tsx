@@ -45,15 +45,3 @@ export function Picture({
     </picture>
   )
 }
-
-export function GarmentImage({ id, alt = "" }: { id: string; alt?: string }) {
-  return (
-    <Picture
-      name={`g-${id}`}
-      widths={[360]}
-      sizes="120px"
-      alt={alt}
-      className="fw-garment-img"
-    />
-  )
-}

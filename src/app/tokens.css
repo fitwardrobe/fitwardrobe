@@ -1,0 +1,37 @@
+/* ============================================================
+   FitWardrobe colour palette (October 2026) - the single source of truth.
+   Every other stylesheet (maison.css, theme13.css, pages13.css) uses these through
+   aliases, so a colour is changed here and nowhere else. Contrast ratios are WCAG 2.2
+   against the background named; body text needs 4.5:1, large text and icons 3:1.
+   ============================================================ */
+:root {
+  /* Greens: from darkest to lightest */
+  --c-night: #0b0e0c;       /* page heroes, early-access band, 404 */
+  --c-forest-950: #0e2418;  /* footer, strip under the hero */
+  --c-forest-900: #12281b;  /* features band */
+  --c-forest: #133222;      /* THE brand green: logo, app icon, chips, dark buttons */
+  --c-forest-700: #1b4630;  /* hover for forest buttons */
+  --c-emerald: #1b5a3a;     /* links and small labels on light (7.1:1 on cream) */
+  --c-sage: #9eb6a2;        /* quiet text on dark (7.5:1 on forest-950) */
+  --c-sage-100: #dce8dd;    /* icon discs on light (forest on it: 11.0:1) */
+
+  /* Gold: the accent */
+  --c-gold: #d9b98a;        /* accent text on dark only (7.5:1 on forest, 10.4:1 on night) */
+  --c-gold-100: #f3e6cd;    /* gold button hover */
+  --c-gold-200: #ead8b8;    /* gold buttons (ink text on it: 12.1:1) */
+  --c-gold-700: #7a5c30;    /* gold for small text on light (5.4:1 on cream, 4.9:1 on cream-200) */
+
+  /* Neutrals */
+  --c-ivory: #f8f6f1;       /* text on dark (12.9:1 on forest, 18.0:1 on night) */
+  --c-cream: #f4efe6;       /* page background */
+  --c-cream-200: #ece5d8;   /* alternate bands */
+  --c-paper: #fffdf9;       /* cards, inputs, raised surfaces */
+  --c-ink: #1d1d1b;         /* headings (14.7:1 on cream) */
+  --c-text: #3a3c3a;        /* long-form text (9.7:1 on cream) */
+  --c-slate: #5c5f5d;       /* secondary text (5.6:1 on cream, 6.4:1 on paper) */
+  --c-line: rgba(29, 29, 27, 0.12);
+  --c-line-strong: rgba(29, 29, 27, 0.24);
+
+  /* Feedback */
+  --c-error: #a8321e;       /* form errors (5.8:1 on cream) */
+}

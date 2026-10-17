@@ -1,38 +1,17 @@
-# Third Party Licenses
+# Third-party licenses
 
-FitWardrobe uses the following third-party open source software:
+The FitWardrobe website includes or is built with the following third-party software and assets.
 
-## React
+| Component | Use | License |
+|---|---|---|
+| [Next.js](https://github.com/vercel/next.js) | Framework | MIT, Copyright (c) Vercel, Inc. |
+| [React](https://github.com/facebook/react) and React DOM | UI library | MIT, Copyright (c) Meta Platforms, Inc. and affiliates |
+| [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) | CSS reset (preflight) | MIT, Copyright (c) Tailwind Labs, Inc. |
+| [Lucide](https://github.com/lucide-icons/lucide) (`lucide-react`) | Interface icons | ISC, Copyright (c) Lucide Contributors |
+| [Simple Icons](https://github.com/simple-icons/simple-icons) | Social media logos in the footer | CC0 1.0; the brands own their trademarks |
+| [@vercel/analytics](https://github.com/vercel/analytics) | Cookieless page analytics | MIT, Copyright (c) Vercel, Inc. |
+| [Noto Serif Display](https://fonts.google.com/noto/specimen/Noto+Serif+Display) | Headline typeface | SIL Open Font License 1.1 |
+| [Jost](https://fonts.google.com/specimen/Jost) | Body typeface | SIL Open Font License 1.1 |
 
-- License: MIT
-- Copyright (c) Meta Platforms, Inc. and affiliates.
-
-## Next.js
-
-- License: MIT
-- Copyright (c) 2026 Vercel, Inc.
-
-## Tailwind CSS
-
-- License: MIT
-- Copyright (c) Tailwind Labs, Inc.
-
-## Capacitor
-
-- License: MIT
-- Copyright (c) 2026 Drifty Co.
-
-## shadcn/ui
-
-- License: MIT
-- Copyright (c) 2023 shadcn
-
-## Supabase
-
-- License: Apache 2.0 / MIT
-- Copyright (c) 2026 Supabase
-
-## Google Gemini SDK
-
-- License: Apache 2.0
-- Copyright (c) Google LLC
+Development tools (TypeScript, ESLint, Prettier, PostCSS) are used only to build the site and are not
+distributed with it.

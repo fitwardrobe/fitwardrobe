@@ -187,7 +187,7 @@
   max-width: 66ch;
   font-size: 1.0625rem;
   line-height: 1.72;
-  color: #3e403e;
+  color: var(--c-text);
 }
 .h13 .fw-page .fw-link,
 .h13 .fw-page__prose a {
@@ -432,7 +432,7 @@
 .prose13 {
   font-size: 1.0625rem;
   line-height: 1.75;
-  color: #3a3c3a;
+  color: var(--c-text);
 }
 @media (min-width: 1024px) {
   .prose13 {
@@ -679,7 +679,7 @@
 }
 .prose13 .mid-cta__link:hover {
   color: var(--x-ink);
-  background: #f3e6cd;
+  background: var(--c-gold-100);
 }
 
 /* ============================================================
@@ -1114,7 +1114,7 @@
   border-radius: 999px;
 }
 .b13-search input::placeholder {
-  color: #7a7c7a;
+  color: var(--c-slate);
 }
 .b13-topic {
   padding-top: 56px;

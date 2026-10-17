@@ -5,23 +5,24 @@
    Remove the import in layout.tsx to fall back to Maison.
    ============================================================ */
 :root {
-  --x-night: #0b0e0c;
-  --x-forest: #133222;
-  --x-forest-deep: #0e2418;
-  --x-band: #12281b;
-  --x-emerald: #1b5a3a;
-  --x-sage: #9eb6a2;
-  --x-sage-soft: #dce8dd;
-  --x-ivory: #f8f6f1;
-  --x-cream: #f4efe6;
-  --x-cream-2: #ece5d8;
-  --x-paper: #fffdf9;
-  --x-ink: #1d1d1b;
-  --x-slate: #5c5f5d; /* 5.6:1 on cream */
-  --x-line: rgba(29, 29, 27, 0.12);
-  --x-gold: #d9b98a; /* text on dark only */
-  --x-gold-soft: #ead8b8; /* button fill */
-  --x-gold-deep: #8a6a3c; /* gold for small text on light, 4.6:1 on paper */
+  /* Aliases of the palette in tokens.css (kept so existing rules read unchanged) */
+  --x-night: var(--c-night);
+  --x-forest: var(--c-forest);
+  --x-forest-deep: var(--c-forest-950);
+  --x-band: var(--c-forest-900);
+  --x-emerald: var(--c-emerald);
+  --x-sage: var(--c-sage);
+  --x-sage-soft: var(--c-sage-100);
+  --x-ivory: var(--c-ivory);
+  --x-cream: var(--c-cream);
+  --x-cream-2: var(--c-cream-200);
+  --x-paper: var(--c-paper);
+  --x-ink: var(--c-ink);
+  --x-slate: var(--c-slate);
+  --x-line: var(--c-line);
+  --x-gold: var(--c-gold);
+  --x-gold-soft: var(--c-gold-200);
+  --x-gold-deep: var(--c-gold-700);
   --x-on-dark: rgba(248, 246, 241, 0.8);
 }
 
@@ -59,7 +60,7 @@
 }
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .fw-header.is-solid {
-    background: #0f1411 !important;
+    background: var(--c-night) !important;
   }
 }
 @media (min-width: 1024px) {
@@ -89,7 +90,7 @@
   .fw-header .fw-header__cta:hover,
   .fw-header:not(.is-solid) .fw-header__cta:hover {
     color: var(--x-ink);
-    background: #f3e6cd;
+    background: var(--c-gold-100);
   }
 }
 
@@ -246,14 +247,14 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .h13 .h13-btn--gold:hover {
-    background: #f3e6cd;
+    background: var(--c-gold-100);
   }
   .h13 .h13-btn--line:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--x-ivory);
   }
   .h13 .h13-btn--green:hover {
-    background: #1b4630;
+    background: var(--c-forest-700);
   }
   .h13-btn:hover .fw-btn__arrow {
     transform: translateX(4px);
@@ -544,7 +545,7 @@
   aspect-ratio: 1;
   padding: 9%;
   overflow: hidden;
-  background: #efe9df;
+  background: var(--c-cream-200);
   border-radius: 10px;
 }
 .h13-tile img {
@@ -1265,7 +1266,7 @@
   border-radius: 999px;
 }
 .h13-join .fw-form--glass .fw-btn--primary:hover {
-  background: #f3e6cd;
+  background: var(--c-gold-100);
 }
 .h13-join .fw-form--glass.fw-form__done {
   border-radius: 20px;
@@ -1447,4 +1448,22 @@
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.16em;
+}
+
+/* Consent banner and mobile menu in the homepage button style */
+.fw-consent {
+  border-radius: 18px;
+}
+.fw-consent .fw-btn,
+.fw-menu .fw-btn {
+  border-radius: 999px;
+}
+.fw-consent .fw-btn--primary,
+.fw-menu .fw-btn--primary {
+  color: var(--c-ivory);
+  background: var(--c-forest);
+}
+.fw-consent .fw-btn--primary:hover,
+.fw-menu .fw-btn--primary:hover {
+  background: var(--c-forest-700);
 }

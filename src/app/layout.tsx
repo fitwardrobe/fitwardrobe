@@ -2,6 +2,7 @@ import Script from "next/script";
 import { Jost, Noto_Serif_Display } from "next/font/google";
 
 import "./base.css"
+import "./tokens.css"
 import "./maison.css"
 import "./theme13.css"
 import "./pages13.css"

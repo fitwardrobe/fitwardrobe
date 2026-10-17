@@ -1,0 +1,5 @@
+Contact: mailto:hello@fitwardrobe.me
+Expires: 2027-10-18T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.fitwardrobe.me/.well-known/security.txt
+Policy: https://github.com/fitwardrobe/fitwardrobe/blob/main/SECURITY.md

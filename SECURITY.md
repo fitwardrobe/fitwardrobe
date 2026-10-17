@@ -1,20 +1,12 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+This repository is the static marketing website at https://www.fitwardrobe.me. It has no user
+accounts or server code; early-access sign-ups are sent to a Google Form.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| v1.0.x  | :white_check_mark: |
-| < 1.0   | :x:                |
+## Reporting a vulnerability
 
-## Reporting a Vulnerability
+Please report security issues privately by email to **hello@fitwardrobe.me** with the subject
+"Security". Do not open a public issue. Include the affected URL and steps to reproduce.
 
-We take security seriously. If you discover a vulnerability, please report it privately:
-
-**Do NOT define a public issue.**
-
-1. Email us at `fitwardrobee@gmail.com`
-2. Include reproduction steps if possible.
-3. We will acknowledge receipt within 48 hours.
-
-Thank you for helping keep FitWardrobe safe.
+We aim to acknowledge reports within 2 working days and to keep you updated until the issue is fixed.
+The same contact is published in `/.well-known/security.txt`.

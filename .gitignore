@@ -15,11 +15,6 @@
 /.next/
 /out/
 
-# tools & sub-projects
-/tools/*/node_modules
-/tools/*/out
-/tools/*/.next
-
 # misc
 .DS_Store
 *.pem
@@ -33,14 +28,20 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# env files
-.env*.local
+# env files (keep the documented template)
+.env
+.env.*
+!.env.example
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 .vercel
 
-# Internal brand docs and source media: kept local (the GitHub repo is public)
+# Internal documents and source media: kept local, never committed (the repository is public)
 /brand/
+/internal/
 /fitwardrobe-media/
+/photo-sources/
+*.psd
+*.ai

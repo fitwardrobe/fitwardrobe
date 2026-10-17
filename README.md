@@ -1,56 +1,99 @@
-# 👗 FitWardrobe | AI-Powered Outfit Planner
-[![Built with Next.js](https://img.shields.io/badge/Next.js-15+-black?logo=next.js)](https://nextjs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-sage.svg)](LICENSE)
+# fitwardrobe.me
 
-FitWardrobe is a privacy-first, high-fidelity wardrobe platform that balances advanced AI features with strict data sovereignty. While wardrobe photos are processed transiently by secure cloud APIs (Google Gemini and Groq) for high-quality fashion insights, your primary fashion data and uncompressed images stay encrypted and stored on your device—ensuring your personal style never enters a permanent style profile or tracking database.
+Marketing website for **FitWardrobe**, a digital wardrobe app that plans outfits from the clothes you
+already own (coming soon to Android and the web). This repository is the site at
+https://www.fitwardrobe.me: homepage, guide pages, blog, legal pages and the early-access sign-up.
 
-## ✨ Key Features
+The app itself lives in a separate repository.
 
-- **API-Level Privacy**: Clothing analysis and outfit generation powered by Google Gemini (Vision) and Groq (Reasoning), implemented with a privacy-first API configuration that prevents model training on user data.
-- **Capsule Builder**: Intelligent suggestions to help you own less, but better quality.
-- **Cost Per Wear**: Integrated tracking to measure the true value of your wardrobe.
-- **High-Fidelity UI**: Premium, high-performance landing page with optimized reveal animations and accessibility focus.
+## Stack
 
-## 🚀 Technical Architecture
+- [Next.js 15](https://nextjs.org) (App Router) with `output: "export"`: the whole site is static HTML in `out/`
+- React 19, TypeScript, plain CSS (Tailwind is used only for its CSS reset)
+- Hosted on [Vercel](https://vercel.com); redirects and security headers in `vercel.json`
+- Icons: [Lucide](https://lucide.dev) for interface icons, [Simple Icons](https://simpleicons.org) for social logos
+- Analytics: Google Analytics 4 and Microsoft Clarity (both behind the consent banner in the EEA, UK and
+  Switzerland) and Vercel Web Analytics (cookieless)
 
-- **Engine**: [Next.js 15+](https://nextjs.org/) (App Router & Static Site Generation)
-- **Styling**: Hardened CSS Design System + [Tailwind CSS](https://tailwindcss.com/)
-- **Structured Data**: Comprehensive JSON-LD (Organization, FAQ, SoftwareApplication, Breadcrumbs)
-- **Monitoring**: Site telemetry via Google Analytics (GA4) and Vercel Speed Insights (limited to non-wardrobe interaction data).
-- **Stack**: TypeScript, Radix UI, Lucide React, pnpm.
+## Getting started
 
-## 🛠️ Development & Deployment
-
-### 1. Installation
 ```bash
+corepack enable            # uses the pnpm version pinned in package.json
 pnpm install
+pnpm dev                   # http://localhost:3000
+pnpm build                 # static export to out/, then font preload hints
+pnpm typecheck && pnpm lint
 ```
 
-### 2. Local Development
-```bash
-pnpm dev
+Node 20.9 or later (see `.nvmrc`). On a low-memory machine, build with
+`NODE_OPTIONS=--max-old-space-size=1536 NEXT_BUILD_CPUS=1 pnpm build`.
+
+All environment variables are optional and public (they end up in the HTML anyway); the defaults are
+built into the code. See `.env.example`.
+
+## Project structure
+
+```
+src/
+  app/                   routes (one folder per page), global styles, sitemap, robots
+    tokens.css           the colour palette: the single source of truth for colours
+    maison.css           base layout, header, footer, buttons, forms
+    theme13.css          homepage design ("Image 13" direction)
+    pages13.css          inner pages, blog, articles, legal pages
+  components/
+    home/                homepage parts (phone preview, early-access form, motion)
+    site/                header, footer, logo, page hero, early-access band, consent banner
+    blog/                blog index, cards, reading progress
+    legal/               legal page layout
+  content/posts/         one JSON file per blog post (see "Editing the blog")
+  data/                  homepage copy, legal texts, image map, post loader, schema.org data
+  lib/                   SEO helpers, analytics, early-access form submission, site config
+public/
+  images/home/           homepage and page-hero photos (AVIF + WebP, several widths)
+  images/blog/           blog covers
+  brand/                 logo, icons, colour tiles
+  llms.txt               summary for AI search tools
+scripts/preload-fonts.mjs
 ```
 
-### 3. Production Build
-```bash
-pnpm build
-```
+## Editing the blog
 
-The optimized static output is generated in the `.next` directory, ready for deployment on [Vercel](https://vercel.com).
+Each post is `src/content/posts/<slug>.json`:
 
-## 🛡️ Security & Privacy
+| Field | Meaning |
+|---|---|
+| `title` | SEO title (max ~60 characters; " \| FitWardrobe" is added) |
+| `h1`, `excerpt` | Visible headline; meta description and card text (140-155 characters) |
+| `topic` | One of the five topics in `src/data/images.ts` |
+| `date` | First published. Never change it. |
+| `updated` | Only when the post is substantially rewritten: the date that version goes live |
+| `tldr`, `body`, `faq`, `related` | Quick answer, article HTML, FAQ pairs, related slugs |
 
-- **Hybrid Storage & Analysis**: While uncompressed clothing photos remain encrypted and stored locally on your device, specific image-based analysis is performed via the **Google Gemini Vision API** in the cloud. This process is transient; we use a "Zero-Training" configuration that prevents AI providers from storing or using your images for model training.
-- **Zero Tracker Tracking**: Your personal fashion data is never shared with analytics or advertising platforms. We maintain a strict boundary between AI analysis APIs (Gemini/Groq) and cloud trackers. Analytics (GA4) are restricted to site performance metrics and do not contain wardrobe metadata.
-- **Consent & Privacy Compliance**: Use of AI features requires explicit user consent within the app. Transient images sent for analysis are handled according to our [Privacy Policy](https://fitwardrobe.me/privacy), with zero persistent server-side storage of personal photos. Basic features remain functional offline, though AI-powered styling will be limited.
-- **Enterprise Hardening**: Configured with strict Security Headers (CSP, HSTS) via `vercel.json`.
+The page template adds the table of contents, FAQ section, author note, structured data (BlogPosting,
+BreadcrumbList, FAQPage) and the early-access band. When a post is removed, add a single-hop 301 in
+`vercel.json` to its closest remaining post.
 
----
+## Images
 
-## 📄 Legal & Compliance
+Photos are AI-generated and disclosed in the footer. Covers and heroes are mapped in
+`src/data/images.ts`; files follow `<name>-<width>.avif|webp`. Keep new photos in the site palette.
 
-- [Privacy Policy](https://fitwardrobe.me/privacy)
-- [Terms of Service](https://fitwardrobe.me/terms)
-- [Accessibility Statement](https://fitwardrobe.me/accessibility)
+## Colours
 
-© 2026 FitWardrobe. All rights reserved.
+Use the tokens in `src/app/tokens.css` (`--c-forest`, `--c-gold`, `--c-cream` and so on); every
+token lists its contrast ratio. Do not add new hex values in component styles.
+
+## Deploying
+
+Pushing to `main` deploys to Vercel. The canonical host is `https://www.fitwardrobe.me` with trailing
+slashes. Blog rewrites ship in waves on separate branches (`blog-wave-2`, `blog-wave-3`) so each
+post's "Updated" date matches the day it goes live.
+
+## Not in this repository
+
+Brand strategy, internal product documents and source media are kept locally and are git-ignored
+(the repository is public). Never commit them.
+
+## License
+
+Proprietary. See `LICENSE`. Third-party software: `THIRD_PARTY_LICENSES.md`.
