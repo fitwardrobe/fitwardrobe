@@ -20,8 +20,8 @@ const home = (name: string, position?: string) => landscape(name, position, "/im
 export const HERO_IMAGES = {
   blog: landscape("walnut-wardrobe", "60% 50%"),
   about: home("hero-about", "60% 50%"),
-  capsule: home("hero-capsule-guide", "62% 40%"),
-  outfitPlanner: home("hero-outfit-planner", "62% 45%"),
+  capsule: home("hero-capsule-guide", "70% 12%"),
+  outfitPlanner: home("hero-outfit-planner", "75% 8%"),
   minimalist: blog("topic-capsule", "55% 50%"),
 } as const
 
