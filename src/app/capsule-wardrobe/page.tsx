@@ -1,10 +1,13 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/site/page-hero";
+import { JoinBand } from "@/components/site/join-band";
+import { HERO_IMAGES } from "@/data/images";
 
-const TITLE = "Capsule wardrobe app: outfits from a smaller wardrobe";
+const TITLE = "AI capsule wardrobe planner: build one from what you own";
 const DESCRIPTION =
-  "How to build a capsule wardrobe from clothes you already own: how many pieces, which basics, and how a digital wardrobe turns a capsule into outfits.";
+  "Build a capsule wardrobe from the clothes you already own: how many pieces, which basics, and how an AI capsule wardrobe planner turns it into outfits.";
 
 export const metadata: Metadata = pageMetadata("/capsule-wardrobe/", TITLE, DESCRIPTION);
 
@@ -75,21 +78,20 @@ export default function CapsuleWardrobePage() {
   };
 
   return (
-    <div className="fw fw-page">
+    <div className="fw h13 p13 fw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <section className="fw-page__hero">
-        <div className="fw-container fw-page__narrow">
-          <p className="fw-kicker">Capsule wardrobe</p>
-          <h1 className="fw-display fw-page__title">A capsule wardrobe from what you already own</h1>
-          <p className="fw-lead">
-            A capsule wardrobe is a small set of versatile clothes that all work together, so you
-            get more outfits from fewer pieces. This guide covers how to build one from your
-            current wardrobe, and how a digital wardrobe app turns a capsule into outfits.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="AI capsule wardrobe planner"
+        title="A capsule wardrobe built from what you already own."
+        lead="A capsule wardrobe is a small set of versatile clothes that all work together, so you get more outfits from fewer pieces. Here is how to build one from your current wardrobe, and how an app turns it into outfits."
+        image={HERO_IMAGES.capsule}
+        crumbs={[{ label: "Home", href: "/" }, { label: "Capsule wardrobe" }]}
+      >
+        <a href="#steps-title" className="h13-btn h13-btn--gold">Build one in five steps</a>
+        <Link href="/blog/how-many-items-capsule-wardrobe/" className="h13-btn h13-btn--line">How many pieces?</Link>
+      </PageHero>
 
       <section className="fw-section fw-page__section" aria-labelledby="why-title">
         <div className="fw-container fw-page__narrow fw-page__prose">
@@ -135,14 +137,20 @@ export default function CapsuleWardrobePage() {
 
       <section className="fw-section fw-page__section" aria-labelledby="app-title">
         <div className="fw-container fw-page__narrow fw-page__prose">
-          <h2 id="app-title" className="fw-h2">Using an app with your capsule</h2>
+          <h2 id="app-title" className="fw-h2">Capsule wardrobe generator or planner?</h2>
+          <p>
+            Most &quot;capsule wardrobe generators&quot; hand you a list of pieces to buy. A capsule
+            wardrobe planner works the other way round: it starts from the clothes you already
+            have and shows you the outfits inside them. If the goal is to own less, start with a
+            planner.
+          </p>
           <p>
             The hard part of a capsule is not choosing the pieces, it is remembering how they go
             together on a busy morning. FitWardrobe is a digital wardrobe app, coming soon to
             Android and the web, built for exactly that:
           </p>
           <ul className="fw-page__list">
-            <li>Photograph each piece; it is tagged by type, colour and season, and you can correct any tag.</li>
+            <li>Photograph each piece; it is tagged by type, colour, pattern and season, and you can correct any tag.</li>
             <li>Pick an occasion and get an outfit built only from your clothes, with a short reason it works.</li>
             <li>Keep or skip suggestions, and it learns how you like to dress.</li>
             <li>Your wardrobe is stored on your device; photos go to a cloud AI service only for tagging and suggestions.</li>
@@ -177,18 +185,10 @@ export default function CapsuleWardrobePage() {
               </li>
             ))}
           </ul>
-          <div className="fw-page__cta">
-            <h2>Turn your capsule into outfits</h2>
-            <p>
-              FitWardrobe is coming soon to Android and the web. Join the early-access list and
-              we&apos;ll email you the day it opens.
-            </p>
-            <Link href="/#join" className="fw-btn fw-btn--primary">
-              Join early access
-            </Link>
-          </div>
         </div>
       </section>
+
+      <JoinBand location="capsule_guide" title={<>Turn your capsule into <span className="h13-gold">outfits.</span></>} />
     </div>
   );
 }

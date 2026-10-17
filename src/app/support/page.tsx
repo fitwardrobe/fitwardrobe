@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/site/page-hero";
+import { JoinBand } from "@/components/site/join-band";
 
 export const metadata: Metadata = pageMetadata(
   "/support/",
@@ -16,19 +18,19 @@ export default function SupportPage() {
   ]);
 
   return (
-    <div className="fw fw-page">
+    <div className="fw h13 p13 fw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
 
-      <section className="fw-page__hero">
-        <div className="fw-container fw-page__narrow">
-          <p className="fw-kicker">Support</p>
-          <h1 className="fw-display fw-page__title">Support and contact</h1>
-          <p className="fw-lead">
-            Have a question, found a bug, or want to share feedback? Write to us. FitWardrobe is
-            built by one founder, so you&apos;ll hear back from a person.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        compact
+        eyebrow="Support"
+        title="Support and contact."
+        lead="Have a question, found a bug, or want to share feedback? Write to us. FitWardrobe is built by one founder, so you'll hear back from a person."
+        crumbs={[{ label: "Home", href: "/" }, { label: "Support" }]}
+      >
+        <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="h13-btn h13-btn--gold">Email {SITE_CONFIG.contactEmail}</a>
+        <a href={SITE_CONFIG.telegramUrl} rel="noopener" className="h13-btn h13-btn--line">Message us on Telegram</a>
+      </PageHero>
 
       <section className="fw-section fw-page__section" aria-labelledby="contact-title">
         <div className="fw-container fw-page__narrow">
@@ -93,18 +95,10 @@ export default function SupportPage() {
             . Our <Link href="/privacy/" className="fw-link">privacy policy</Link> explains how your
             data is handled.
           </p>
-          <div className="fw-page__cta">
-            <h2>FitWardrobe isn&apos;t available yet</h2>
-            <p>
-              It&apos;s coming soon to Android and the web. Join the early-access list and
-              we&apos;ll email you the day it opens.
-            </p>
-            <Link href="/#join" className="fw-btn fw-btn--primary">
-              Join early access
-            </Link>
-          </div>
         </div>
       </section>
+
+      <JoinBand location="support" title={<>FitWardrobe isn&apos;t <span className="h13-gold">available yet.</span></>} text="It is coming soon to Android and the web. Join the early-access list and we will email you the day it opens." />
     </div>
   );
 }

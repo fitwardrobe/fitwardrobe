@@ -1,145 +1,129 @@
-"use client";
+"use client"
 
-import Link from 'next/link';
-import { useEffect, useState, useMemo } from 'react';
-import { track } from '@/lib/analytics';
+import { useEffect, useMemo, useState } from "react"
+import { Search } from "lucide-react"
+import { track } from "@/lib/analytics"
+import { TOPICS, type Topic } from "@/data/images"
+import { BlogCard, type BlogCardData } from "@/components/blog/blog-card"
 
-export type BlogCard = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-};
+type Filter = Topic | "All"
 
-/** Client-side search and filter. Receives only card data, never full article bodies. */
-export function BlogIndex({ posts }: { posts: BlogCard[] }) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+/**
+ * Blog index: featured comparison posts, then every post grouped by topic.
+ * Topic chips and search filter client-side; only card data is sent to the browser.
+ */
+export function BlogIndex({ posts }: { posts: BlogCardData[] }) {
+  const [query, setQuery] = useState("")
+  const [topic, setTopic] = useState<Filter>("All")
+
+  // ?topic=<slug> (linked from article headers) preselects a topic.
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("topic")
+    const match = TOPICS.find((x) => x.slug === t)
+    if (match) setTopic(match.name)
+  }, [])
 
   // Report a search once the visitor pauses typing (GA4 recommended "search" event).
   useEffect(() => {
-    const term = searchQuery.trim();
-    if (term.length < 3) return;
-    const t = setTimeout(() => track('search', { search_term: term.toLowerCase(), page_type: 'blog_index' }), 1200);
-    return () => clearTimeout(t);
-  }, [searchQuery]);
+    const term = query.trim()
+    if (term.length < 3) return
+    const t = setTimeout(() => track("search", { search_term: term.toLowerCase(), page_type: "blog_index" }), 1200)
+    return () => clearTimeout(t)
+  }, [query])
 
-  const categories = useMemo(() => {
-    return ['All', ...new Set(posts.map(post => post.category))];
-  }, [posts]);
+  const q = query.trim().toLowerCase()
+  const filtered = useMemo(
+    () =>
+      posts.filter(
+        (p) =>
+          (topic === "All" || p.topic === topic) &&
+          (!q || p.title.toLowerCase().includes(q) || p.h1.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)),
+      ),
+    [posts, topic, q],
+  )
+  const browsing = topic === "All" && !q
+  const featured = posts.filter((p) => p.featured)
 
-  const filteredPosts = useMemo(() => {
-    return posts
-      .filter(post => {
-        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                             post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-        return matchesSearch && matchesCategory;
-      })
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [posts, searchQuery, selectedCategory]);
+  const choose = (t: Filter) => {
+    setTopic(t)
+    track("blog_filter", { filter_value: t })
+  }
 
   return (
-    <>
-      <div>
-        <section className="section" >
-          <div className="container">
-            <div className="section-header">
-              <h1>Wardrobe guides: capsules, outfits and apps</h1>
-              <p>
-                Guides, insights, and mental models to help you build a more intentional relationship with your clothes.
-              </p>
-            </div>
-
-            {/* Search and Filters */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-4)', justifyContent: 'space-between', marginBottom: 'var(--space-8)', padding: 'var(--space-4)', borderRadius: 'var(--radius-lg)', backgroundColor: 'var(--color-bg-alt)', border: '1px solid var(--color-mist)' }}>
-              <div style={{ position: 'relative', flex: '1 1 300px' }}>
-                <input 
-                  type="text"
-                  placeholder="Search articles..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.5rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--color-mist)', outline: 'none', backgroundColor: 'var(--color-white)', fontFamily: 'inherit', fontSize: 'var(--text-base)' }}
-                />
-                <svg style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: 'var(--color-text-muted)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-
-              <div style={{ display: 'flex', gap: 'var(--space-2)', overflowX: 'auto', paddingBottom: '4px', flex: '1 1 100%' }}>
-                {categories.map(cat => (
-                  <button
-                    key={cat}
-                    onClick={() => { setSelectedCategory(cat); track('blog_filter', { filter_value: cat }); }}
-                    style={{ 
-                      backgroundColor: selectedCategory === cat ? 'var(--color-navy)' : 'var(--color-bg-primary)',
-                      color: selectedCategory === cat ? 'var(--color-white)' : 'var(--color-text-muted)',
-                      border: '1px solid ' + (selectedCategory === cat ? 'transparent' : 'var(--color-mist)'),
-                      borderRadius: 'var(--radius-pill)',
-                      padding: '0.5rem 1rem',
-                      fontSize: 'var(--text-sm)',
-                      fontWeight: 500,
-                      cursor: 'pointer',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Post Grid */}
-            {filteredPosts.length > 0 ? (
-              <div className="grid grid--3">
-                {filteredPosts.map((post) => (
-                  <Link 
-                    key={post.slug} 
-                    href={`/blog/${post.slug}`}
-                    className="feature-card"
-                    style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid var(--color-mist)', borderRadius: 'var(--radius-lg)' }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
-                      <span style={{ fontSize: 'var(--text-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-sage)', border: '1px solid var(--color-mist)', padding: '2px 8px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--color-bg-alt)' }}>
-                        {post.category}
-                      </span>
-                      <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
-                        {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                      </span>
-                    </div>
-                    
-                    <h2 style={{ marginBottom: 'var(--space-2)', color: 'var(--color-navy)', fontSize: 'var(--text-xl)' }}>
-                      {post.title}
-                    </h2>
-                    
-                    <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-4)', flexGrow: 1 }}>
-                      {post.excerpt}
-                    </p>
-
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-2)', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-navy)', marginTop: 'auto' }}>
-                      Read Article
-                      <svg style={{ width: '16px', height: '16px' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div style={{ textAlign: 'center', padding: 'var(--space-8)', backgroundColor: 'var(--color-white)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-mist)' }}>
-                <p style={{ fontSize: 'var(--text-xl)', color: 'var(--color-text-muted)', fontWeight: 500 }}>No articles found matching your criteria.</p>
-                <button 
-                  onClick={() => {setSearchQuery(''); setSelectedCategory('All');}}
-                  style={{ marginTop: 'var(--space-4)', color: 'var(--color-sage)', textDecoration: 'underline', fontSize: 'var(--text-sm)', background: 'none', border: 'none', cursor: 'pointer' }}
-                >
-                  Clear all filters
-                </button>
-              </div>
-            )}
+    <div className="fw-container">
+      {browsing && featured.length > 0 ? (
+        <section aria-labelledby="start-here" className="b13-start">
+          <div className="p13-head">
+            <h2 id="start-here" className="p13-h2">
+              Start here
+            </h2>
+            <p className="h13-lead">The comparisons most readers come for: which wardrobe app suits you, and what to use on Android.</p>
+          </div>
+          <div className="b13-featured">
+            {featured.map((p, i) => (
+              <BlogCard key={p.slug} post={p} sizes={i === 0 ? "(min-width: 1024px) 56vw, 92vw" : "(min-width: 1024px) 40vw, 92vw"} />
+            ))}
           </div>
         </section>
+      ) : null}
+
+      <div className="b13-toolbar" id="all-guides">
+        <div className="b13-chips" role="group" aria-label="Filter by topic">
+          {(["All", ...TOPICS.map((t) => t.name)] as Filter[]).map((t) => (
+            <button key={t} type="button" aria-pressed={topic === t} onClick={() => choose(t)}>
+              {t === "All" ? "All guides" : t}
+            </button>
+          ))}
+        </div>
+        <label className="b13-search">
+          <span className="fw-sr-only">Search the guides</span>
+          <Search size={17} strokeWidth={1.75} aria-hidden="true" />
+          <input type="search" placeholder="Search the guides" value={query} onChange={(e) => setQuery(e.target.value)} />
+        </label>
       </div>
-    </>
-  );
+
+      <div aria-live="polite">
+        {browsing ? (
+          TOPICS.map((t) => {
+            const list = posts.filter((p) => p.topic === t.name && !p.featured)
+            if (!list.length) return null
+            return (
+              <section key={t.slug} className="b13-topic" aria-labelledby={`topic-${t.slug}`}>
+                <div className="b13-topic__head">
+                  <h2 id={`topic-${t.slug}`} className="b13-topic__title">
+                    {t.name}
+                  </h2>
+                  <p className="b13-topic__desc">{t.description}</p>
+                </div>
+                <div className="b13-grid">
+                  {list.map((p) => (
+                    <BlogCard key={p.slug} post={p} />
+                  ))}
+                </div>
+              </section>
+            )
+          })
+        ) : filtered.length ? (
+          <div className="b13-grid">
+            {filtered.map((p) => (
+              <BlogCard key={p.slug} post={p} />
+            ))}
+          </div>
+        ) : (
+          <div className="b13-empty">
+            <p>No guides match that search.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("")
+                setTopic("All")
+              }}
+            >
+              Show all guides
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }

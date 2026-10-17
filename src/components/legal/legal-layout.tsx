@@ -1,69 +1,50 @@
-"use client";
-
-import React from "react";
 import { LegalPageData } from "@/types/legal";
+import { PageHero } from "@/components/site/page-hero";
 
-interface LegalLayoutProps {
-  data: LegalPageData;
-}
-
-export function LegalLayout({ data }: LegalLayoutProps) {
+/** Legal pages (privacy, terms, cookies, security, accessibility) in the site style. */
+export function LegalLayout({ data, eyebrow = "Legal" }: { data: LegalPageData; eyebrow?: string }) {
   return (
-    <div className="bg-cream">
-      <div className="legal-page container container--narrow">
-        <h1 className="reveal mb-8">{data.title}</h1>
+    <div className="fw h13 p13">
+      <PageHero
+        compact
+        eyebrow={eyebrow}
+        title={data.title}
+        crumbs={[{ label: "Home", href: "/" }, { label: data.title }]}
+        meta={
+          <>
+            <span className="p13-chip">Last updated {data.lastUpdated}</span>
+            <span className="p13-chip">Effective {data.effectiveDate}</span>
+            <span className="p13-chip">Version {data.version}</span>
+          </>
+        }
+      />
 
-        <div className="policy-header reveal reveal--delay-1">
-          <div className="policy-meta-item">
-            <span className="policy-meta-label">Organization</span>
-            <span className="policy-meta-value">{data.organization}</span>
-          </div>
-          <div className="policy-meta-item">
-            <span className="policy-meta-label">Effective Date</span>
-            <span className="policy-meta-value">{data.effectiveDate}</span>
-          </div>
-          <div className="policy-meta-item">
-            <span className="policy-meta-label">Last Updated</span>
-            <span className="policy-meta-value">{data.lastUpdated}</span>
-          </div>
-          <div className="policy-meta-item">
-            <span className="policy-meta-label">Version</span>
-            <span className="policy-meta-value">{data.version}</span>
-          </div>
-        </div>
-
-        <div className="toc toc--legal reveal reveal--delay-2">
-          <h2 className="toc__heading">Table of Contents</h2>
-          <ul>
+      <div className="fw-container l13-layout">
+        <details className="a13-toc l13-toc" open>
+          <summary>On this page</summary>
+          <ol>
             {data.toc.map((item) => (
               <li key={item.id}>
-                <a href={`#${item.id}`}>{item.title}</a>
+                <a href={`#${item.id}`}>{item.title.replace(/^\d+\.\s*/, "")}</a>
               </li>
             ))}
-          </ul>
-        </div>
+          </ol>
+        </details>
 
-        <div className="legal-sections">
-          {data.sections.map((section, index) => (
-            <section
-              key={section.id}
-              id={section.id}
-              className={`reveal reveal--delay-${Math.min(index + 3, 5)}`}
-            >
+        <div className="l13-main prose13">
+          {data.sections.map((section) => (
+            <section key={section.id} id={section.id} className="l13-section">
               <h2>{section.title}</h2>
-              <div className="section-content">{section.content}</div>
-
-              {section.subsections?.map((sub, sIndex) => (
-                <div key={sIndex} className="subsection mt-8">
+              <div className="prose13">{section.content}</div>
+              {section.subsections?.map((sub) => (
+                <div key={sub.title} className="l13-sub prose13">
                   <h3>{sub.title}</h3>
-                  <div className="subsection-content">{sub.content}</div>
+                  {sub.content}
                 </div>
               ))}
             </section>
           ))}
         </div>
-
-        <hr className="my-12 border-none border-t border-mist" />
       </div>
     </div>
   );

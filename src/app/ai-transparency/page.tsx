@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/site/page-hero";
+import { JoinBand } from "@/components/site/join-band";
 
 const TITLE = "How FitWardrobe's AI works";
 const DESCRIPTION =
@@ -66,22 +68,24 @@ export default function AiTransparencyPage() {
   };
 
   return (
-    <div className="fw fw-page">
+    <div className="fw h13 p13 fw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <section className="fw-page__hero">
-        <div className="fw-container fw-page__narrow">
-          <p className="fw-kicker">AI transparency</p>
-          <h1 className="fw-display fw-page__title">How FitWardrobe&apos;s AI works</h1>
-          <p className="fw-lead">
-            FitWardrobe uses cloud AI for two jobs: tagging the clothes you photograph and
-            suggesting outfits from them. Your wardrobe itself is stored on your device. This page
-            explains what is sent, where, and where the AI can get things wrong.
-          </p>
-          <p className="fw-caption">FitWardrobe is coming soon to Android and the web.</p>
-        </div>
-      </section>
+      <PageHero
+        compact
+        eyebrow="AI transparency"
+        title="How FitWardrobe's AI works."
+        lead="FitWardrobe uses cloud AI for two jobs: tagging the clothes you photograph and suggesting outfits from them. Your wardrobe itself is stored on your device. This page explains what is sent, where, and where the AI can get things wrong."
+        crumbs={[{ label: "Home", href: "/" }, { label: "How our AI works" }]}
+        meta={
+          <>
+            <span className="p13-chip">Tagging: Google Gemini API</span>
+            <span className="p13-chip">Outfits: Groq</span>
+            <span className="p13-chip">Wardrobe stored on your device</span>
+          </>
+        }
+      />
 
       <section className="fw-section fw-page__section" aria-labelledby="flow-title">
         <div className="fw-container fw-page__narrow">
@@ -148,6 +152,8 @@ export default function AiTransparencyPage() {
           </p>
         </div>
       </section>
+
+      <JoinBand location="ai_transparency" />
     </div>
   );
 }

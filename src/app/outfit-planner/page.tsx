@@ -1,10 +1,13 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/site/page-hero";
+import { JoinBand } from "@/components/site/join-band";
+import { HERO_IMAGES } from "@/data/images";
 
-const TITLE = "Outfit planner app: outfits from your own clothes";
+const TITLE = "Outfit planner app: AI outfits from your own clothes";
 const DESCRIPTION =
-  "Plan what to wear for work, a wedding, a trip or a weekend from the clothes you already own. How FitWardrobe's outfit planner works, coming soon.";
+  "An outfit planner app for Android and the web: pick the occasion and get an outfit from clothes you own, with a reason it works. Free in early access.";
 
 export const metadata: Metadata = pageMetadata("/outfit-planner/", TITLE, DESCRIPTION);
 
@@ -38,6 +41,14 @@ const OCCASIONS = [
 
 const FAQ = [
   {
+    q: "Is there an app that puts outfits together from my own clothes?",
+    a: "Yes. Several wardrobe apps build outfits from the clothes you photograph, either with you choosing the pieces or with AI suggestions. Our comparison of digital wardrobe apps lists what each one offers. FitWardrobe, coming soon to Android and the web, suggests a complete outfit for the occasion you pick, using only your clothes.",
+  },
+  {
+    q: "Is there a free outfit planner app?",
+    a: "Most wardrobe apps are free to download with paid extras, so check each listing. FitWardrobe will be free during early access.",
+  },
+  {
     q: "What is an outfit planner app?",
     a: "An outfit planner app keeps a record of the clothes you own and helps you decide what to wear, either by letting you build outfits yourself or by suggesting them. FitWardrobe suggests outfits for a chosen occasion using only clothes you own, each with a short reason.",
   },
@@ -56,6 +67,7 @@ const FAQ = [
 ];
 
 const GUIDES = [
+  { href: "/blog/best-digital-wardrobe-apps/", label: "Digital wardrobe and outfit planner apps compared" },
   { href: "/blog/7-rule-for-outfits/", label: "How to plan a week of outfits" },
   { href: "/blog/fashion-outfit-rules-formulas/", label: "The 3-3-3 rule for clothes" },
   { href: "/blog/obscure-fashion-rules-explained/", label: "The sandwich rule and other outfit rules" },
@@ -79,21 +91,20 @@ export default function OutfitPlannerPage() {
   };
 
   return (
-    <div className="fw fw-page">
+    <div className="fw h13 p13 fw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <section className="fw-page__hero">
-        <div className="fw-container fw-page__narrow">
-          <p className="fw-kicker">Outfit planner · Coming soon</p>
-          <h1 className="fw-display fw-page__title">Plan outfits from the clothes you already own</h1>
-          <p className="fw-lead">
-            FitWardrobe is an outfit planner for Android and the web. Tell it where you&apos;re
-            going and it puts together an outfit from your own wardrobe, with a short note on why
-            it works.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="AI outfit planner app · Coming soon"
+        title="Plan outfits from the clothes you already own."
+        lead="FitWardrobe is an outfit planner for Android and the web. Tell it where you're going and it puts together an outfit from your own wardrobe, with a short note on why it works."
+        image={HERO_IMAGES.outfitPlanner}
+        crumbs={[{ label: "Home", href: "/" }, { label: "Outfit planner" }]}
+      >
+        <a href="#join-outfit_planner" className="h13-btn h13-btn--gold">Join early access</a>
+        <a href="#how-title" className="h13-btn h13-btn--line">How it works</a>
+      </PageHero>
 
       <section className="fw-section fw-page__section" aria-labelledby="how-title">
         <div className="fw-container fw-page__narrow">
@@ -182,15 +193,10 @@ export default function OutfitPlannerPage() {
               </li>
             ))}
           </ul>
-          <div className="fw-page__cta">
-            <h2>Be the first to try the outfit planner</h2>
-            <p>Join the early-access list and we&apos;ll email you the day it opens.</p>
-            <Link href="/#join" className="fw-btn fw-btn--primary">
-              Join early access
-            </Link>
-          </div>
         </div>
       </section>
+
+      <JoinBand location="outfit_planner" title={<>Be the first to try the <span className="h13-gold">outfit planner.</span></>} />
     </div>
   );
 }

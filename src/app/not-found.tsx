@@ -3,7 +3,7 @@ import { LogoMark } from "@/components/site/logo";
 
 export default function NotFound() {
   return (
-    <div className="fw fw-page fw-status-page">
+    <div className="fw h13 p13 fw-page fw-status-page">
       <div className="fw-container fw-page__narrow">
         <div className="fw-status-page__mark">
           <LogoMark className="fw-404-mark" title="An open, empty wardrobe" />
@@ -15,7 +15,7 @@ export default function NotFound() {
           here. It may have moved, or the link may be wrong.
         </p>
         <div className="fw-status-page__actions">
-          <Link href="/" className="fw-btn fw-btn--primary">
+          <Link href="/" className="h13-btn h13-btn--gold">
             Back to the homepage
           </Link>
           <Link href="/blog/" className="fw-link">

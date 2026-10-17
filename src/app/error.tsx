@@ -15,7 +15,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="fw fw-page fw-status-page">
+    <div className="fw h13 p13 fw-page fw-status-page">
       <div className="fw-container fw-page__narrow">
         <p className="fw-kicker">Something went wrong</p>
         <h1 className="fw-display fw-page__title">This page didn&apos;t load properly.</h1>
@@ -24,7 +24,7 @@ export default function Error({
           homepage.
         </p>
         <div className="fw-status-page__actions">
-          <button type="button" onClick={() => reset()} className="fw-btn fw-btn--primary">
+          <button type="button" onClick={() => reset()} className="h13-btn h13-btn--gold">
             Try again
           </button>
           <Link href="/" className="fw-link">

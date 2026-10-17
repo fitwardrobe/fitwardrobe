@@ -8,9 +8,9 @@ import { Icon } from "@/components/home/icon"
 import { RevealOnScroll, StickyCta } from "@/components/home/motion"
 import { FAQS, FEATURES, GARMENTS, GUIDES, HERO_CHIPS, STEPS, STRIP, STYLES, TRUST } from "@/data/home"
 
-const TITLE = "FitWardrobe: AI stylist for the clothes you already own"
+const TITLE = "FitWardrobe: Digital Wardrobe & AI Outfit Planner App"
 const DESCRIPTION =
-  "An AI stylist that plans outfits from clothes you already own, with a reason for every pick. Android and web, coming soon. Free during early access."
+  "A digital wardrobe app that plans outfits only from clothes you already own, with a reason for every pick. Android and web, coming soon. Free in early access."
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -123,14 +123,14 @@ export default function HomePage() {
 
         <div className="fw-container h13-hero__grid">
           <div className="h13-hero__copy">
-            <p className="h13-eyebrow">Your AI stylist for the clothes you own</p>
+            <p className="h13-eyebrow">Digital wardrobe &amp; AI outfit planner</p>
             <h1 id="hero-title" className="h13-hero__title">
               Dress smarter
               <span>with what you own.</span>
             </h1>
             <p className="h13-hero__lead">
-              FitWardrobe plans outfits only from the clothes already in your wardrobe, and tells you
-              in one line why each look works.
+              FitWardrobe is a digital wardrobe app that plans outfits only from the clothes you
+              already own, and tells you in one line why each look works.
             </p>
             <div id="hero-form" className="h13-hero__ctas" data-cta-location="hero">
               <Link href="/#join" className="h13-btn h13-btn--gold">
@@ -184,9 +184,9 @@ export default function HomePage() {
       <section id="features" className="h13-sec h13-express" aria-labelledby="express-title">
         <div className="fw-container h13-express__grid">
           <div className="h13-express__copy" data-reveal>
-            <p className="h13-eyebrow h13-eyebrow--dark">More than a wardrobe</p>
+            <p className="h13-eyebrow h13-eyebrow--dark">More than a wardrobe app</p>
             <h2 id="express-title" className="h13-h2">
-              A smarter way to dress like you.
+              A digital wardrobe that learns your taste.
             </h2>
             <p className="h13-lead">
               Tell FitWardrobe the styles you like and the colours you avoid. It learns from every
@@ -242,7 +242,7 @@ export default function HomePage() {
         <div className="fw-container">
           <div className="h13-head" data-reveal>
             <div>
-              <p className="h13-eyebrow h13-eyebrow--dark">Styles for</p>
+              <p className="h13-eyebrow h13-eyebrow--dark">Outfit ideas for</p>
               <h2 id="styles-title" className="h13-h2">
                 Every chapter of your life.
               </h2>
@@ -292,10 +292,10 @@ export default function HomePage() {
           <div className="h13-features__copy" data-reveal>
             <p className="h13-eyebrow">Features</p>
             <h2 id="features-title" className="h13-h2 h13-h2--light">
-              Your style, planned <span className="h13-gold">by AI.</span>
+              An outfit planner that <span className="h13-gold">explains every pick.</span>
             </h2>
             <p className="h13-lead h13-lead--light">
-              Add your clothes once. Then ask for an outfit whenever you need one.
+              Add your clothes once. Then ask the outfit planner whenever you need something to wear.
             </p>
             <ul className="h13-flist">
               {FEATURES.map((f) => (
@@ -324,7 +324,7 @@ export default function HomePage() {
           <div data-reveal>
             <p className="h13-eyebrow h13-eyebrow--dark">How it works</p>
             <h2 id="steps-title" className="h13-h2">
-              Your AI stylist, in four steps.
+              From your wardrobe to an outfit, in four steps.
             </h2>
             <p className="h13-lead">Set it up in a few minutes. It gets better every time you use it.</p>
           </div>
@@ -382,10 +382,13 @@ export default function HomePage() {
             <div>
               <p className="h13-eyebrow h13-eyebrow--dark">From the blog</p>
               <h2 id="guides-title" className="h13-h2">
-                Guides worth reading.
+                Wardrobe apps, compared honestly.
               </h2>
             </div>
-            <p className="h13-lead">Plain answers on wardrobe apps, capsule wardrobes and what to wear.</p>
+            <p className="h13-lead">
+              The guides readers search for most: which wardrobe app suits you, what to use on
+              Android, and what a digital wardrobe actually is.
+            </p>
           </div>
           <ul className="h13-guides__list" data-stagger>
             {GUIDES.map((g) => (

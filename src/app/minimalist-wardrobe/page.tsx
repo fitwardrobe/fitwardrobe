@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/site/page-hero";
+import { JoinBand } from "@/components/site/join-band";
+import { HERO_IMAGES } from "@/data/images";
 
 const TITLE = "Minimalist wardrobe: principles and first steps";
 const DESCRIPTION =
@@ -47,20 +50,19 @@ export default function MinimalistWardrobePage() {
   ]);
 
   return (
-    <div className="fw fw-page">
+    <div className="fw h13 p13 fw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
 
-      <section className="fw-page__hero">
-        <div className="fw-container fw-page__narrow">
-          <p className="fw-kicker">Minimalist wardrobe</p>
-          <h1 className="fw-display fw-page__title">A minimalist wardrobe, starting with what you own</h1>
-          <p className="fw-lead">
-            A minimalist wardrobe is a deliberately small set of clothes you wear often and that
-            work well together. It is less about a number and more about owning only what earns its
-            place.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Minimalist wardrobe"
+        title="A minimalist wardrobe, starting with what you own."
+        lead="A minimalist wardrobe is a deliberately small set of clothes you wear often and that work well together. It is less about a number and more about owning only what earns its place."
+        image={HERO_IMAGES.minimalist}
+        crumbs={[{ label: "Home", href: "/" }, { label: "Minimalist wardrobe" }]}
+      >
+        <a href="#pr-title" className="h13-btn h13-btn--gold">The four principles</a>
+        <Link href="/capsule-wardrobe/" className="h13-btn h13-btn--line">Capsule wardrobe guide</Link>
+      </PageHero>
 
       <section className="fw-section fw-page__section" aria-labelledby="pr-title">
         <div className="fw-container fw-page__narrow">
@@ -113,18 +115,10 @@ export default function MinimalistWardrobePage() {
             </Link>
             .
           </p>
-          <div className="fw-page__cta">
-            <h2>Get more outfits from fewer clothes</h2>
-            <p>
-              FitWardrobe, coming soon to Android and the web, suggests outfits only from clothes
-              you own. Join the early-access list and we&apos;ll email you the day it opens.
-            </p>
-            <Link href="/#join" className="fw-btn fw-btn--primary">
-              Join early access
-            </Link>
-          </div>
         </div>
       </section>
+
+      <JoinBand location="minimalist_guide" title={<>More outfits from <span className="h13-gold">fewer clothes.</span></>} />
     </div>
   );
 }

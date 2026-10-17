@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/site/page-hero";
+import { JoinBand } from "@/components/site/join-band";
+import { HERO_IMAGES } from "@/data/images";
 
 const TITLE = "About FitWardrobe and its founder";
 const DESCRIPTION =
@@ -50,21 +53,24 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="fw fw-page">
+    <div className="fw h13 p13 fw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
 
-      <section className="fw-page__hero">
-        <div className="fw-container fw-page__narrow">
-          <p className="fw-kicker">About</p>
-          <h1 className="fw-display fw-page__title">Why FitWardrobe exists</h1>
-          <p className="fw-lead">
-            Most of us own enough clothes to dress well. What we lack is a quick way to see the
-            combinations. FitWardrobe is a digital wardrobe app that suggests outfits from the
-            clothes you already own, with a short reason for each one.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About FitWardrobe"
+        title="Why FitWardrobe exists."
+        lead="Most of us own enough clothes to dress well. What we lack is a quick way to see the combinations. FitWardrobe is a digital wardrobe app that suggests outfits from the clothes you already own, with a short reason for each one."
+        image={HERO_IMAGES.about}
+        crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+        meta={
+          <>
+            <span className="p13-chip">Built by Aryan Panwar</span>
+            <span className="p13-chip">Meerut, India</span>
+            <span className="p13-chip">Android and web, coming soon</span>
+          </>
+        }
+      />
 
       <section className="fw-section fw-page__section" aria-labelledby="problem-title">
         <div className="fw-container fw-page__narrow fw-page__prose">
@@ -172,15 +178,10 @@ export default function AboutPage() {
               <a href="mailto:privacy@fitwardrobe.me">privacy@fitwardrobe.me</a>
             </div>
           </div>
-          <div className="fw-page__cta">
-            <h2>Be the first to try FitWardrobe</h2>
-            <p>Join the early-access list and we&apos;ll email you the day it opens.</p>
-            <Link href="/#join" className="fw-btn fw-btn--primary">
-              Join early access
-            </Link>
-          </div>
         </div>
       </section>
+
+      <JoinBand location="about" />
     </div>
   );
 }

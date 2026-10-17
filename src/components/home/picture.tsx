@@ -1,6 +1,8 @@
 type PictureProps = {
-  /** Base name inside /images/home, e.g. "hero" → hero-640.avif / hero-640.webp */
+  /** Base name inside `dir`, e.g. "hero" → hero-640.avif / hero-640.webp */
   name: string
+  /** Folder under /public (default /images/home). */
+  dir?: string
   widths: number[]
   sizes: string
   alt: string
@@ -14,6 +16,7 @@ type PictureProps = {
 /** AVIF with WebP fallback. The site is a static export, so next/image optimisation is off. */
 export function Picture({
   name,
+  dir = "/images/home",
   widths,
   sizes,
   alt,
@@ -22,9 +25,8 @@ export function Picture({
   priority = false,
   className,
 }: PictureProps) {
-  const srcSet = (ext: string) =>
-    widths.map((w) => `/images/home/${name}-${w}.${ext} ${w}w`).join(", ")
-  const fallback = `/images/home/${name}-${widths[widths.length - 1]}.webp`
+  const srcSet = (ext: string) => widths.map((w) => `${dir}/${name}-${w}.${ext} ${w}w`).join(", ")
+  const fallback = `${dir}/${name}-${widths[widths.length - 1]}.webp`
 
   return (
     <picture>

@@ -1,7 +1,7 @@
 /* Site-wide base for every page: Tailwind's reset (preflight) only.
-   The older 2,000-line globals.css is loaded just by the legacy page groups
-   (blog, legal pages, 404, error) through their own layouts, so the homepage and
-   the new pages don't pay for it. */
+   All pages share maison.css, theme13.css and pages13.css (the old globals.css
+   was retired in Oct 2026 when the blog and legal pages moved to the new
+   design). */
 @layer theme, base, components, utilities;
 @import "tailwindcss/preflight.css" layer(base);
 

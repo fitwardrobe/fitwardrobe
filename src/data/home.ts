@@ -135,6 +135,14 @@ export const FAQS = [
     a: "FitWardrobe focuses on one job: choosing an outfit for a specific occasion from clothes you already own, and telling you why it works. Our comparison guide sets out what each wardrobe app offers, based on their public feature lists.",
   },
   {
+    q: "Is there a Stylebook app for Android?",
+    a: "No. Stylebook is only available for iPhone and iPad. FitWardrobe is a digital wardrobe app coming to Android and the web, and our guide to Stylebook alternatives for Android compares the options available today.",
+  },
+  {
+    q: "What is a digital wardrobe app?",
+    a: "A digital wardrobe app keeps a photo of every piece of clothing you own, tagged by type, colour and season, so you can see your whole wardrobe on your phone and plan outfits from it. FitWardrobe adds outfit suggestions for the occasion you pick, each with a short reason.",
+  },
+  {
     q: "Is it only for men?",
     a: "No. FitWardrobe works with any wardrobe.",
   },
@@ -145,22 +153,22 @@ export const GUIDES = [
   {
     href: "/blog/best-outfit-planning-apps-compared/",
     topic: "Wardrobe apps",
-    title: "Wardrobe apps compared: Whering, Indyx, Stylebook and more",
+    title: "Whering vs Indyx vs Stylebook: which wardrobe app to choose",
+  },
+  {
+    href: "/blog/stylebook-alternative-android/",
+    topic: "Android",
+    title: "Is Stylebook on Android? The best alternatives",
+  },
+  {
+    href: "/blog/best-digital-wardrobe-apps/",
+    topic: "Wardrobe apps",
+    title: "The best digital wardrobe and outfit planner apps",
   },
   {
     href: "/blog/what-is-a-digital-wardrobe/",
     topic: "Digital wardrobe",
-    title: "What a digital wardrobe is, and who it helps",
-  },
-  {
-    href: "/capsule-wardrobe/",
-    topic: "Capsule wardrobe",
-    title: "A practical capsule wardrobe guide",
-  },
-  {
-    href: "/outfit-planner/",
-    topic: "What to wear",
-    title: "Plan an outfit for an occasion from clothes you own",
+    title: "What a digital wardrobe is, and how to start one",
   },
 ]
 

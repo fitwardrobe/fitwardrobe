@@ -4,6 +4,7 @@ import { Jost, Noto_Serif_Display } from "next/font/google";
 import "./base.css"
 import "./maison.css"
 import "./theme13.css"
+import "./pages13.css"
 import { getGlobalMetadata } from "@/lib/seo"
 import { SiteHeader } from "@/components/site/site-header"
 import { SiteFooter } from "@/components/site/site-footer"

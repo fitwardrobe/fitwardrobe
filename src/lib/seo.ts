@@ -48,10 +48,10 @@ export function getBlogPostMetadata(slug: string): Metadata {
       siteName: 'FitWardrobe',
       type: 'article',
       publishedTime: post.date,
+      ...(post.updated ? { modifiedTime: post.updated } : {}),
       authors: ['Aryan Panwar'],
       images: [DEFAULT_OG_IMAGE],
-      section: post.category,
-      tags: [post.category, 'Sustainable Fashion', 'Digital Wardrobe'],
+      section: post.topic,
     },
     twitter: {
       card: 'summary_large_image',
@@ -68,10 +68,10 @@ export function getGlobalMetadata(): Metadata {
   return {
     metadataBase: new URL(baseUrl || "http://localhost:3000"),
     title: {
-      default: 'FitWardrobe: AI wardrobe app for the clothes you own',
+      default: 'FitWardrobe: Digital Wardrobe & AI Outfit Planner App',
       template: '%s | FitWardrobe',
     },
-    description: 'A digital wardrobe that plans outfits only from clothes you own, with a reason for each pick. Android and web, coming soon. Join the early-access list.',
+    description: 'A digital wardrobe app that plans outfits only from clothes you already own, with a reason for every pick. Android and web, coming soon. Free in early access.',
     openGraph: {
       type: 'website',
       locale: 'en_US',

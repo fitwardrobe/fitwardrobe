@@ -1,13 +1,11 @@
-import "../globals.css";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
-// The blog index is a client component, so its metadata lives here.
 // Post pages override all of it via generateMetadata.
 export const metadata: Metadata = pageMetadata(
   "/blog/",
-  "Wardrobe app, capsule wardrobe and outfit guides",
-  "Plain guides from FitWardrobe on wardrobe apps compared, capsule wardrobes, wardrobe rules and what to wear for any occasion.",
+  "Wardrobe guides: apps, capsules and outfit rules",
+  "Plain guides on digital wardrobe apps compared, Stylebook alternatives for Android, capsule wardrobes and wardrobe rules like 3-3-3 and 70/30.",
 );
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

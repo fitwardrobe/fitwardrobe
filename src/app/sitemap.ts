@@ -5,7 +5,7 @@ import { posts } from '@/data/posts'
 export const dynamic = 'force-static'
 
 // Date the core pages last changed. Update when their content changes (not on every build).
-const SITE_UPDATED = '2026-10-04'
+const SITE_UPDATED = '2026-10-18'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.landingUrl.replace(/\/$/, '');
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Blog posts
   const blogPosts = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}/`,
-    lastModified: post.date,
+    lastModified: post.updated ?? post.date,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))

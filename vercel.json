@@ -33,6 +33,111 @@
   ],
   "redirects": [
     {
+      "source": "/blog/best-wardrobe-apps-2026",
+      "destination": "/blog/best-digital-wardrobe-apps/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-wardrobe-apps-2026/",
+      "destination": "/blog/best-digital-wardrobe-apps/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-wardrobe-apps-2026.html",
+      "destination": "/blog/best-digital-wardrobe-apps/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/outfit-planning-apps-guide",
+      "destination": "/blog/best-digital-wardrobe-apps/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/outfit-planning-apps-guide/",
+      "destination": "/blog/best-digital-wardrobe-apps/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/outfit-planning-apps-guide.html",
+      "destination": "/blog/best-digital-wardrobe-apps/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/can-ai-design-wardrobe",
+      "destination": "/blog/free-ai-wardrobe-tools/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/can-ai-design-wardrobe/",
+      "destination": "/blog/free-ai-wardrobe-tools/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/can-ai-design-wardrobe.html",
+      "destination": "/blog/free-ai-wardrobe-tools/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/myntra-ai-indian-fashion",
+      "destination": "/blog/free-ai-wardrobe-tools/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/myntra-ai-indian-fashion/",
+      "destination": "/blog/free-ai-wardrobe-tools/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/myntra-ai-indian-fashion.html",
+      "destination": "/blog/free-ai-wardrobe-tools/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/digital-transformation-fashion",
+      "destination": "/blog/what-is-a-digital-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/digital-transformation-fashion/",
+      "destination": "/blog/what-is-a-digital-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/digital-transformation-fashion.html",
+      "destination": "/blog/what-is-a-digital-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/digital-clothes-future-fashion",
+      "destination": "/blog/what-is-a-digital-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/digital-clothes-future-fashion/",
+      "destination": "/blog/what-is-a-digital-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/digital-clothes-future-fashion.html",
+      "destination": "/blog/what-is-a-digital-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gen-z-fashion-trends-2026",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gen-z-fashion-trends-2026/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gen-z-fashion-trends-2026.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
       "permanent": true
