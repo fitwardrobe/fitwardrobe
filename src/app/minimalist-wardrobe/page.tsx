@@ -95,10 +95,9 @@ export default function MinimalistWardrobePage() {
             ))}
           </ul>
           <p className="fw-page__note">
-            Adjust for your climate, work and life. The full list, with what to look for in each,
-            is in our{" "}
-            <Link href="/blog/minimalist-wardrobe-essentials/" className="fw-link">
-              minimalist wardrobe essentials guide
+            Adjust for your climate, work and life. For a fuller list by category, see our{" "}
+            <Link href="/blog/capsule-wardrobe-essentials-checklist/" className="fw-link">
+              capsule wardrobe checklist
             </Link>
             .
           </p>

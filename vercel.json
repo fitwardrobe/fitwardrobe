@@ -97,6 +97,66 @@
       "permanent": true
     },
     {
+      "source": "/blog/how-to-build-a-capsule-wardrobe",
+      "destination": "/blog/what-is-a-capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-build-a-capsule-wardrobe/",
+      "destination": "/blog/what-is-a-capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-build-a-capsule-wardrobe.html",
+      "destination": "/blog/what-is-a-capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/90-90-rule-decluttering",
+      "destination": "/blog/what-is-a-capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/90-90-rule-decluttering/",
+      "destination": "/blog/what-is-a-capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/90-90-rule-decluttering.html",
+      "destination": "/blog/what-is-a-capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/minimalist-wardrobe-essentials",
+      "destination": "/minimalist-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/minimalist-wardrobe-essentials/",
+      "destination": "/minimalist-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/minimalist-wardrobe-essentials.html",
+      "destination": "/minimalist-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/rs-of-fashion-sustainable-planning",
+      "destination": "/blog/7-rs-sustainable-fashion/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/rs-of-fashion-sustainable-planning/",
+      "destination": "/blog/7-rs-sustainable-fashion/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/rs-of-fashion-sustainable-planning.html",
+      "destination": "/blog/7-rs-sustainable-fashion/",
+      "permanent": true
+    },
+    {
       "source": "/blog/:parent/:slug.html",
       "destination": "/blog/:slug/",
       "permanent": true
