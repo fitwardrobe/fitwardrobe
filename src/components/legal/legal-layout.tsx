@@ -10,7 +10,7 @@ interface LegalLayoutProps {
 export function LegalLayout({ data }: LegalLayoutProps) {
   return (
     <div className="bg-cream">
-      <main className="legal-page pt-32 container container--narrow">
+      <div className="legal-page container container--narrow">
         <h1 className="reveal mb-8">{data.title}</h1>
 
         <div className="policy-header reveal reveal--delay-1">
@@ -33,7 +33,7 @@ export function LegalLayout({ data }: LegalLayoutProps) {
         </div>
 
         <div className="toc toc--legal reveal reveal--delay-2">
-          <h3>Table of Contents</h3>
+          <h2 className="toc__heading">Table of Contents</h2>
           <ul>
             {data.toc.map((item) => (
               <li key={item.id}>
@@ -64,7 +64,7 @@ export function LegalLayout({ data }: LegalLayoutProps) {
         </div>
 
         <hr className="my-12 border-none border-t border-mist" />
-      </main>
+      </div>
     </div>
   );
 }

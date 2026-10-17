@@ -1,114 +1,196 @@
-import React from "react";
 import { Metadata } from "next";
-import { SITE_CONFIG } from "@/lib/config";
 import Link from "next/link";
-import { getBreadcrumbSchema } from "@/lib/seo";
+import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "AI Outfit Planner | FitWardrobe",
-  description: "Plan your outfits with the power of private AI. Get daily styling suggestions based on your own wardrobe, the weather, and your personal style.",
-};
+const TITLE = "Outfit planner app: outfits from your own clothes";
+const DESCRIPTION =
+  "Plan what to wear for work, a wedding, a trip or a weekend from the clothes you already own. How FitWardrobe's outfit planner works, coming soon.";
+
+export const metadata: Metadata = pageMetadata("/outfit-planner/", TITLE, DESCRIPTION);
+
+const STEPS = [
+  {
+    title: "Add the clothes you own",
+    text: "Photograph each piece. It is tagged by type, colour and season, and you can correct anything it gets wrong.",
+  },
+  {
+    title: "Pick the occasion",
+    text: "The office, a wedding, an interview, a trip or a slow Sunday. The occasion sets how formal the outfit should be.",
+  },
+  {
+    title: "Get an outfit with a reason",
+    text: "FitWardrobe puts together an outfit from your clothes only, with a sentence on why the pieces work together.",
+  },
+  {
+    title: "Keep it or skip it",
+    text: "Every outfit you keep or skip shapes the next suggestion, so it gets closer to how you like to dress.",
+  },
+];
+
+const OCCASIONS = [
+  ["Work", "Smart, comfortable pieces that hold up from the first meeting to the last."],
+  ["Wedding guest", "Dressier combinations that respect the dress code without outshining anyone."],
+  ["Job interview", "Polished, quiet outfits that suit the industry you are interviewing in."],
+  ["Travel", "Layers that mix with each other, so a small bag covers a long trip."],
+  ["Festive", "Occasion wear, from a kurta and Nehru jacket to a velvet blazer."],
+  ["Weekend", "Relaxed outfits that still look put together."],
+];
+
+const FAQ = [
+  {
+    q: "What is an outfit planner app?",
+    a: "An outfit planner app keeps a record of the clothes you own and helps you decide what to wear, either by letting you build outfits yourself or by suggesting them. FitWardrobe suggests outfits for a chosen occasion using only clothes you own, each with a short reason.",
+  },
+  {
+    q: "Does FitWardrobe suggest clothes to buy?",
+    a: "Outfit suggestions are built only from the pieces you have added, so you can get more from what is already in your wardrobe.",
+  },
+  {
+    q: "When can I use it?",
+    a: "FitWardrobe is coming soon to Android and the web; on an iPhone you'll be able to use the web version in your browser. Join the early-access list and we'll email you the day it opens.",
+  },
+  {
+    q: "What happens to my clothing photos?",
+    a: "Your wardrobe is stored on your device. To tag a piece or suggest an outfit, the photo or item details are sent to a cloud AI service for processing, and we don't keep copies on our servers.",
+  },
+];
+
+const GUIDES = [
+  { href: "/blog/7-rule-for-outfits/", label: "How to plan a week of outfits" },
+  { href: "/blog/fashion-outfit-rules-formulas/", label: "The 3-3-3 rule for clothes" },
+  { href: "/blog/obscure-fashion-rules-explained/", label: "The sandwich rule and other outfit rules" },
+  { href: "/blog/capsule-wardrobe-packing-guide/", label: "Packing a travel capsule" },
+  { href: "/capsule-wardrobe/", label: "Building a capsule wardrobe from what you own" },
+];
 
 export default function OutfitPlannerPage() {
   const breadcrumbs = getBreadcrumbSchema([
     { name: "Home", item: "/" },
-    { name: "Outfit Planner", item: "/outfit-planner" },
+    { name: "Outfit planner", item: "/outfit-planner/" },
   ]);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-      />
-      <main className="feature-page pt-32 container">
-        <section className="hero-section text-center mb-16">
-          <span className="section-label reveal">Smart Styling</span>
-          <h1 className="reveal reveal--delay-1">Your Private AI Outfit Planner</h1>
-          <p className="hero__subtitle reveal reveal--delay-2 mx-auto">
-            FitWardrobe is a privacy-first AI outfit planner that helps you stop staring at your closet and start wearing what you own. Our advanced AI analyzes your physical wardrobe, checks local weather forecasts, and suggests perfectly styled outfits for any occasion—ensuring your personal style data stays 100% private and secure on your device. Studies show that AI-powered styling can reduce decision fatigue by up to 40% each morning, saving you valuable time.
+    <div className="fw fw-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
+      <section className="fw-page__hero">
+        <div className="fw-container fw-page__narrow">
+          <p className="fw-kicker">Outfit planner · Coming soon</p>
+          <h1 className="fw-display fw-page__title">Plan outfits from the clothes you already own</h1>
+          <p className="fw-lead">
+            FitWardrobe is an outfit planner for Android and the web. Tell it where you&apos;re
+            going and it puts together an outfit from your own wardrobe, with a short note on why
+            it works.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section className="feature-section">
-          <div className="section-header reveal">
-            <h2>Why should you use an AI outfit planner?</h2>
-            <div className="section-content">
-              <p>FitWardrobe goes beyond simple organization. We help you rediscover your clothes.</p>
-            </div>
-          </div>
-          <div className="grid grid--3">
-            <div className="feature-card reveal reveal--delay-1">
-              <div className="text-3xl mb-4">🌦️</div>
-              <h3 className="text-xl font-semibold mb-3">Weather-Optimized</h3>
-              <p>Our AI checks your local forecast to ensure your suggested outfit is practical as well as stylish. This feature alone can save you from unexpected weather changes, with 90% accuracy in matching outfits to daily conditions.</p>
-            </div>
-            <div className="feature-card reveal reveal--delay-2">
-              <div className="text-3xl mb-4">📅</div>
-              <h3 className="text-xl font-semibold mb-3">Event-Specific</h3>
-              <p>From board meetings to brunch, get suggestions tailored to the specific events on your schedule. Users report a 25% increase in confidence when their outfits are perfectly aligned with their daily agenda.</p>
-            </div>
-            <div className="feature-card reveal reveal--delay-3">
-              <div className="text-3xl mb-4">🔒</div>
-              <h3 className="text-xl font-semibold mb-3">Privacy First</h3>
-              <p>Unlike other apps, your outfit history and preferences stay on your device, not on our servers. We guarantee 100% on-device processing, ensuring your personal style data is always secure and private.</p>
-            </div>
-          </div>
-        </section>
+      <section className="fw-section fw-page__section" aria-labelledby="how-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="how-title" className="fw-h2">How the outfit planner works</h2>
+          <ol className="fw-page__steps">
+            {STEPS.map((s, i) => (
+              <li key={s.title}>
+                <span className="fw-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="fw-sans">{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-        <section className="feature-section">
-          <div className="grid grid--2 items-center">
-            <div className="reveal">
-              <h2>Is there a solution for the "nothing to wear" problem?</h2>
-              <div className="section-content">
-                <p className="mb-4">
-                  Did you know most people only wear 20% of their wardrobe? Our AI
-                  identifies the "hidden gems" in your closet and suggests new ways
-                  to style them. **Research shows that utilizing 100% of your current wardrobe can reduce annual clothing spending by up to 30%**, according to sustainable fashion indices.
-                </p>
-                <ul className="list-disc pl-5 space-y-2 mb-8">
-                  <li>Morning styling in under 30 seconds</li>
-                  <li>Discover 50+ new ways to wear your favorite jeans</li>
-                  <li>Track "Cost Per Wear" to see your true style value</li>
-                </ul>
-                <a href={SITE_CONFIG.apkDownloadUrl} className="btn btn--primary">
-                  Download Beta Now
-                </a>
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="occ-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="occ-title" className="fw-h2">What to wear, by occasion</h2>
+          <table className="fw-page__table">
+            <thead>
+              <tr>
+                <th scope="col">Occasion</th>
+                <th scope="col">What it plans for</th>
+              </tr>
+            </thead>
+            <tbody>
+              {OCCASIONS.map(([o, d]) => (
+                <tr key={o}>
+                  <th scope="row">{o}</th>
+                  <td>{d}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="fw-page__note">
+            Suggestions come only from the pieces you have added. It can get things wrong, and you
+            can tell it when it does.
+          </p>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section" aria-labelledby="why-title">
+        <div className="fw-container fw-page__narrow fw-page__prose">
+          <h2 id="why-title" className="fw-h2">Why plan from what you own</h2>
+          <p>
+            Most of us already own enough to get dressed well; the problem is seeing the
+            combinations. In 2022, UK adults had not worn about a quarter of their clothes in the
+            past year, according to{" "}
+            <a
+              className="fw-link"
+              href="https://wrap.ngo/media-centre/press-releases/nations-wardrobes-hold-16-billion-items-unworn-clothes-people-open-new"
+              rel="noopener"
+            >
+              research by WRAP
+            </a>
+            . Planning outfits from your own wardrobe puts those pieces back into rotation, and a
+            short reason with each outfit helps you learn what works for you.
+          </p>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="op-faq-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="op-faq-title" className="fw-h2">Outfit planner questions</h2>
+          <dl className="fw-page__faq">
+            {FAQ.map((f) => (
+              <div key={f.q}>
+                <dt>{f.q}</dt>
+                <dd>{f.a}</dd>
               </div>
-            </div>
-            <div className="reveal reveal--delay-1 bg-mist/30 p-8 rounded-2xl border border-mist">
-              <div className="space-y-4">
-                 <div className="bg-white p-4 rounded-lg shadow-sm border border-mist/50">
-                    <p className="text-sm font-semibold text-sage mb-1">AI Suggestion</p>
-                    <p className="text-sm">"It's 18°C and cloudy. How about your <strong>Navy Blazer</strong> paired with <strong>White Linen Shirt</strong> and <strong>Dark Denim</strong>? Add your <strong>Chelsea Boots</strong> for a sharp look."</p>
-                 </div>
-                 <div className="bg-white p-4 rounded-lg shadow-sm border border-mist/50 opacity-60">
-                    <p className="text-sm font-semibold text-terracotta mb-1">Alternative</p>
-                    <p className="text-sm">"Try the <strong>Grey Overcoat</strong> if you're heading out later this evening."</p>
-                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+            ))}
+          </dl>
+        </div>
+      </section>
 
-        <section className="section--dark rounded-2xl p-12 mb-20 reveal">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-white">Ready for effortless mornings?</h2>
-            <p className="text-cream/80 mb-8">
-              FitWardrobe is currently in free beta. Join our community of 5,000+
-              style enthusiasts.
-            </p>
-            <div className="btn-group justify-center">
-              <a href={SITE_CONFIG.apkDownloadUrl} className="btn btn--primary">
-                 Get the App
-              </a>
-              <Link href="/ai-transparency" className="btn btn--outline">
-                How the AI Works
-              </Link>
-            </div>
+      <section className="fw-section fw-page__section" aria-labelledby="op-more-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="op-more-title" className="fw-h2">Outfit planning guides</h2>
+          <ul className="fw-page__links">
+            {GUIDES.map((g) => (
+              <li key={g.href}>
+                <Link href={g.href}>{g.label}</Link>
+              </li>
+            ))}
+          </ul>
+          <div className="fw-page__cta">
+            <h2>Be the first to try the outfit planner</h2>
+            <p>Join the early-access list and we&apos;ll email you the day it opens.</p>
+            <Link href="/#join" className="fw-btn fw-btn--primary">
+              Join early access
+            </Link>
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </div>
   );
 }

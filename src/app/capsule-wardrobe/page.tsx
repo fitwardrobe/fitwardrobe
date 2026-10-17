@@ -1,121 +1,194 @@
-import React from "react";
 import { Metadata } from "next";
-import { SITE_CONFIG } from "@/lib/config";
 import Link from "next/link";
-import { getBreadcrumbSchema } from "@/lib/seo";
+import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "AI Capsule Wardrobe Builder | FitWardrobe",
-  description: "Build a more versatile wardrobe with less. Our AI helps you create a minimalist capsule wardrobe that works for your lifestyle.",
-};
+const TITLE = "Capsule wardrobe app: outfits from a smaller wardrobe";
+const DESCRIPTION =
+  "How to build a capsule wardrobe from clothes you already own: how many pieces, which basics, and how a digital wardrobe turns a capsule into outfits.";
+
+export const metadata: Metadata = pageMetadata("/capsule-wardrobe/", TITLE, DESCRIPTION);
+
+const STEPS = [
+  {
+    title: "Take stock of what you own",
+    text: "Pull out everything for the season and sort it into keep, maybe and let go. Most capsules are built from clothes already in the wardrobe, not from a shopping list.",
+  },
+  {
+    title: "Pick a short colour palette",
+    text: "Choose two or three neutrals and one or two accent colours. The tighter the palette, the more pieces combine with each other.",
+  },
+  {
+    title: "Choose your core pieces",
+    text: "Keep the tops, bottoms, layers and shoes you reach for most and that work with several other pieces. Many people land between 25 and 40 items for a season.",
+  },
+  {
+    title: "Plan outfits before you need them",
+    text: "Put combinations together for the week ahead, including the occasions you have coming up. This is where a capsule saves time each morning.",
+  },
+  {
+    title: "Review at the end of the season",
+    text: "Note what you never wore and what you wished you had. Replace gaps deliberately, one piece at a time.",
+  },
+];
+
+const FAQ = [
+  {
+    q: "What is a capsule wardrobe?",
+    a: "A capsule wardrobe is a small set of versatile clothes that all work together, so you can make many outfits from fewer pieces. The idea is usually credited to London boutique owner Susie Faux in the 1970s and was popularised by Donna Karan's 1985 'Seven Easy Pieces' collection.",
+  },
+  {
+    q: "How many items should a capsule wardrobe have?",
+    a: "There is no fixed number. Project 333 uses 33 items, including shoes and accessories, for three months; many people settle between 25 and 40 pieces for a season. Start with what you actually wear and adjust.",
+  },
+  {
+    q: "Can an app help me build a capsule wardrobe?",
+    a: "Yes. A digital wardrobe app keeps every piece you own in one place, so you can see your capsule at a glance and plan outfits from it. FitWardrobe, coming soon to Android and the web, tags each piece you photograph and suggests outfits for an occasion using only your clothes.",
+  },
+  {
+    q: "Do I need to buy new clothes for a capsule wardrobe?",
+    a: "Usually not. Most people can build a working capsule from what they already own and only fill real gaps later.",
+  },
+];
+
+const GUIDES = [
+  { href: "/blog/what-is-a-capsule-wardrobe/", label: "What a capsule wardrobe is, in detail" },
+  { href: "/blog/how-many-items-capsule-wardrobe/", label: "How many pieces a capsule wardrobe needs" },
+  { href: "/blog/capsule-wardrobe-essentials-checklist/", label: "A capsule wardrobe checklist to start with" },
+  { href: "/blog/capsule-wardrobe-rules-explained/", label: "Capsule wardrobe rules: 3-3-3, 70/30 and more" },
+  { href: "/blog/capsule-wardrobe-mistakes/", label: "Common capsule wardrobe mistakes" },
+  { href: "/blog/capsule-wardrobe-packing-guide/", label: "A travel capsule for packing light" },
+];
 
 export default function CapsuleWardrobePage() {
   const breadcrumbs = getBreadcrumbSchema([
     { name: "Home", item: "/" },
-    { name: "Capsule Wardrobe", item: "/capsule-wardrobe" },
+    { name: "Capsule wardrobe", item: "/capsule-wardrobe/" },
   ]);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-      />
-      <main className="feature-page pt-32 container">
-        <section className="hero-section text-center mb-16">
-          <span className="section-label reveal">Minimalism Meets AI</span>
-          <h1 className="reveal reveal--delay-1">Build Your Perfect Capsule</h1>
-          <p className="hero__subtitle reveal reveal--delay-2 mx-auto">
-            FitWardrobe is a privacy-first AI capsule wardrobe builder designed to help you organize your closet, reduce decision fatigue, and curate a minimalist collection. Our advanced AI identifies your most-worn pieces, suggests versatile additions, and builds a sustainable wardrobe plan tailored for your lifestyle—all while keeping your clothing photos 100% private on-device.
+    <div className="fw fw-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
+      <section className="fw-page__hero">
+        <div className="fw-container fw-page__narrow">
+          <p className="fw-kicker">Capsule wardrobe</p>
+          <h1 className="fw-display fw-page__title">A capsule wardrobe from what you already own</h1>
+          <p className="fw-lead">
+            A capsule wardrobe is a small set of versatile clothes that all work together, so you
+            get more outfits from fewer pieces. This guide covers how to build one from your
+            current wardrobe, and how a digital wardrobe app turns a capsule into outfits.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section className="feature-section">
-          <div className="grid grid--2 items-center">
-            <div className="reveal">
-              <h2>What exactly is a capsule wardrobe?</h2>
-              <div className="section-content">
-                <p>
-                  A capsule wardrobe is a curated collection of essential items that
-                  don't go out of fashion, which can then be augmented with seasonal
-                  pieces.
-                </p>
-                <p>
-                  By focusing on versatile, high-quality items that all work
-                  together, you can create dozens of outfits from just a few pieces,
-                  saving you time, money, and decision fatigue. **Research shows that the average person only wears 20% of their wardrobe**, making a curated capsule a highly effective tool for sustainable fashion.
-                </p>
-              </div>
-            </div>
-            <div className="reveal reveal--delay-1 p-8 bg-sage/5 rounded-2xl">
-              <h4 className="mb-4">The 30-Item Challenge</h4>
-              <p className="text-sm mb-4">
-                Most FitWardrobe users start with a 30-item capsule. Our AI
-                analyzes your current wardrobe and identifies the "Core 30" that
-                provide the most versatility.
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between text-xs font-semibold">
-                  <span>Versatility Score</span>
-                  <span>85%</span>
+      <section className="fw-section fw-page__section" aria-labelledby="why-title">
+        <div className="fw-container fw-page__narrow fw-page__prose">
+          <h2 id="why-title" className="fw-h2">Why a capsule works</h2>
+          <p>
+            Most wardrobes hold clothes that rarely get worn: in 2022, UK adults had not worn
+            about a quarter of their clothes in the past year, according to{" "}
+            <a
+              className="fw-link"
+              href="https://wrap.ngo/media-centre/press-releases/nations-wardrobes-hold-16-billion-items-unworn-clothes-people-open-new"
+              rel="noopener"
+            >
+              research by WRAP
+            </a>
+            . A capsule turns that around: fewer pieces, each chosen because it works with the
+            others, so getting dressed takes less thought.
+          </p>
+          <p>
+            The idea is older than the word. It is usually credited to London boutique owner Susie
+            Faux in the 1970s, and Donna Karan&apos;s 1985 &quot;Seven Easy Pieces&quot; made it
+            mainstream. Today the best-known version is Project 333 by Courtney Carver: 33 items,
+            including shoes and accessories, worn for three months.
+          </p>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="steps-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="steps-title" className="fw-h2">How to build one in five steps</h2>
+          <ol className="fw-page__steps">
+            {STEPS.map((s, i) => (
+              <li key={s.title}>
+                <span className="fw-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="fw-sans">{s.title}</h3>
+                  <p>{s.text}</p>
                 </div>
-                <div className="w-full bg-mist h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-sage h-full w-[85%]"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-        <section className="feature-section">
-          <div className="section-header reveal">
-            <h2>How exactly does the AI capsule builder work?</h2>
-          </div>
-          <div className="grid grid--3">
-            <div className="feature-card reveal reveal--delay-1">
-              <div className="text-3xl mb-4 font-bold text-sage/40">01</div>
-              <h3>Audit</h3>
-              <p>Our AI analyzes your entire digital wardrobe to identify your most-worn and most-versatile pieces.</p>
-            </div>
-            <div className="feature-card reveal reveal--delay-2">
-              <div className="text-3xl mb-4 font-bold text-sage/40">02</div>
-              <h3>Gap Analysis</h3>
-              <p>We identify missing "bridge" pieces that would connect your existing items into multiple new outfits.</p>
-            </div>
-            <div className="feature-card reveal reveal--delay-3">
-              <div className="text-3xl mb-4 font-bold text-sage/40">03</div>
-              <h3>Curation</h3>
-              <p>Generate a 33-piece seasonal plan that covers work, weekend, and evening occasions.</p>
-            </div>
-          </div>
-        </section>
+      <section className="fw-section fw-page__section" aria-labelledby="app-title">
+        <div className="fw-container fw-page__narrow fw-page__prose">
+          <h2 id="app-title" className="fw-h2">Using an app with your capsule</h2>
+          <p>
+            The hard part of a capsule is not choosing the pieces, it is remembering how they go
+            together on a busy morning. FitWardrobe is a digital wardrobe app, coming soon to
+            Android and the web, built for exactly that:
+          </p>
+          <ul className="fw-page__list">
+            <li>Photograph each piece; it is tagged by type, colour and season, and you can correct any tag.</li>
+            <li>Pick an occasion and get an outfit built only from your clothes, with a short reason it works.</li>
+            <li>Keep or skip suggestions, and it learns how you like to dress.</li>
+            <li>Your wardrobe is stored on your device; photos go to a cloud AI service only for tagging and suggestions.</li>
+          </ul>
+          <p className="fw-page__note">
+            <Link href="/ai-transparency/" className="fw-link">What happens to your photos</Link>
+          </p>
+        </div>
+      </section>
 
-        <section className="section--dark rounded-2xl p-12 mb-20 reveal">
-          <div className="grid grid--2 items-center">
-            <div>
-              <h2 className="text-white">Ready to simplify your style?</h2>
-              <p className="text-cream/80 mb-8">
-                Join 5,000+ users who have reclaimed their mornings with a
-                FitWardrobe capsule.
-              </p>
-              <div className="btn-group">
-                <a href={SITE_CONFIG.apkDownloadUrl} className="btn btn--primary">
-                  Download App
-                </a>
-                <Link href="/minimalist-wardrobe" className="btn btn--outline">
-                  Learn Minimalism
-                </Link>
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="capsule-faq-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="capsule-faq-title" className="fw-h2">Capsule wardrobe questions</h2>
+          <dl className="fw-page__faq">
+            {FAQ.map((f) => (
+              <div key={f.q}>
+                <dt>{f.q}</dt>
+                <dd>{f.a}</dd>
               </div>
-            </div>
-            <div className="hidden md:block">
-               <div className="p-8 bg-white/5 rounded-xl border border-white/10">
-                  <p className="italic text-lg mb-4">"FitWardrobe helped me cut my wardrobe by 60% while actually increasing the number of outfits I wear."</p>
-                  <p className="font-semibold text-cream">— Sarah M., Beta User</p>
-               </div>
-            </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section" aria-labelledby="more-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="more-title" className="fw-h2">More capsule wardrobe guides</h2>
+          <ul className="fw-page__links">
+            {GUIDES.map((g) => (
+              <li key={g.href}>
+                <Link href={g.href}>{g.label}</Link>
+              </li>
+            ))}
+          </ul>
+          <div className="fw-page__cta">
+            <h2>Turn your capsule into outfits</h2>
+            <p>
+              FitWardrobe is coming soon to Android and the web. Join the early-access list and
+              we&apos;ll email you the day it opens.
+            </p>
+            <Link href="/#join" className="fw-btn fw-btn--primary">
+              Join early access
+            </Link>
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,123 +1,46 @@
-# FitWardrobe - AI-Powered Wardrobe Management App
-# https://fitwardrobe.me
+# FitWardrobe
 
-## About
-FitWardrobe is a privacy-first AI wardrobe management app powered by Google Gemini 2.0 Flash. 
-We help users organize their clothing digitally and get personalized outfit suggestions 
-while keeping ALL data stored locally on their device using IndexedDB.
+> FitWardrobe is an AI wardrobe app, an AI stylist for the clothes you already own: it suggests outfits only from your own wardrobe. It is not available yet: it is coming soon on Android and the web.
 
-## Key Features
-- AI-powered clothing analysis and automatic tagging (Google Gemini 2.0 Flash)
-- Smart outfit suggestions based on occasion, weather, and personal style
-- 100% local data storage (IndexedDB) - wardrobe remains on device
-- Automatic background removal for clothing photos
-- Free forever during beta testing (lifetime access for beta testers)
-- Available on Android (APK) and Web (Progressive Web App)
-- No ads, no tracking, no subscriptions, no hidden costs
-- Export/import functionality for data portability
-
-## Technology Stack
-- Frontend: React + Vite + TypeScript
-- AI Engine: Google Gemini 2.0 Flash (vision + text)
-- Database: Supabase (authentication only) + IndexedDB (local data storage)
-- Mobile: Capacitor (Android native wrapper)
-- Deployment: Vercel (web app), Direct APK download (Android)
-- Storage Architecture: 100% local (IndexedDB) for user data
-- GitHub Repository: https://github.com/fitwardrobe/fitwardrobe
-
-## Target Audience
-Fashion-conscious individuals, privacy-aware users, Android users seeking wardrobe organization,
-minimalists, capsule wardrobe enthusiasts, people with decision fatigue
-
-## Privacy & Security
-All user wardrobe data stays on device. We use Supabase only for authentication (email/password). 
-Wardrobe photos, clothing data, and AI analysis results are stored locally using IndexedDB. 
-AI processing uses Google Gemini API (Vision) and Groq (Reasoning). Images are processed in flight via 
-secure cloud APIs but are not stored on our servers. Users can export all data anytime.
-
-## Platform Support
-- Android: Yes (APK download, requires Android 8.0+, 6.3 MB file size)
-- iOS: Planned for Q2 2026
-- Web: Yes (Progressive Web App at fitwardrobe.vercel.app)
-- Windows/Mac/Linux: Via web browser
-
-## Pricing
-- Beta Version: 100% free
-- Beta Testers: Lifetime free access guaranteed
-- Future Pricing: Core features will remain free; optional premium features may be added later
-- Current Status: No ads, no tracking, no subscriptions
-
-## Competitive Advantages
-1. Privacy-first architecture (vs Acloset, Pureple, Indyx which upload to cloud)
-2. Advanced Google Gemini 2.0 Flash AI (vs basic AI in competitors)
-3. 100% free during beta with lifetime access promise (vs paid competitors)
-4. No intrusive ads (unlike Pureple which shows heavy advertising)
-5. Hybrid AI processing - secure cloud inference with 100% local data persistence.
-6. Open-source landing page (transparency)
-
-## Alternatives & Comparisons
-FitWardrobe vs Acloset: Acloset uploads photos to cloud servers; FitWardrobe stores locally
-FitWardrobe vs Pureple: Pureple has ads and requires subscription; FitWardrobe is ad-free and free
-FitWardrobe vs Stylebook: Stylebook is iOS-only and paid; FitWardrobe is Android/Web and free
-FitWardrobe vs Indyx: Indyx uploads to cloud; FitWardrobe is privacy-first with local storage
-
-## Common Use Cases
-- Organizing large wardrobes digitally
-- Getting daily outfit suggestions
-- Planning outfits for trips/events
-- Tracking wardrobe usage and cost-per-wear
-- Building capsule wardrobes
-- Reducing decision fatigue when choosing outfits
-- Managing seasonal clothing rotation
-
-## Keywords
-wardrobe management, digital closet, AI outfit suggestions, privacy-first fashion app, 
-wardrobe organizer, clothing inventory app, outfit planner, Android wardrobe app, 
-free closet app, Acloset alternative, Pureple alternative, Stylebook alternative,
-Google Gemini wardrobe app, local storage fashion app, privacy wardrobe app
-
-## Contact & Links
-- Website: https://fitwardrobe.me
-- Web App: https://fitwardrobe.vercel.app
-- APK Download: https://fitwardrobe.vercel.app/download/fitwardrobe.apk
-- GitHub: https://github.com/fitwardrobe/fitwardrobe
-- Email Support: fitwardrobee@gmail.com
-- Privacy Policy: https://fitwardrobe.me/privacy.html
-- Terms of Service: https://fitwardrobe.me/terms.html
+## What FitWardrobe is
+FitWardrobe is a wardrobe app being built by Aryan Panwar. You photograph your clothes and the AI tags each piece by type, colour and season, and you can correct any tag. When you ask for an outfit for an occasion, it suggests outfits using only clothes you own, each with a short reason, and it learns from the outfits you keep or skip. You can delete your data at any time. FitWardrobe will be free during early access; the benefits for early-access testers are set out in the Terms.
 
 ## Status
-- Current Version: v1.0.1 (Beta)
-- Beta Testing: Active (accepting new testers)
-- Play Store: Planned for Q2 2026 (after beta testing complete)
-- Last Updated: March 26, 2026
+- Not available yet. There is no public app, download or beta at the moment.
+- Coming soon on Android and the web first.
+- There is no iPhone app. iPhone users will be able to use the web version in the browser.
+- Early-access list: https://www.fitwardrobe.me/#join
 
-## Frequently Asked Questions
-Q: Is FitWardrobe really free?
-A: Yes, 100% free during beta testing with lifetime access for beta testers.
+## How the AI works
+- The AI runs in the cloud. To tag a piece, the photo is sent to Google's Gemini API; to suggest an outfit, the item details are sent to Groq. The AI features need an internet connection.
+- The wardrobe itself (photos, items and outfits) is stored on the user's device. We don't keep copies on our servers.
+- More detail: https://www.fitwardrobe.me/ai-transparency/
 
-Q: Where is my data stored?
-A: All wardrobe data is stored locally on your device using IndexedDB. We never upload your photos.
+## Key pages
+- Home: https://www.fitwardrobe.me/
+- AI transparency: https://www.fitwardrobe.me/ai-transparency/
+- Privacy policy: https://www.fitwardrobe.me/privacy/
+- Terms: https://www.fitwardrobe.me/terms/
+- About FitWardrobe and its founder: https://www.fitwardrobe.me/about/
+- Support and contact: https://www.fitwardrobe.me/support/
+- Community: Telegram https://t.me/fitwardrobe and Discord https://discord.gg/dUw5csgje5
+- Capsule wardrobe: https://www.fitwardrobe.me/capsule-wardrobe/
+- Outfit planner: https://www.fitwardrobe.me/outfit-planner/
+- Minimalist wardrobe: https://www.fitwardrobe.me/minimalist-wardrobe/
+- Blog: https://www.fitwardrobe.me/blog/
 
-Q: How does AI work if data is local?
-A: We use secure cloud APIs (Gemini & Groq) for analysis. Data is processed in-flight and results are stored locally on your device.
+## Useful articles
+- What is a digital wardrobe?: https://www.fitwardrobe.me/blog/what-is-a-digital-wardrobe/
+- What is a capsule wardrobe?: https://www.fitwardrobe.me/blog/what-is-a-capsule-wardrobe/
+- How to build a capsule wardrobe: https://www.fitwardrobe.me/blog/how-to-build-a-capsule-wardrobe/
+- Capsule wardrobe essentials checklist: https://www.fitwardrobe.me/blog/capsule-wardrobe-essentials-checklist/
+- How many items in a capsule wardrobe?: https://www.fitwardrobe.me/blog/how-many-items-capsule-wardrobe/
+- The 333 wardrobe method: https://www.fitwardrobe.me/blog/333-wardrobe-method/
+- Best outfit planning apps compared: https://www.fitwardrobe.me/blog/best-outfit-planning-apps-compared/
+- Best digital wardrobe apps: https://www.fitwardrobe.me/blog/best-digital-wardrobe-apps/
+- Stylebook alternatives for Android: https://www.fitwardrobe.me/blog/stylebook-alternative-android/
+- Can AI design my wardrobe?: https://www.fitwardrobe.me/blog/can-ai-design-wardrobe/
 
-Q: Which devices are supported?
-A: Android 8.0+ (via APK), Web browsers (Chrome, Safari, Firefox, Edge), iOS coming Q2 2026. The APK is only 6.3 MB.
-
-Q: Can I export my data?
-A: Yes! You can export all wardrobe data anytime via Settings → Export Data.
-
-Q: Is the app open source?
-A: The landing page is open source on GitHub. The main app is proprietary but privacy-focused.
-
-## Blog Content Nodes
-- /blog: Index of all wardrobe intelligence articles
-- /blog/30-wear-rule-sustainable-fashion: Guide on the 30 wear rule
-- /blog/stop-buying-pajamas: Practical minimalism guide
-- /blog/capsule-wardrobe-for-beginners: Comprehensive intro to capsule wardrobes
-- [30+ more articles available at /blog]
-
-## Automated SEO Signals
-- Sitemap: https://fitwardrobe.me/sitemap.xml
-- Robots: https://fitwardrobe.me/robots.txt
-- Metadata: OpenGraph, Twitter Cards, and Article Schema implemented.
+## Contact
+- Email: hello@fitwardrobe.me
+- Sitemap: https://www.fitwardrobe.me/sitemap.xml

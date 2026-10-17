@@ -1,100 +1,130 @@
-import React from "react";
 import { Metadata } from "next";
-import { SITE_CONFIG } from "@/lib/config";
 import Link from "next/link";
-import { getBreadcrumbSchema } from "@/lib/seo";
+import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Minimalist Wardrobe Guide | FitWardrobe",
-  description: "The essential pieces for a complete minimalist wardrobe. Learn how to build a smaller, higher-quality wardrobe with AI.",
-};
+const TITLE = "Minimalist wardrobe: principles and first steps";
+const DESCRIPTION =
+  "What a minimalist wardrobe is, the principles that keep it small, and a simple way to start with the clothes you already own.";
+
+export const metadata: Metadata = pageMetadata("/minimalist-wardrobe/", TITLE, DESCRIPTION);
+
+const PRINCIPLES = [
+  {
+    title: "Own what you wear",
+    text: "Keep the pieces you actually reach for. If something hasn't been worn in a year, ask honestly whether it will be.",
+  },
+  {
+    title: "Make everything work together",
+    text: "A short colour palette and simple shapes mean most tops go with most bottoms, so fewer clothes make more outfits.",
+  },
+  {
+    title: "Choose quality over quantity",
+    text: "Buy less often and buy better: fabrics and construction that last, in cuts you know suit you.",
+  },
+  {
+    title: "Add one, think about one",
+    text: "When something new comes in, consider whether something old should go, so the wardrobe stays the size you chose.",
+  },
+];
+
+const ESSENTIALS = [
+  "Plain T-shirts in white and a neutral",
+  "A button-down or oxford shirt",
+  "Dark, straight jeans",
+  "Tailored trousers or chinos",
+  "A neutral knit",
+  "A blazer or smart overshirt",
+  "A coat suited to your climate",
+  "Clean everyday trainers",
+  "One pair of smarter shoes",
+  "A simple belt and bag",
+];
 
 export default function MinimalistWardrobePage() {
   const breadcrumbs = getBreadcrumbSchema([
     { name: "Home", item: "/" },
-    { name: "Minimalist Wardrobe", item: "/minimalist-wardrobe" },
+    { name: "Minimalist wardrobe", item: "/minimalist-wardrobe/" },
   ]);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-      />
-      <main className="feature-page pt-32 container">
-        <section className="hero-section text-center mb-16">
-          <span className="section-label reveal">The Minimalist Mindset</span>
-          <h1 className="reveal reveal--delay-1">The Essential Minimalist Wardrobe</h1>
-          <p className="hero__subtitle reveal reveal--delay-2 mx-auto">
-            FitWardrobe is a minimalist wardrobe guide designed to help you own less but wear more. Our privacy-first AI identifies the foundational pieces for your lifestyle, helping you build a high-quality, versatile wardrobe that lasts—ensuring you focus on staples that provide a high return on investment (ROI) for your personal style.
+    <div className="fw fw-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+
+      <section className="fw-page__hero">
+        <div className="fw-container fw-page__narrow">
+          <p className="fw-kicker">Minimalist wardrobe</p>
+          <h1 className="fw-display fw-page__title">A minimalist wardrobe, starting with what you own</h1>
+          <p className="fw-lead">
+            A minimalist wardrobe is a deliberately small set of clothes you wear often and that
+            work well together. It is less about a number and more about owning only what earns its
+            place.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section className="feature-section">
-          <div className="section-header reveal">
-            <h2>What are the 10 core essentials for a minimalist wardrobe?</h2>
-            <div className="section-content">
-              <p>If you're starting from scratch, these are the items that provide the highest return on investment.</p>
-            </div>
-          </div>
-          <div className="grid grid--2">
-            <div className="reveal reveal--delay-1 p-6 bg-sage/5 rounded-xl">
-              <h3 className="text-lg font-semibold mb-2">01. The Perfect White Tee</h3>
-              <p className="text-sm">Heavyweight cotton, classic fit. Works under a blazer or on its own. **Studies show 80% of stylish wardrobes are built on this essential foundational piece.**</p>
-            </div>
-            <div className="reveal reveal--delay-2 p-6 bg-sage/5 rounded-xl">
-              <h3 className="text-lg font-semibold mb-2">02. Dark Wash Denim</h3>
-              <p className="text-sm">Versatile enough for casual Fridays and weekend outings.</p>
-            </div>
-            <div className="reveal reveal--delay-3 p-6 bg-sage/5 rounded-xl">
-              <h3 className="text-lg font-semibold mb-2">03. Navy/Black Blazer</h3>
-              <p className="text-sm">The ultimate "elevator" piece for any casual look.</p>
-            </div>
-            <div className="reveal reveal--delay-4 p-6 bg-sage/5 rounded-xl">
-              <h3 className="text-lg font-semibold mb-2">04. Neutral Knitwear</h3>
-              <p className="text-sm">Cashmere or merino wool in grey, navy, or camel.</p>
-            </div>
-          </div>
-        </section>
+      <section className="fw-section fw-page__section" aria-labelledby="pr-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="pr-title" className="fw-h2">Four principles that keep it small</h2>
+          <ol className="fw-page__steps">
+            {PRINCIPLES.map((p, i) => (
+              <li key={p.title}>
+                <span className="fw-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="fw-sans">{p.title}</h3>
+                  <p>{p.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-        <section className="feature-section">
-          <div className="section-header reveal">
-            <h2>How does AI support a minimalist lifestyle?</h2>
-          </div>
-          <div className="grid grid--3">
-            <div className="feature-card reveal reveal--delay-1">
-              <h3 className="text-xl font-semibold mb-3">Cost Per Wear</h3>
-              <p>Our app tracks how often you wear each item, helping you identify true essentials vs. impulse buys.</p>
-            </div>
-            <div className="feature-card reveal reveal--delay-2">
-              <h3 className="text-xl font-semibold mb-3">Outfit Maximizer</h3>
-              <p>Before you buy anything new, ask our AI if it works with at least 5 items you already own.</p>
-            </div>
-            <div className="feature-card reveal reveal--delay-3">
-              <h3 className="text-xl font-semibold mb-3">Digital Closet</h3>
-              <p>Seeing your entire wardrobe on your phone prevents you from buying duplicates of what you have.</p>
-            </div>
-          </div>
-        </section>
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="ess-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="ess-title" className="fw-h2">Ten pieces most minimalist wardrobes include</h2>
+          <ul className="fw-page__list">
+            {ESSENTIALS.map((e) => (
+              <li key={e}>{e}</li>
+            ))}
+          </ul>
+          <p className="fw-page__note">
+            Adjust for your climate, work and life. The full list, with what to look for in each,
+            is in our{" "}
+            <Link href="/blog/minimalist-wardrobe-essentials/" className="fw-link">
+              minimalist wardrobe essentials guide
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
 
-        <section className="section--dark rounded-2xl p-12 mb-20 reveal">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-white">Ready for a lighter closet?</h2>
-            <p className="text-cream/80 mb-8">
-              FitWardrobe is free during beta. Discover your true style by
-              removing the noise.
+      <section className="fw-section fw-page__section" aria-labelledby="start-title">
+        <div className="fw-container fw-page__narrow fw-page__prose">
+          <h2 id="start-title" className="fw-h2">How to start this week</h2>
+          <p>
+            Take everything out, keep what you wore in the last season, and set aside the rest for
+            a month before deciding. Then plan a week of outfits from what is left. If the week
+            works, your wardrobe is already closer to minimal than you think.
+          </p>
+          <p>
+            A capsule wardrobe is the seasonal version of the same idea; see our{" "}
+            <Link href="/capsule-wardrobe/" className="fw-link">
+              capsule wardrobe guide
+            </Link>
+            .
+          </p>
+          <div className="fw-page__cta">
+            <h2>Get more outfits from fewer clothes</h2>
+            <p>
+              FitWardrobe, coming soon to Android and the web, suggests outfits only from clothes
+              you own. Join the early-access list and we&apos;ll email you the day it opens.
             </p>
-            <div className="btn-group justify-center">
-              <a href={SITE_CONFIG.apkDownloadUrl} className="btn btn--primary">
-                Download App
-              </a>
-              <Link href="/capsule-wardrobe" className="btn btn--outline">
-                Build a Capsule
-              </Link>
-            </div>
+            <Link href="/#join" className="fw-btn fw-btn--primary">
+              Join early access
+            </Link>
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,94 +1,110 @@
-import React from "react";
 import { Metadata } from "next";
+import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
-import { getBreadcrumbSchema } from "@/lib/seo";
+import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Support & Contact | FitWardrobe",
-  description: "Get in touch with the FitWardrobe team for technical support, bug reports, or styling questions.",
-};
+export const metadata: Metadata = pageMetadata(
+  "/support/",
+  "Support and contact",
+  "Get help with FitWardrobe, report a bug or ask a question. Email hello@fitwardrobe.me, write to privacy@fitwardrobe.me or reach us on Telegram.",
+);
 
 export default function SupportPage() {
   const breadcrumbs = getBreadcrumbSchema([
     { name: "Home", item: "/" },
-    { name: "Support", item: "/support" },
+    { name: "Support", item: "/support/" },
   ]);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
-      />
-      <main className="support-page pt-32 container container--narrow">
-        <section className="reveal mb-12">
-          <h1 className="mb-6">Support & Contact</h1>
-          <div className="section-content">
+    <div className="fw fw-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+
+      <section className="fw-page__hero">
+        <div className="fw-container fw-page__narrow">
+          <p className="fw-kicker">Support</p>
+          <h1 className="fw-display fw-page__title">Support and contact</h1>
+          <p className="fw-lead">
+            Have a question, found a bug, or want to share feedback? Write to us. FitWardrobe is
+            built by one founder, so you&apos;ll hear back from a person.
+          </p>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section" aria-labelledby="contact-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="contact-title" className="fw-h2">How to reach us</h2>
+          <div className="fw-page__contact">
+            <div>
+              <h3 className="fw-sans">General and bugs</h3>
+              <p>Questions, feedback and bug reports.</p>
+              <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a>
+            </div>
+            <div>
+              <h3 className="fw-sans">Privacy and data</h3>
+              <p>Access, correction or deletion requests, and privacy questions.</p>
+              <a href="mailto:privacy@fitwardrobe.me">privacy@fitwardrobe.me</a>
+            </div>
+            <div>
+              <h3 className="fw-sans">Community</h3>
+              <p>Ideas, feedback and early previews with the founder.</p>
+              <a href={SITE_CONFIG.discordUrl} rel="noopener">
+                Discord server
+              </a>
+              {" · "}
+              <a href={SITE_CONFIG.telegramUrl} rel="noopener">
+                Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="times-title">
+        <div className="fw-container fw-page__narrow">
+          <h2 id="times-title" className="fw-h2">Response times</h2>
+          <table className="fw-page__table">
+            <tbody>
+              <tr>
+                <th scope="row">Questions and support</th>
+                <td>Within 48 hours</td>
+              </tr>
+              <tr>
+                <th scope="row">Bug reports</th>
+                <td>Confirmed within 72 hours</td>
+              </tr>
+              <tr>
+                <th scope="row">Privacy and legal requests</th>
+                <td>Within 7 business days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section" aria-labelledby="grievance-title">
+        <div className="fw-container fw-page__narrow fw-page__prose">
+          <h2 id="grievance-title" className="fw-h2">Grievance officer</h2>
+          <p>
+            For privacy concerns or legal enquiries under India&apos;s Digital Personal Data
+            Protection Act, 2023, write to our Grievance Officer, Aryan Panwar, at{" "}
+            <a href="mailto:privacy@fitwardrobe.me" className="fw-link">
+              privacy@fitwardrobe.me
+            </a>
+            . Our <Link href="/privacy/" className="fw-link">privacy policy</Link> explains how your
+            data is handled.
+          </p>
+          <div className="fw-page__cta">
+            <h2>FitWardrobe isn&apos;t available yet</h2>
             <p>
-              Whether you're experiencing a technical issue, have a style question,
-              or just want to share feedback, we're here to help.
+              It&apos;s coming soon to Android and the web. Join the early-access list and
+              we&apos;ll email you the day it opens.
             </p>
+            <Link href="/#join" className="fw-btn fw-btn--primary">
+              Join early access
+            </Link>
           </div>
-
-          <div className="grid grid--2 gap-6 mb-12 mt-10">
-            <div className="p-6 bg-white border border-mist rounded-xl shadow-sm">
-              <span className="section-label" style={{ fontSize: '0.75rem' }}>Direct Email</span>
-              <h3 className="text-xl font-semibold mb-3 text-sage">Email Support</h3>
-              <p className="text-xs text-muted-foreground mb-4">
-                For general inquiries, bug reports, and account help.
-              </p>
-              <a
-                href={`mailto:${SITE_CONFIG.contactEmail}`}
-                className="text-lg font-bold hover:text-sage transition-colors"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                {SITE_CONFIG.contactEmail}
-              </a>
-            </div>
-
-            <div className="p-6 bg-white border border-mist rounded-xl shadow-sm">
-              <span className="section-label" style={{ fontSize: '0.75rem' }}>Open Source</span>
-              <h3 className="text-xl font-semibold mb-3 text-navy">GitHub Support</h3>
-              <p className="text-xs text-muted-foreground mb-4">
-                For developers or those who want to report technical issues directly.
-              </p>
-              <a
-                href="https://github.com/fitwardrobe/fitwardrobe/issues"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--outline btn--sm"
-              >
-                Open an Issue
-              </a>
-            </div>
-          </div>
-
-          <div className="p-8 bg-terracotta/5 rounded-2xl border border-terracotta/10 mb-16">
-            <h3 className="text-xl font-semibold mb-3 text-terracotta">Grievance Redressal</h3>
-            <div className="section-content text-sm">
-              <p className="mb-4">
-                For privacy concerns or legal inquiries under the **DPDP Act 2023**, please address your correspondence to our Grievance Officer.
-              </p>
-              <p className="font-semibold text-navy">
-                Attention: Grievance Officer (Aryan Panwar)
-              </p>
-            </div>
-          </div>
-
-          <div className="feature-section">
-            <div className="section-header reveal mb-6 text-left" style={{ maxWidth: '100%' }}>
-              <h2 className="text-2xl border-bottom border-mist pb-2">Response Times</h2>
-            </div>
-            <div className="section-content">
-              <ul>
-                <li><strong>Technical Support:</strong> Within 48 hours</li>
-                <li><strong>Bug Reports:</strong> Confirmed within 72 hours</li>
-                <li><strong>Legal Inquiries:</strong> Within 7 business days</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -4,12 +4,15 @@ import { posts } from '@/data/posts'
 
 export const dynamic = 'force-static'
 
+// Date the core pages last changed. Update when their content changes (not on every build).
+const SITE_UPDATED = '2026-10-04'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.landingUrl.replace(/\/$/, '');
 
   // Blog posts
   const blogPosts = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+    url: `${baseUrl}/blog/${post.slug}/`,
     lastModified: post.date,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
@@ -19,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
     '/blog',
+    '/about',
     '/capsule-wardrobe',
     '/outfit-planner',
     '/minimalist-wardrobe',
@@ -30,8 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/accessibility',
     '/support',
   ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
+    url: `${baseUrl}${route}/`,
+    lastModified: SITE_UPDATED,
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1 : 0.8,
   }))

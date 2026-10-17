@@ -1,0 +1,32 @@
+/* Site-wide base for every page: Tailwind's reset (preflight) only.
+   The older 2,000-line globals.css is loaded just by the legacy page groups
+   (blog, legal pages, 404, error) through their own layouts, so the homepage and
+   the new pages don't pay for it. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/preflight.css" layer(base);
+
+@layer base {
+  body {
+    background: #f6f4f0;
+    color: #45423d;
+    font-family: var(--font-jost), "Futura", "Century Gothic", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Skip link (replaces the Tailwind utility version). */
+.fw-skip {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: #121212;
+  color: #ffffff;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.fw-skip:focus {
+  top: 16px;
+}

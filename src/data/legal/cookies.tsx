@@ -6,8 +6,8 @@ export const cookiesData: LegalPageData = {
   title: "Cookie Policy",
   organization: "FitWardrobe",
   effectiveDate: "February 3, 2026",
-  lastUpdated: "February 3, 2026",
-  version: "1.0",
+  lastUpdated: "October 17, 2026",
+  version: "1.2",
   toc: [
     { id: "introduction", title: "1. Introduction" },
     { id: "what-are-cookies", title: "2. What are Cookies and Local Storage?" },
@@ -21,10 +21,10 @@ export const cookiesData: LegalPageData = {
       title: "1. Introduction",
       content: (
         <p>
-          This Cookie Policy explains how FitWardrobe ("we", "us", or "our") uses
-          cookies and similar local storage technologies when you use our website
-          and applications. We are committed to a privacy-first approach, using
-          only essential and minimal analytics technologies.
+          This Cookie Policy explains how FitWardrobe (&quot;we&quot;, &quot;us&quot;) uses cookies and
+          similar storage on the website fitwardrobe.me and in the FitWardrobe app. We use no
+          advertising cookies, and we never sell your data. For everything else about your data, see
+          our <a href="/privacy/">Privacy Policy</a>.
         </p>
       ),
     },
@@ -33,10 +33,10 @@ export const cookiesData: LegalPageData = {
       title: "2. What are Cookies and Local Storage?",
       content: (
         <p>
-          Cookies are small text files stored in your browser. Similar technologies
-          like <strong>Local Storage</strong> and <strong>IndexedDB</strong> allow
-          us to store larger amounts of data locally on your device to enable core
-          app features without uploading them to the cloud.
+          Cookies are small text files stored by your browser. Similar technologies such as{" "}
+          <strong>local storage</strong> and <strong>IndexedDB</strong> keep data on your own device;
+          the FitWardrobe web app uses them to store your wardrobe without uploading it to our
+          servers.
         </p>
       ),
     },
@@ -45,19 +45,39 @@ export const cookiesData: LegalPageData = {
       title: "3. How We Use Storage",
       content: (
         <>
-          <p>
-            We use storage technologies primarily to keep your fashion data on
-            your own device.
-          </p>
-          <h3>3.1 Essential Storage (Required)</h3>
-          <p>
-            These are necessary for the app to function properly. They do not
-            track you across the web.
-          </p>
+          <h3>3.1 Essential storage on the website</h3>
+          <p>Needed for the site to work and to remember your choices. Always on.</p>
           <table>
             <thead>
               <tr>
-                <th>Storage Type</th>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>fw-consent</strong> (local storage)
+                </td>
+                <td>Remembers whether you accepted or declined analytics cookies</td>
+                <td>Until you clear it</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>fw-internal</strong> (local storage)
+                </td>
+                <td>Set only on the site owner&apos;s own browser, to leave the owner&apos;s visits out of analytics</td>
+                <td>Until cleared</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>3.2 Essential storage in the app (once it opens)</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Storage</th>
                 <th>Purpose</th>
                 <th>Service</th>
               </tr>
@@ -65,29 +85,97 @@ export const cookiesData: LegalPageData = {
             <tbody>
               <tr>
                 <td>
-                  <strong>Cookies</strong>
+                  <strong>IndexedDB / local storage</strong>
                 </td>
-                <td>Session management and authentication</td>
+                <td>Your wardrobe items, photos, outfits and preferences, kept on your device</td>
+                <td>FitWardrobe app</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Local storage or cookie</strong>
+                </td>
+                <td>Keeps you signed in</td>
                 <td>Supabase</td>
-              </tr>
-              <tr>
-                <td>
-                  <strong>IndexedDB</strong>
-                </td>
-                <td>
-                  Local storage of your wardrobe items, photos, and outfit history
-                </td>
-                <td>FitWardrobe App</td>
-              </tr>
-              <tr>
-                <td>
-                  <strong>Local Storage</strong>
-                </td>
-                <td>App preferences (dark mode, layout settings)</td>
-                <td>FitWardrobe App</td>
               </tr>
             </tbody>
           </table>
+
+          <h3>3.3 Analytics cookies (with your consent where required)</h3>
+          <p>
+            <strong>Google Analytics 4</strong> tells us which pages are useful, how visitors find us
+            and whether the early-access form works. Ad storage, ad personalisation and Google
+            Signals are switched off, and we never send your email address or wardrobe data to
+            Google Analytics.
+          </p>
+          <p>
+            <strong>Microsoft Clarity</strong> shows heatmaps and recordings of how visitors use our
+            pages, so we can fix what confuses people. Text typed into forms is masked and never
+            recorded.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>_ga</strong>
+                </td>
+                <td>Distinguishes visitors (Google Analytics)</td>
+                <td>Up to 2 years</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>_ga_&lt;ID&gt;</strong>
+                </td>
+                <td>Keeps session state (Google Analytics)</td>
+                <td>Up to 2 years</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>_clck</strong>
+                </td>
+                <td>Keeps a pseudonymous Clarity visitor ID for this site</td>
+                <td>Up to 1 year</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>_clsk</strong>
+                </td>
+                <td>Joins page views into one Clarity session</td>
+                <td>1 day</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>CLID, MUID, MR, SM, ANONCHK</strong>
+                </td>
+                <td>
+                  Set by Microsoft on its own domains to identify browsers across sites that use
+                  Clarity (third-party cookies; Clarity does not use them for advertising)
+                </td>
+                <td>Up to 1 year</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <strong>Visitors in the EEA, UK and Switzerland:</strong> these cookies are set only after
+            you accept them. Until then, Google Consent Mode sends limited, cookieless signals, and
+            Clarity runs without cookies, using a new ID for every page view.{" "}
+            <strong>Everywhere else</strong>, they are on by default and you can turn them off at
+            any time with &quot;Cookie settings&quot; at the bottom of every page. Declining deletes
+            Clarity&apos;s cookies and ends its recording.
+          </p>
+
+          <h3>3.4 Cookieless analytics</h3>
+          <p>
+            <strong>Vercel Web Analytics</strong> counts page views without setting any cookies or
+            storing anything on your device. Visitors are counted from an anonymous value derived
+            from the request, which is discarded within 24 hours.
+          </p>
         </>
       ),
     },
@@ -97,14 +185,14 @@ export const cookiesData: LegalPageData = {
       content: (
         <>
           <p>
-            You can manage or delete cookies and local data through your browser
+            Use &quot;Cookie settings&quot; at the bottom of any page to accept or decline analytics
+            cookies at any time. You can also block or delete cookies and local data in your browser
             settings.
           </p>
           <div className="warning-box">
             <p>
-              <strong>Warning:</strong> Deleting local storage or IndexedDB data
-              will permanently remove your digital wardrobe content from the web
-              app version of FitWardrobe.
+              <strong>Warning:</strong> deleting local storage or IndexedDB data for the FitWardrobe
+              web app permanently removes the wardrobe stored on that device.
             </p>
           </div>
         </>
@@ -115,11 +203,8 @@ export const cookiesData: LegalPageData = {
       title: "5. Contact Us",
       content: (
         <p>
-          If you have questions about our use of cookies, please contact us at{" "}
-          <a href={`mailto:${SITE_CONFIG.contactEmail}`}>
-            {SITE_CONFIG.contactEmail}
-          </a>
-          .
+          If you have questions about our use of cookies, email{" "}
+          <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a>.
         </p>
       ),
     },

@@ -39,3 +39,8 @@ pnpm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.vercel
+
+# Internal brand docs and source media: kept local (the GitHub repo is public)
+/brand/
+/fitwardrobe-media/

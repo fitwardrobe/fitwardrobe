@@ -2,11 +2,11 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
+
 
 @theme {
-  --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-body: "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-fw-serif);
+  --font-body: var(--font-fw);
 }
 
 /* ============================================================
@@ -18,34 +18,34 @@
    ============================================================ */
 :root {
   /* Colors — Primary */
-  --color-navy: #1a2332;
-  --color-cream: #f7f5f2;
-  --color-sage: #7b9a8a;
+  --color-navy: #121212; /* ink */
+  --color-cream: #f6f4f0;
+  --color-sage: #1c402b; /* logo green */
 
   /* Colors — Secondary */
-  --color-terracotta: #c47b5c;
-  --color-charcoal: #2d3436;
+  --color-terracotta: #1c402b; /* one accent only: logo green */
+  --color-charcoal: #45423d; /* body */
 
   /* Colors — Neutral */
-  --color-mist: #e8e4df;
-  --color-cloud: #fafaf8;
+  --color-mist: #e2ddd4;
+  --color-cloud: #eeeae3;
   --color-white: #ffffff;
 
   /* Colors — Semantic */
   --color-text-primary: var(--color-navy);
   --color-text-body: var(--color-charcoal);
-  --color-text-muted: #6b7280;
+  --color-text-muted: #6a655d;
   --color-text-inverse: var(--color-cream);
   --color-bg-primary: var(--color-cream);
   --color-bg-alt: var(--color-cloud);
-  --color-bg-dark: var(--color-navy);
-  --color-accent: var(--color-sage);
-  --color-accent-hover: #6a8a79;
-  --color-highlight: var(--color-terracotta);
+  --color-bg-dark: #12261c;
+  --color-accent: #1c402b;
+  --color-accent-hover: #12261c;
+  --color-highlight: #c9a978; /* brass, on green only */
 
   /* Typography */
-  --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-body: "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-fw-serif);
+  --font-body: var(--font-fw);
 
   /* Font Sizes — Fluid */
   --text-xs: 0.75rem;
@@ -74,22 +74,22 @@
   --content-padding: var(--space-5);
   --grid-columns: 12;
   --grid-gap: var(--space-6);
-  --nav-height: 72px;
+  --nav-height: var(--fw-header-h, 72px); /* follows the site header: 64px phones, 80px desktop */
 
   /* Borders & Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-pill: 9999px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-pill: 2px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(26, 35, 50, 0.04);
-  --shadow-md: 0 2px 8px rgba(26, 35, 50, 0.06);
-  --shadow-lg: 0 4px 20px rgba(26, 35, 50, 0.1);
-  --shadow-xl: 0 8px 40px rgba(26, 35, 50, 0.12);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 18px 40px -18px rgba(15, 23, 20, 0.18);
+  --shadow-xl: 0 18px 40px -18px rgba(15, 23, 20, 0.18);
 
   /* Transitions */
-  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration-fast: 150ms;
   --duration-base: 300ms;
@@ -99,14 +99,7 @@
 /* ============================================================
    2. CSS Reset & Base
    ============================================================ */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+@layer base {
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -188,6 +181,47 @@ button {
   background: none;
 }
 
+/* Base typography, aligned with the homepage (fw.css) */
+body {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-navy);
+}
+h1 {
+  font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  font-weight: 400;
+}
+h2 {
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+}
+h3 {
+  font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+}
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+}
+
+@layer components {
 /* ============================================================
    3. Layout Utilities
    ============================================================ */
@@ -2039,4 +2073,207 @@ button {
   margin-inline: auto;
   font-size: var(--text-base);
   line-height: 1.8;
+}
+
+
+/* ============================================================
+   Oct 2026 alignment: legacy components restyled to the fw system.
+   Lives at the end of @layer components so it overrides the v2 rules
+   above, while Tailwind utilities and fw.css still win over it.
+   ============================================================ */
+.btn {
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+  border: 1px solid transparent;
+  box-shadow: none;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 160ms var(--ease-out);
+}
+.btn:hover {
+  transform: none;
+  box-shadow: none;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn--primary,
+.btn--sage,
+a.btn--primary,
+a.btn--sage {
+  background: var(--fw-btn);
+  color: var(--fw-on-forest);
+}
+.btn--primary:hover,
+.btn--sage:hover,
+a.btn--primary:hover {
+  background: var(--fw-btn-hover);
+  color: var(--fw-on-forest);
+}
+.btn--secondary,
+.btn--outline,
+a.btn--outline {
+  background: transparent;
+  color: var(--fw-forest);
+  border-color: var(--fw-rule-strong);
+}
+.btn--secondary:hover,
+.btn--outline:hover {
+  background: var(--fw-cream-2);
+  color: var(--fw-forest);
+}
+.section--dark .btn--primary,
+.section--dark a.btn--primary {
+  background: var(--fw-cream);
+  color: var(--fw-forest);
+}
+.section--dark .btn--primary:hover {
+  background: var(--fw-white);
+}
+.section--dark .btn--outline,
+.section--dark a.btn--outline {
+  color: var(--fw-on-forest);
+  border-color: rgba(247, 244, 234, 0.4);
+}
+.section--dark .btn--outline:hover {
+  background: rgba(247, 244, 234, 0.08);
+  color: var(--fw-on-forest);
+}
+.btn--sm {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 0.9375rem;
+}
+
+/* Uppercase labels become the homepage kicker: hairline + sentence case. */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fw-forest);
+  margin-bottom: 20px;
+}
+.section-label::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  flex: none;
+}
+.text-center .section-label,
+.hero-section .section-label {
+  justify-content: center;
+}
+.section--dark .section-label {
+  color: var(--fw-marigold);
+}
+
+.section--dark {
+  background: var(--fw-forest);
+  color: var(--fw-on-forest-soft);
+  border-radius: 6px;
+  padding: clamp(32px, 5vw, 64px);
+}
+.section--dark h2,
+.section--dark h3 {
+  color: var(--fw-on-forest);
+}
+.section--dark p {
+  color: var(--fw-on-forest-soft);
+}
+
+.hero__subtitle {
+  margin-inline: auto;
+  max-width: 60ch;
+  color: var(--fw-body);
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.55;
+}
+.hero-section {
+  margin-bottom: 64px;
+}
+
+.feature-card {
+  background: var(--fw-cream-2);
+  border: 1px solid var(--fw-rule);
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 28px;
+}
+.feature-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+.feature-card p {
+  color: var(--fw-body);
+}
+.feature-card__icon {
+  display: none;
+}
+
+.section-header p {
+  color: var(--fw-body);
+}
+
+/* Legal pages */
+.policy-header,
+.toc--legal {
+  background: var(--fw-cream-2);
+  border: 1px solid var(--fw-rule);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.toc--legal h3 {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.legal-sections h2 {
+  border-bottom: 1px solid var(--fw-rule);
+  padding-bottom: 12px;
+}
+.warning-box,
+.highlight-box {
+  background: var(--fw-cream-2);
+  border: 0;
+  border-left: 2px solid var(--fw-forest);
+  border-radius: 0;
+  color: var(--fw-body);
+}
+
+/* Blog end-of-post CTA: forest band, cream button. */
+.blog-cta {
+  background: var(--fw-forest);
+  color: var(--fw-on-forest-soft);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: none;
+  padding: clamp(32px, 5vw, 56px);
+}
+.blog-cta h3 {
+  color: var(--fw-on-forest);
+}
+.blog-cta p {
+  color: var(--fw-on-forest-soft);
+}
+.blog-cta .btn--primary {
+  background: var(--fw-cream);
+  color: var(--fw-forest);
+}
+.blog-cta .btn--primary:hover {
+  background: var(--fw-white);
+}
 }

@@ -5,8 +5,8 @@ export const securityData: LegalPageData = {
   title: "Security at FitWardrobe",
   organization: "FitWardrobe",
   effectiveDate: "February 3, 2026",
-  lastUpdated: "February 3, 2026",
-  version: "1.0",
+  lastUpdated: "October 17, 2026",
+  version: "1.1",
   toc: [
     { id: "philosophy", title: "1. Our Security Philosophy" },
     { id: "how-we-secure", title: "2. How We Protect You" },
@@ -19,10 +19,9 @@ export const securityData: LegalPageData = {
       title: "Our Security Philosophy",
       content: (
         <p>
-          At FitWardrobe, we believe the most secure data is the data we don't
-          store. Our <strong>Local-First Architecture</strong> ensures that your
-          wardrobe photos and inventory details stay on your device, not on our
-          servers.
+          The safest data is data we never hold. Your wardrobe photos and items are stored on
+          your own device, not on FitWardrobe&apos;s servers, and the app sends the AI services
+          only what each request needs.
         </p>
       ),
     },
@@ -32,40 +31,37 @@ export const securityData: LegalPageData = {
       content: (
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-semibold mb-2">1. Local Data Storage</h3>
+            <h3 className="text-lg font-semibold mb-2">1. Your wardrobe stays on your device</h3>
             <p>
-              Your wardrobe data is stored directly on your phone or computer.
-              It is never uploaded to our cloud. This means even if someone
-              tried to hack us, they couldn't find your photos—they simply aren't
-              there.
+              Photos, items and outfits are saved on your phone or in your browser. To tag a piece
+              or suggest an outfit, the photo or item details are sent to a cloud AI service, as
+              described in our <a href="/privacy/">Privacy Policy</a>.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-2">2. Secure Login</h3>
+            <h3 className="text-lg font-semibold mb-2">2. Secure sign-in</h3>
             <p>
-              We use industry-standard security for your account. We don't store
-              your password in a way that can be read by anyone, and we support
-              "Magic Links" so you can log in securely using just your email.
+              Sign-in is handled by Supabase, an established authentication provider. We never
+              see or store a readable copy of your sign-in credentials.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-2">3. Safe AI Processing</h3>
-            <p>
-              When you use our AI features, images are sent through a secure,
-              private tunnel for analysis.
-            </p>
+            <h3 className="text-lg font-semibold mb-2">3. Careful AI processing</h3>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-              <li>Your photos are only used for a few seconds to "see" your clothes.</li>
-              <li>They are NOT used to train anyone's AI models.</li>
-              <li>They are NOT saved or stored anywhere once the analysis is finished.</li>
+              <li>Photos are compressed before they are sent, and only for the item you are tagging.</li>
+              <li>We don&apos;t keep copies of AI requests on our servers.</li>
+              <li>We don&apos;t use your wardrobe to train AI models.</li>
+              <li>
+                Each AI provider handles requests under its own terms; our Privacy Policy explains
+                what that means for Google&apos;s Gemini API and for Groq.
+              </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-2">4. Encrypted Communication</h3>
+            <h3 className="text-lg font-semibold mb-2">4. Encrypted connections</h3>
             <p>
-              All data sent between your device and our services is protected by
-              industry-standard encryption, ensuring that no one can "listen in"
-              on your activity.
+              Everything sent between your device, our website and our service providers travels
+              over encrypted HTTPS/TLS connections.
             </p>
           </div>
         </div>
@@ -76,20 +72,19 @@ export const securityData: LegalPageData = {
       title: "Your Responsibilities",
       content: (
         <div className="space-y-4">
-          <p>Since your data is stored locally, security also depends on you:</p>
+          <p>Because your wardrobe is stored on your device, its security also depends on you:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              <strong>Device Security:</strong> Use a passcode, PIN, or biometric
-              lock on your phone or computer.
+              <strong>Device security:</strong> use a passcode, PIN or biometric lock on your
+              phone or computer.
             </li>
             <li>
-              <strong>Browser Security:</strong> Keep your browser updated and
-              avoid untrusted extensions.
+              <strong>Browser security:</strong> keep your browser updated and avoid untrusted
+              extensions.
             </li>
             <li>
-              <strong>Backups:</strong> Regularly export your wardrobe data using
-              the built-in "Export JSON" feature to prevent loss if your device
-              is damaged.
+              <strong>Photos:</strong> photograph clothes only, and keep people, faces and
+              documents out of the frame.
             </li>
           </ul>
         </div>
@@ -100,10 +95,10 @@ export const securityData: LegalPageData = {
       title: "Reporting Vulnerabilities",
       content: (
         <p>
-          We welcome reports from security researchers. If you find a potential
-          vulnerability in FitWardrobe, please email us at{" "}
-          <a href="mailto:fitwardrobee@gmail.com" className="text-sage font-medium hover:underline">
-            fitwardrobee@gmail.com
+          We welcome reports from security researchers. If you find a potential vulnerability in
+          FitWardrobe, please email{" "}
+          <a href="mailto:hello@fitwardrobe.me" className="text-sage font-medium hover:underline">
+            hello@fitwardrobe.me
           </a>
           . We will investigate and respond as quickly as possible.
         </p>

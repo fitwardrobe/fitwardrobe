@@ -6,8 +6,8 @@ export const termsData: LegalPageData = {
   title: "Terms of Service",
   organization: "FitWardrobe",
   effectiveDate: "February 24, 2026",
-  lastUpdated: "February 24, 2026",
-  version: "1.1",
+  lastUpdated: "October 17, 2026",
+  version: "1.3",
   toc: [
     { id: "acceptance", title: "1. Acceptance of Terms" },
     { id: "eligibility", title: "2. Eligibility" },
@@ -37,10 +37,11 @@ export const termsData: LegalPageData = {
             "us", or "our").
           </p>
           <p>
-            By accessing or using the FitWardrobe application (available as an
-            Android APK, Progressive Web App, or future iOS app), you acknowledge
+            By accessing or using the FitWardrobe website (fitwardrobe.me), its
+            early-access list or the FitWardrobe application (on Android or the
+            web), you acknowledge
             that you have read, understood, and agree to be bound by these Terms
-            and our <a href="/privacy">Privacy Policy</a>.
+            and our <a href="/privacy/">Privacy Policy</a>.
           </p>
           <div className="warning-box">
             <p>
@@ -56,9 +57,9 @@ export const termsData: LegalPageData = {
       title: "2. Eligibility",
       content: (
         <p>
-          FitWardrobe is intended for users who are at least 13 years of age. By
-          using the service, you represent and warrant that you have the legal
-          capacity to enter into this agreement.
+          FitWardrobe is for people aged 18 and over. By using the service,
+          you confirm that you are at least 18 and have the legal capacity to
+          enter into this agreement.
         </p>
       ),
       subsections: [
@@ -66,8 +67,8 @@ export const termsData: LegalPageData = {
           title: "2.1 Age Requirement",
           content: (
             <p>
-              If you are between 13-18 years old, you represent that you have
-              obtained parental or guardian consent to use the service.
+              You must be at least 18 years old to use FitWardrobe or join the
+              early-access list.
             </p>
           ),
         },
@@ -91,7 +92,7 @@ export const termsData: LegalPageData = {
           <p>To use FitWardrobe, you must create an account by providing:</p>
           <ul>
             <li>A valid email address</li>
-            <li>A secure password (managed via Supabase authentication)</li>
+            <li>A way to sign in, handled by our authentication provider, Supabase</li>
           </ul>
         </>
       ),
@@ -150,15 +151,14 @@ export const termsData: LegalPageData = {
       content: (
         <>
           <p>
-            FitWardrobe integrates two advanced AI systems to deliver intelligent
-            fashion assistance:
+            FitWardrobe uses two cloud AI services:
           </p>
           <ul>
-            <li><strong>Image Analysis:</strong> Google Gemini 2.0 Flash</li>
-            <li><strong>Conversational AI & Styling:</strong> Groq</li>
+            <li><strong>Tagging clothing photos:</strong> Google&apos;s Gemini API</li>
+            <li><strong>Outfit suggestions:</strong> Groq</li>
           </ul>
           <div className="warning-box">
-            <p><strong>⚠️ AI Accuracy Disclaimer (Critical)</strong></p>
+            <p><strong>AI Accuracy Disclaimer (Critical)</strong></p>
             <p>
               AI-generated suggestions are informational only and may not be
               accurate or appropriate for your specific needs. FitWardrobe is NOT
@@ -173,7 +173,7 @@ export const termsData: LegalPageData = {
       title: "8. Service Availability",
       content: (
         <p>
-          While we strive for 100% uptime, FitWardrobe is currently in Beta. We
+          While we strive for 100% uptime, FitWardrobe is in early access. We
           do not guarantee that our services will always be available or
           uninterrupted.
         </p>
@@ -183,11 +183,20 @@ export const termsData: LegalPageData = {
       id: "fees",
       title: "9. Fees and Payment",
       content: (
-        <p>
-          FitWardrobe is currently free during its Beta testing phase. We reserve
-          the right to introduce paid features or subscription models in the
-          future.
-        </p>
+        <>
+          <p>
+            FitWardrobe is free during early access and beta testing. We may
+            introduce paid features or subscription plans in the future. If we
+            do, we will tell you before any charge applies, and nothing will be
+            charged without your agreement.
+          </p>
+          <h3 id="early-access-benefits">9.1 Early access</h3>
+          <p>
+            FitWardrobe is free for everyone during early access. If we introduce
+            paid plans later, we will tell early-access users well before anything
+            changes, and nothing will be charged without your clear agreement.
+          </p>
+        </>
       ),
     },
     {
@@ -228,7 +237,7 @@ export const termsData: LegalPageData = {
       content: (
         <p>
           These Terms are governed by the laws of India. Any disputes will be
-          resolved in the courts of New Delhi, India.
+          resolved in the courts of Meerut, Uttar Pradesh, India.
         </p>
       ),
     },
@@ -237,8 +246,11 @@ export const termsData: LegalPageData = {
       title: "14. Modifications to Terms",
       content: (
         <p>
-          We may update these Terms at any time. Your continued use of the app
-          after such changes constitutes your acceptance of the new Terms.
+          We may update these Terms as FitWardrobe changes. We will post the new
+          version on this page and update the &quot;Last updated&quot; date, and for
+          significant changes we will also email the people on the early-access
+          list. Your continued use of FitWardrobe after a change means you accept
+          the new Terms.
         </p>
       ),
     },
@@ -252,7 +264,7 @@ export const termsData: LegalPageData = {
             please contact:
           </p>
           <p>
-            <strong>FitWardrobe Legal Team</strong>
+            <strong>Aryan Panwar, Founder, FitWardrobe</strong>
           </p>
           <p>
             <strong>Email:</strong>{" "}
