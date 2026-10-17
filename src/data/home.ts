@@ -120,7 +120,7 @@ export const FAQS = [
   },
   {
     q: "Is FitWardrobe free?",
-    a: "Yes, it's free during early access. If we add paid plans later, we'll tell you well before anything changes. Benefits for early-access testers are set out in our Terms.",
+    a: "Yes, it's free during early access. If we add paid plans later, we'll tell you well before anything changes. Nothing is ever charged without your clear agreement.",
   },
   {
     q: "What happens to my clothing photos?",
