@@ -76,9 +76,10 @@ export const termsData: LegalPageData = {
           title: "2.2 Geographic Restrictions",
           content: (
             <p>
-              FitWardrobe is primarily designed for users in India but is
-              accessible globally. You are responsible for ensuring that your use
-              complies with local laws in your jurisdiction.
+              FitWardrobe is run from India and the website is available
+              worldwide. The app, or some of its features, may not be available in
+              every country at launch. You are responsible for making sure your use
+              complies with the laws where you live.
             </p>
           ),
         },
@@ -204,8 +205,10 @@ export const termsData: LegalPageData = {
       title: "10. Termination",
       content: (
         <p>
-          We reserve the right to suspend or terminate your account at our sole
-          discretion if you violate these Terms or if the service is discontinued.
+          You can stop using FitWardrobe at any time and ask us to delete your
+          account by emailing privacy@fitwardrobe.me. We may suspend or close your
+          account if you break these Terms, or if we discontinue the service; where
+          we can, we will tell you first.
         </p>
       ),
     },
@@ -214,9 +217,11 @@ export const termsData: LegalPageData = {
       title: "11. Disclaimers and Limitations of Liability",
       content: (
         <p>
-          FitWardrobe is provided "AS IS" without any warranties. We are not
-          liable for any damages arising from your use of the app or its AI
-          suggestions.
+          FitWardrobe is provided &quot;as is&quot;, without warranties of any kind, to
+          the extent the law allows. To the extent the law allows, we are not
+          liable for indirect or consequential losses arising from your use of
+          FitWardrobe or its AI suggestions. Nothing in these Terms limits any
+          rights you have under consumer protection law that cannot be excluded.
         </p>
       ),
     },
@@ -225,9 +230,9 @@ export const termsData: LegalPageData = {
       title: "12. Indemnification",
       content: (
         <p>
-          You agree to indemnify and hold FitWardrobe harmless from any claims or
-          damages resulting from your violation of these Terms or your use of
-          the app.
+          To the extent the law allows, you agree to indemnify FitWardrobe against
+          claims or damages resulting from your breach of these Terms or your
+          misuse of FitWardrobe.
         </p>
       ),
     },
@@ -236,8 +241,12 @@ export const termsData: LegalPageData = {
       title: "13. Governing Law and Dispute Resolution",
       content: (
         <p>
-          These Terms are governed by the laws of India. Any disputes will be
-          resolved in the courts of Meerut, Uttar Pradesh, India.
+          These Terms are governed by the laws of India. If you have a problem,
+          please email us first so we can try to resolve it. Subject to any right
+          you have under consumer protection law to bring a complaint where you
+          live or work, the courts at Meerut, Uttar Pradesh, India will have
+          exclusive jurisdiction over any dispute arising from these Terms or
+          your use of FitWardrobe.
         </p>
       ),
     },
@@ -265,6 +274,12 @@ export const termsData: LegalPageData = {
           </p>
           <p>
             <strong>Aryan Panwar, Founder, FitWardrobe</strong>
+            <br />
+            Meerut, Uttar Pradesh, India
+          </p>
+          <p>
+            For privacy requests and grievances, see section 11 of our{" "}
+            <a href="/privacy/">Privacy Policy</a>.
           </p>
           <p>
             <strong>Email:</strong>{" "}

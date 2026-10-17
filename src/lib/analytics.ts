@@ -11,9 +11,9 @@ export const GA_ID = /^G-[A-Z0-9]+$/.test(fromEnv) ? fromEnv : DEFAULT_GA_ID
 
 /**
  * Microsoft Clarity project ID (heatmaps and session recordings). Empty = Clarity is off.
- * Public like the GA ID: set NEXT_PUBLIC_CLARITY_ID or fill in the default once the project exists.
+ * Public like the GA ID; NEXT_PUBLIC_CLARITY_ID overrides it. Clarity never loads on localhost.
  */
-const DEFAULT_CLARITY_ID = ""
+const DEFAULT_CLARITY_ID = "yz86j95svn"
 const clarityFromEnv = process.env.NEXT_PUBLIC_CLARITY_ID?.trim() ?? ""
 export const CLARITY_ID = /^[a-z0-9]{6,16}$/i.test(clarityFromEnv) ? clarityFromEnv : DEFAULT_CLARITY_ID
 

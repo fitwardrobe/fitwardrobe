@@ -95,6 +95,7 @@ export default function RootLayout({
           <Script id="clarity-init" strategy="lazyOnload">
             {`
               (function () {
+                if (/^(localhost|127\\.0\\.0\\.1|\\[::1\\])$/.test(location.hostname)) return;
                 try { if (localStorage.getItem('${INTERNAL_KEY}') === '1') return; } catch (e) {}
                 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
