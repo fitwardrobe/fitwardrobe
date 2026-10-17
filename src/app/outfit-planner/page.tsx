@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { JoinBand } from "@/components/site/join-band";
 import { HERO_IMAGES } from "@/data/images";
 
-const TITLE = "Outfit planner app: AI outfits from your own clothes";
+const TITLE = "AI outfit planner app for the clothes you own";
 const DESCRIPTION =
   "An outfit planner app for Android and the web: pick the occasion and get an outfit from clothes you own, with a reason it works. Free in early access.";
 

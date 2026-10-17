@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { JoinBand } from "@/components/site/join-band";
 import { HERO_IMAGES } from "@/data/images";
 
-const TITLE = "AI capsule wardrobe planner: build one from what you own";
+const TITLE = "AI capsule wardrobe planner: use what you own";
 const DESCRIPTION =
   "Build a capsule wardrobe from the clothes you already own: how many pieces, which basics, and how an AI capsule wardrobe planner turns it into outfits.";
 

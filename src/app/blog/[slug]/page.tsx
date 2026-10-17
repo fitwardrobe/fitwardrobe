@@ -123,7 +123,7 @@ export default async function BlogPost({ params }: Props) {
   return (
     <div className="fw h13 p13">
       <ArticleView slug={post.slug} category={post.topic} />
-      <ReadingProgress targetId="article-body" />
+      <ReadingProgress targetId="article" />
       {schemas.map((s, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
       ))}
@@ -179,7 +179,7 @@ export default async function BlogPost({ params }: Props) {
       </div>
 
       <div className="fw-container a13-layout">
-        <article className="a13-main" id="article-body">
+        <article className="a13-main" id="article">
           {post.tldr ? (
             <div className="a13-answer">
               <span className="a13-answer__label">Quick answer</span>
