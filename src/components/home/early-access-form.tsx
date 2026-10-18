@@ -290,7 +290,7 @@ export function EarlyAccessForm({
           </p>
         ) : (
           <p id={noteId} className="fw-form__note">
-            Free during early access. One email when it opens, and you can unsubscribe any time.
+            Free during early access. We&apos;ll email you when it opens, and you can unsubscribe any time.
           </p>
         )}
       </div>

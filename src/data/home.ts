@@ -16,7 +16,7 @@ export const GARMENTS: Garment[] = [
   { id: "trousers", name: "Cream trousers", category: "Bottoms" },
   { id: "jeans", name: "Indigo jeans", category: "Bottoms" },
   { id: "loafers", name: "Brown loafers", category: "Shoes" },
-  { id: "sneakers", name: "White sneakers", category: "Shoes" },
+  { id: "sneakers", name: "White trainers", category: "Shoes" },
 ]
 
 export const NAV_LINKS = [
@@ -36,7 +36,7 @@ export const HERO_CHIPS = [
 /** The dark band under the hero. */
 export const STRIP = [
   { icon: "hanger", title: "Your own clothes", text: "Nothing to buy, nothing to browse" },
-  { icon: "phone", title: "Stored on your device", text: "Your wardrobe stays on your phone" },
+  { icon: "phone", title: "Stored on your device", text: "On your phone or in your browser" },
   { icon: "quote", title: "A reason for every pick", text: "One line on why it works" },
   { icon: "calendar", title: "Every occasion", text: "Work, travel, dates, gym and more" },
 ] as const
@@ -92,7 +92,7 @@ export const TRUST = [
   {
     icon: "spark",
     title: "AI only when it's needed",
-    text: "To tag a piece or plan an outfit, the photo or item details are sent to Google's Gemini or to Groq for processing. We don't keep copies.",
+    text: "To tag a piece or plan an outfit, the photo or item details are sent to Google's Gemini API or to Groq for processing. We don't keep copies.",
     href: "/ai-transparency/",
     link: "How our AI works",
   },
