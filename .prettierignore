@@ -5,3 +5,9 @@ node_modules/
 coverage/
 pnpm-lock.yaml
 .pnpm-store/
+out/
+brand/
+internal/
+photo-sources/
+playwright-report/
+test-results/

@@ -10,6 +10,10 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
 
 # next.js
 /.next/
@@ -17,6 +21,7 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
 *.log
 api-results.json
@@ -45,3 +50,11 @@ next-env.d.ts
 /photo-sources/
 *.psd
 *.ai
+
+# Local tools and leftovers from the old folder layout (never part of the site)
+/backups/
+/scrollcraft/
+/marketing-tools/
+/.sf/
+/fitwardrobe-landing/
+/.claude/

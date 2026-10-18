@@ -38,6 +38,12 @@
   ],
   "exclude": [
     "node_modules",
-    "tools"
+    "tools",
+    "out",
+    "brand",
+    "internal",
+    "photo-sources",
+    "e2e",
+    "playwright.config.ts"
   ]
 }

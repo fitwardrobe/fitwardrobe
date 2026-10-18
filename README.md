@@ -83,6 +83,21 @@ Photos are AI-generated and disclosed in the footer. Covers and heroes are mappe
 Use the tokens in `src/app/tokens.css` (`--c-forest`, `--c-gold`, `--c-cream` and so on); every
 token lists its contrast ratio. Do not add new hex values in component styles.
 
+## End-to-end tests
+
+Playwright checks every page in the sitemap (canonical host, titles, descriptions, one H1, structured
+data), every internal link, anchor and image, the redirects, the early-access form (requests to the
+Google Form are answered locally, so nothing reaches the real sheet), the blog filters, the guide pages
+and the phone layout. Analytics requests are blocked during tests.
+
+```bash
+pnpm build           # the tests run against the static export in out/
+pnpm test:e2e        # desktop and phone, served from out/ on port 4173
+E2E_BASE_URL=https://fitwardrobe.me pnpm test:e2e   # the same checks against the live site
+```
+
+On Windows PowerShell, set the variable first: `$env:E2E_BASE_URL="https://fitwardrobe.me"`.
+
 ## Deploying
 
 Pushing to `main` deploys to Vercel. The canonical host is `https://fitwardrobe.me` with trailing
