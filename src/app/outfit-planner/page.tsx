@@ -36,7 +36,6 @@ const OCCASIONS = [
   ["Wedding guest", "Dressier combinations that respect the dress code without outshining anyone."],
   ["Job interview", "Polished, quiet outfits that suit the industry you are interviewing in."],
   ["Travel", "Layers that mix with each other, so a small bag covers a long trip."],
-  ["Festive", "Occasion wear, from a kurta and Nehru jacket to a velvet blazer."],
   ["Weekend", "Relaxed outfits that still look put together."],
 ];
 

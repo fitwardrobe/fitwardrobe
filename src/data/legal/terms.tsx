@@ -289,7 +289,7 @@ export const termsData: LegalPageData = {
           </p>
           <p>
             <strong>Website:</strong>{" "}
-            <a href={SITE_CONFIG.landingUrl}>{SITE_CONFIG.landingUrl}</a>
+            <a href={`${SITE_CONFIG.landingUrl}/`}>{SITE_CONFIG.landingUrl.replace("https://", "")}</a>
           </p>
         </>
       ),

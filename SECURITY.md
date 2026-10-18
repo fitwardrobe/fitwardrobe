@@ -1,6 +1,6 @@
 # Security policy
 
-This repository is the static marketing website at https://www.fitwardrobe.me. It has no user
+This repository is the static marketing website at https://fitwardrobe.me. It has no user
 accounts or server code; early-access sign-ups are sent to a Google Form.
 
 ## Reporting a vulnerability

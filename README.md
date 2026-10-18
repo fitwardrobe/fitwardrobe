@@ -2,7 +2,7 @@
 
 Marketing website for **FitWardrobe**, a digital wardrobe app that plans outfits from the clothes you
 already own (coming soon to Android and the web). This repository is the site at
-https://www.fitwardrobe.me: homepage, guide pages, blog, legal pages and the early-access sign-up.
+https://fitwardrobe.me: homepage, guide pages, blog, legal pages and the early-access sign-up.
 
 The app itself lives in a separate repository.
 
@@ -85,9 +85,10 @@ token lists its contrast ratio. Do not add new hex values in component styles.
 
 ## Deploying
 
-Pushing to `main` deploys to Vercel. The canonical host is `https://www.fitwardrobe.me` with trailing
-slashes. Blog rewrites ship in waves on separate branches (`blog-wave-2`, `blog-wave-3`) so each
-post's "Updated" date matches the day it goes live.
+Pushing to `main` deploys to Vercel. The canonical host is `https://fitwardrobe.me` with trailing
+slashes; `www.fitwardrobe.me` permanently redirects to it (set in the Vercel domain settings). Blog
+updates ship in weekly waves on separate branches (`blog-wave-2` to `blog-wave-5`) so each post's
+date matches the day it goes live.
 
 ## Not in this repository
 

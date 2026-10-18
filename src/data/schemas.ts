@@ -7,7 +7,7 @@ export const GLOBAL_SCHEMAS = [
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "FitWardrobe",
-    "url": SITE_CONFIG.landingUrl,
+    "url": `${SITE_CONFIG.landingUrl}/`,
     "logo": `${SITE_CONFIG.landingUrl}/brand/icon-512.png`,
     "founder": {
       "@type": "Person",
@@ -31,6 +31,6 @@ export const GLOBAL_SCHEMAS = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "FitWardrobe",
-    "url": SITE_CONFIG.landingUrl
+    "url": `${SITE_CONFIG.landingUrl}/`
   }
 ];
