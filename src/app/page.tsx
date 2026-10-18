@@ -8,9 +8,9 @@ import { Icon } from "@/components/home/icon"
 import { RevealOnScroll, StickyCta } from "@/components/home/motion"
 import { FAQS, FEATURES, GARMENTS, GUIDES, HERO_CHIPS, STEPS, STRIP, STYLES, TRUST } from "@/data/home"
 
-const TITLE = "FitWardrobe: Digital Wardrobe & AI Outfit Planner App"
+const TITLE = "FitWardrobe: AI Outfit Planner & Digital Wardrobe App"
 const DESCRIPTION =
-  "A digital wardrobe app that plans outfits only from clothes you already own, with a reason for every pick. Android and web, coming soon. Free in early access."
+  "Know what to wear to work tomorrow. FitWardrobe is a digital wardrobe and AI outfit planner app that styles only the clothes you own, with a reason."
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -129,8 +129,9 @@ export default function HomePage() {
               <span>with what you own.</span>
             </h1>
             <p className="h13-hero__lead">
-              FitWardrobe is a digital wardrobe app that plans outfits only from the clothes you
-              already own, and tells you in one line why each look works.
+              FitWardrobe is a digital wardrobe app and AI outfit planner. Add your clothes once,
+              choose work, an interview or the weekend, and get an outfit from what you own, with
+              one line on why it works.
             </p>
             <div id="hero-form" className="h13-hero__ctas" data-cta-location="hero">
               <Link href="/#join" className="h13-btn h13-btn--gold">
@@ -242,9 +243,9 @@ export default function HomePage() {
         <div className="fw-container">
           <div className="h13-head" data-reveal>
             <div>
-              <p className="h13-eyebrow h13-eyebrow--dark">Outfit ideas for</p>
+              <p className="h13-eyebrow h13-eyebrow--dark">Styles</p>
               <h2 id="styles-title" className="h13-h2">
-                Every chapter of your life.
+                Outfits for work, interviews and weekends.
               </h2>
             </div>
             <p className="h13-lead">
@@ -257,7 +258,7 @@ export default function HomePage() {
           {STYLES.map((s) => (
             <li key={s.id} className="h13-look">
               <Picture
-                name={`look-${s.id}`}
+                name={s.image}
                 widths={[400, 720]}
                 sizes="(min-width: 1180px) 16vw, (min-width: 761px) 30vw, 62vw"
                 width={1024}
@@ -326,7 +327,7 @@ export default function HomePage() {
             <h2 id="steps-title" className="h13-h2">
               From your wardrobe to an outfit, in four steps.
             </h2>
-            <p className="h13-lead">Set it up in a few minutes. It gets better every time you use it.</p>
+            <p className="h13-lead">Start with a few pieces. It gets better every time you keep or skip an outfit.</p>
           </div>
           <ol className="h13-steps__list" data-stagger>
             {STEPS.map((s, i) => (
@@ -380,14 +381,14 @@ export default function HomePage() {
         <div className="fw-container">
           <div className="h13-head" data-reveal>
             <div>
-              <p className="h13-eyebrow h13-eyebrow--dark">From the blog</p>
+              <p className="h13-eyebrow h13-eyebrow--dark">Guides</p>
               <h2 id="guides-title" className="h13-h2">
-                Wardrobe apps, compared honestly.
+                Wardrobe apps and guides, compared honestly.
               </h2>
             </div>
             <p className="h13-lead">
               The guides readers search for most: which wardrobe app suits you, what to use on
-              Android, and what a digital wardrobe actually is.
+              Android, and how to plan outfits and a capsule wardrobe from what you own.
             </p>
           </div>
           <ul className="h13-guides__list" data-stagger>
@@ -427,6 +428,13 @@ export default function HomePage() {
                   <Plus size={20} strokeWidth={1.25} aria-hidden="true" className="h13-faq__icon" />
                 </summary>
                 <p>{f.a}</p>
+                {"link" in f && f.link ? (
+                  <p className="h13-faq__more">
+                    <Link href={f.link.href} className="fw-link">
+                      {f.link.text}
+                    </Link>
+                  </p>
+                ) : null}
               </details>
             ))}
           </div>

@@ -3,9 +3,10 @@ import Link from "next/link";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/site/page-hero";
 import { JoinBand } from "@/components/site/join-band";
-import { HERO_IMAGES } from "@/data/images";
+import { PageFigure } from "@/components/site/page-figure";
+import { HERO_IMAGES, INLINE_IMAGES } from "@/data/images";
 
-const TITLE = "Minimalist wardrobe: principles and first steps";
+const TITLE = "Minimalist wardrobe essentials and first steps";
 const DESCRIPTION =
   "What a minimalist wardrobe is, the principles that keep it small, and a simple way to start with the clothes you already own.";
 
@@ -84,6 +85,10 @@ export default function MinimalistWardrobePage() {
       <section className="fw-section fw-page__section fw-page__band" aria-labelledby="ess-title">
         <div className="fw-container fw-page__narrow">
           <h2 id="ess-title" className="fw-h2">Ten pieces most minimalist wardrobes include</h2>
+          <PageFigure
+            image={INLINE_IMAGES.tenPieces}
+            alt="Ten wardrobe basics laid out in two rows: a white T-shirt, an oxford shirt, dark jeans, tailored trousers, a navy knit, a navy blazer, a camel coat, white trainers, brown loafers, and a tote bag with a belt"
+          />
           <ul className="fw-page__list">
             {ESSENTIALS.map((e) => (
               <li key={e}>{e}</li>

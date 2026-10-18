@@ -24,6 +24,11 @@ const ENTRY = {
   phone: env(process.env.NEXT_PUBLIC_EARLY_ACCESS_PHONE_ENTRY, "entry.1919821622"),
   help: env(process.env.NEXT_PUBLIC_EARLY_ACCESS_HELP_ENTRY, "entry.1603544156"),
   source: env(process.env.NEXT_PUBLIC_EARLY_ACCESS_SOURCE_ENTRY, "entry.235993561"),
+  // Optional profile questions. Empty until the questions exist in the Google Form; each one
+  // is shown on the site only once its entry id is set.
+  gender: env(process.env.NEXT_PUBLIC_EARLY_ACCESS_GENDER_ENTRY, ""),
+  age: env(process.env.NEXT_PUBLIC_EARLY_ACCESS_AGE_ENTRY, ""),
+  country: env(process.env.NEXT_PUBLIC_EARLY_ACCESS_COUNTRY_ENTRY, ""),
 }
 
 /** Options exactly as written in the Google Form. */
@@ -37,10 +42,34 @@ export const HELP_OPTIONS = [
   "Something else",
 ] as const
 
+export const GENDER_OPTIONS = ["Woman", "Man", "Non-binary", "Prefer not to say"] as const
+/** FitWardrobe is for people aged 18 and over (Terms 2.1), so there is no under-18 band. */
+export const AGE_OPTIONS = ["18-24", "25-34", "35-44", "45+"] as const
+export const COUNTRY_OPTIONS = [
+  "United Kingdom",
+  "India",
+  "United States",
+  "Germany",
+  "Netherlands",
+  "Canada",
+  "Australia",
+  "Other",
+] as const
+
 export type Phone = (typeof PHONE_OPTIONS)[number]
 export type Help = (typeof HELP_OPTIONS)[number]
+export type Gender = (typeof GENDER_OPTIONS)[number]
+export type Age = (typeof AGE_OPTIONS)[number]
+export type Country = (typeof COUNTRY_OPTIONS)[number]
 
 export const isEarlyAccessConfigured = FORM_ID !== "" && ENTRY.email !== ""
+
+/** Which optional profile questions the Google Form currently accepts. */
+export const PROFILE_QUESTIONS = {
+  gender: ENTRY.gender !== "",
+  age: ENTRY.age !== "",
+  country: ENTRY.country !== "",
+}
 
 export type EarlyAccessResult =
   | { ok: true }
@@ -49,6 +78,9 @@ export type EarlyAccessResult =
 export type EarlyAccessDetails = {
   phone?: Phone
   help?: Help[]
+  gender?: Gender
+  age?: Age
+  country?: Country
   /** Where the sign-up came from, e.g. "join · / · utm_source=instagram". */
   source?: string
 }
@@ -82,6 +114,9 @@ export async function submitEarlyAccess(
   const body = new URLSearchParams({ [ENTRY.email]: email.trim() })
   if (details.phone && PHONE_OPTIONS.includes(details.phone)) body.append(ENTRY.phone, details.phone)
   for (const h of details.help ?? []) if (HELP_OPTIONS.includes(h)) body.append(ENTRY.help, h)
+  if (ENTRY.gender && details.gender && GENDER_OPTIONS.includes(details.gender)) body.append(ENTRY.gender, details.gender)
+  if (ENTRY.age && details.age && AGE_OPTIONS.includes(details.age)) body.append(ENTRY.age, details.age)
+  if (ENTRY.country && details.country && COUNTRY_OPTIONS.includes(details.country)) body.append(ENTRY.country, details.country)
   if (details.source) body.append(ENTRY.source, details.source)
 
   try {

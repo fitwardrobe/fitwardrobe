@@ -256,6 +256,26 @@
   margin-top: 26px;
 }
 
+/* Photograph inside a guide section */
+.p13 .fw-page__figure {
+  margin: 0 0 32px;
+}
+.p13 .fw-page__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--x-cream-2);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -44px rgba(0, 0, 0, 0.45);
+}
+.p13 .fw-page__figure figcaption {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--c-slate);
+}
+
 /* Two-column blocks */
 .p13 .fw-page__two > div {
   padding: 26px;

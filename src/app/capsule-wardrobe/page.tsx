@@ -5,9 +5,9 @@ import { PageHero } from "@/components/site/page-hero";
 import { JoinBand } from "@/components/site/join-band";
 import { HERO_IMAGES } from "@/data/images";
 
-const TITLE = "AI capsule wardrobe planner: use what you own";
+const TITLE = "AI capsule wardrobe generator and planner";
 const DESCRIPTION =
-  "Build a capsule wardrobe from the clothes you already own: how many pieces, which basics, and how an AI capsule wardrobe planner turns it into outfits.";
+  "Build a capsule wardrobe from clothes you already own: how many pieces, which basics, and how an AI capsule wardrobe generator turns them into outfits.";
 
 export const metadata: Metadata = pageMetadata("/capsule-wardrobe/", TITLE, DESCRIPTION);
 
@@ -44,8 +44,12 @@ const FAQ = [
     a: "There is no fixed number. Project 333 uses 33 items, including shoes and accessories, for three months; many people settle between 25 and 40 pieces for a season. Start with what you actually wear and adjust.",
   },
   {
-    q: "Can an app help me build a capsule wardrobe?",
+    q: "Is there a capsule wardrobe app?",
     a: "Yes. A digital wardrobe app keeps every piece you own in one place, so you can see your capsule at a glance and plan outfits from it. FitWardrobe, coming soon to Android and the web, tags each piece you photograph and suggests outfits for an occasion using only your clothes.",
+  },
+  {
+    q: "Can AI build a capsule wardrobe from my own clothes?",
+    a: "AI can help you see the capsule inside the clothes you already have. Some tools suggest pieces to buy; a planner like FitWardrobe starts from photos of your own clothes and suggests outfits from only those, each with a short reason. You still decide what stays in the capsule.",
   },
   {
     q: "Do I need to buy new clothes for a capsule wardrobe?",
@@ -84,7 +88,7 @@ export default function CapsuleWardrobePage() {
 
       <PageHero
         eyebrow="AI capsule wardrobe planner"
-        title="A capsule wardrobe built from what you already own."
+        title="An AI capsule wardrobe, built from what you already own."
         lead="A capsule wardrobe is a small set of versatile clothes that all work together, so you get more outfits from fewer pieces. Here is how to build one from your current wardrobe, and how an app turns it into outfits."
         image={HERO_IMAGES.capsule}
         crumbs={[{ label: "Home", href: "/" }, { label: "Capsule wardrobe" }]}

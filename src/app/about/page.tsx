@@ -8,7 +8,7 @@ import { HERO_IMAGES } from "@/data/images";
 
 const TITLE = "About FitWardrobe and its founder";
 const DESCRIPTION =
-  "Why FitWardrobe exists, the principles behind it, and the founder building it from Meerut, India. A digital wardrobe app coming soon to Android and the web.";
+  "Why FitWardrobe exists, the principles behind it, and the founder building it in Meerut, India. A digital wardrobe app coming to Android and the web.";
 
 export const metadata: Metadata = pageMetadata("/about/", TITLE, DESCRIPTION);
 

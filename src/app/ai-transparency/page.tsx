@@ -113,7 +113,7 @@ export default function AiTransparencyPage() {
               <ul className="fw-page__list">
                 <li>Tagging type, colour and season from a clear photo</li>
                 <li>Suggesting colour combinations you may not have tried</li>
-                <li>Reminding you of pieces you rarely wear</li>
+                <li>Building an outfit around one piece you want to wear</li>
                 <li>Explaining, in a sentence, why an outfit works</li>
               </ul>
             </div>

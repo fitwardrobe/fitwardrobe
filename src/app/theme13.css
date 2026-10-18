@@ -1167,11 +1167,14 @@
 }
 @media (min-width: 1180px) {
   .h13-guides__list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 /* ---------- 9. FAQ ---------- */
+.h13 .h13-faq__item .h13-faq__more {
+  margin-top: -6px;
+}
 .h13-faq__grid {
   display: grid;
   gap: 32px;
@@ -1377,6 +1380,34 @@
   color: var(--x-ink);
   background: var(--x-gold-soft);
   border-color: var(--x-gold-soft);
+}
+.fw-more__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+.fw-more__select {
+  min-height: 42px;
+  width: 100%;
+  max-width: 280px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 0.875rem;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--fw-rule-strong);
+  border-radius: 12px;
+}
+.fw-more__select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.fw-form--glass .fw-more__select {
+  color: var(--c-paper);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+.fw-form--glass .fw-more__select option {
+  color: var(--x-ink);
 }
 .fw-more__actions {
   display: flex;

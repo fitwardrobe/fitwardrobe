@@ -4,11 +4,18 @@ import { useId, useState, type FormEvent } from "react"
 import { ArrowRight, Check } from "lucide-react"
 import { SITE_CONFIG } from "@/lib/config"
 import {
+  AGE_OPTIONS,
+  COUNTRY_OPTIONS,
+  GENDER_OPTIONS,
   HELP_OPTIONS,
   PHONE_OPTIONS,
+  PROFILE_QUESTIONS,
   isValidEmail,
   signupSource,
   submitEarlyAccess,
+  type Age,
+  type Country,
+  type Gender,
   type Help,
   type Phone,
 } from "@/lib/early-access"
@@ -32,6 +39,9 @@ export function EarlyAccessForm({
   const [step, setStep] = useState<Step>("ask")
   const [phone, setPhone] = useState<Phone | "">("")
   const [help, setHelp] = useState<Help[]>([])
+  const [gender, setGender] = useState<Gender | "">("")
+  const [age, setAge] = useState<Age | "">("")
+  const [country, setCountry] = useState<Country | "">("")
   const formLocation = location ?? (tone === "dark" ? "join" : "hero")
   // Never send the email address itself to analytics.
 
@@ -60,14 +70,27 @@ export function EarlyAccessForm({
 
   async function onDetails(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!phone && help.length === 0) {
+    if (!phone && help.length === 0 && !gender && !age && !country) {
       setStep("skipped")
       return
     }
     setStep("sending")
-    await submitEarlyAccess(email, { phone: phone || undefined, help, source: signupSource(`${formLocation}-details`) })
+    await submitEarlyAccess(email, {
+      phone: phone || undefined,
+      help,
+      gender: gender || undefined,
+      age: age || undefined,
+      country: country || undefined,
+      source: signupSource(`${formLocation}-details`),
+    })
     setStep("thanks")
-    track("early_access_details", { form_location: formLocation, phone_given: phone !== "", help_count: help.length })
+    // Only whether each answer was given goes to analytics, never the answer itself.
+    track("early_access_details", {
+      form_location: formLocation,
+      phone_given: phone !== "",
+      help_count: help.length,
+      profile_given: gender !== "" || age !== "" || country !== "",
+    })
   }
 
   if (status === "success") {
@@ -92,7 +115,11 @@ export function EarlyAccessForm({
 
           {asking && (
             <form className="fw-more" onSubmit={onDetails}>
-              <p className="fw-more__title">Two quick questions (optional)</p>
+              <p className="fw-more__title">
+                {PROFILE_QUESTIONS.gender || PROFILE_QUESTIONS.age || PROFILE_QUESTIONS.country
+                  ? "A few quick questions (all optional)"
+                  : "Two quick questions (optional)"}
+              </p>
               <fieldset className="fw-more__set">
                 <legend>Which phone do you use?</legend>
                 <div className="fw-more__chips">
@@ -128,6 +155,64 @@ export function EarlyAccessForm({
                   ))}
                 </div>
               </fieldset>
+              {PROFILE_QUESTIONS.gender && (
+                <fieldset className="fw-more__set">
+                  <legend>How do you describe yourself?</legend>
+                  <div className="fw-more__chips">
+                    {GENDER_OPTIONS.map((g) => (
+                      <label key={g} className="fw-chip">
+                        <input
+                          type="radio"
+                          name={`${id}-gender`}
+                          value={g}
+                          checked={gender === g}
+                          onChange={() => setGender(g)}
+                        />
+                        <span>{g}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              )}
+              {PROFILE_QUESTIONS.age && (
+                <fieldset className="fw-more__set">
+                  <legend>Your age</legend>
+                  <div className="fw-more__chips">
+                    {AGE_OPTIONS.map((a) => (
+                      <label key={a} className="fw-chip">
+                        <input
+                          type="radio"
+                          name={`${id}-age`}
+                          value={a}
+                          checked={age === a}
+                          onChange={() => setAge(a)}
+                        />
+                        <span>{a}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              )}
+              {PROFILE_QUESTIONS.country && (
+                <div className="fw-more__set">
+                  <label htmlFor={`${id}-country`} className="fw-more__label">
+                    Where do you live?
+                  </label>
+                  <select
+                    id={`${id}-country`}
+                    className="fw-more__select"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value as Country | "")}
+                  >
+                    <option value="">Choose a country</option>
+                    {COUNTRY_OPTIONS.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
               <div className="fw-more__actions">
                 <button type="submit" className="fw-btn fw-btn--primary fw-btn--sm" disabled={step === "sending"}>
                   {step === "sending" ? "Sending…" : "Send answers"}

@@ -10,7 +10,7 @@ export interface PostFAQ {
 /** One post as stored in src/content/posts/<slug>.json */
 export interface PostFile {
   slug: string
-  /** SEO title (the " | FitWardrobe" suffix is added by the layout) */
+  /** Full SEO title, 60 characters or fewer (posts do not get the " | FitWardrobe" suffix) */
   title: string
   h1: string
   /** Meta description and card text */

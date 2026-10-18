@@ -39,7 +39,8 @@ export function getBlogPostMetadata(slug: string): Metadata {
   const image = { url: coverUrl(cover), width: 1280, height: 853, alt: post.h1 };
 
   return {
-    title: post.title,
+    // Post titles are written to fit 60 characters on their own, so they skip the " | FitWardrobe" template.
+    title: { absolute: post.title },
     description: post.excerpt,
     alternates: {
       canonical: url,
@@ -71,7 +72,7 @@ export function getGlobalMetadata(): Metadata {
   return {
     metadataBase: new URL(baseUrl || "http://localhost:3000"),
     title: {
-      default: 'FitWardrobe: Digital Wardrobe & AI Outfit Planner App',
+      default: 'FitWardrobe: AI Outfit Planner & Digital Wardrobe App',
       template: '%s | FitWardrobe',
     },
     description: 'A digital wardrobe app that plans outfits only from clothes you already own, with a reason for every pick. Android and web, coming soon. Free in early access.',

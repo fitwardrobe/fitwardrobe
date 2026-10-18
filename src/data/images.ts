@@ -21,8 +21,14 @@ export const HERO_IMAGES = {
   blog: landscape("walnut-wardrobe", "60% 50%"),
   about: home("hero-about", "60% 50%"),
   capsule: home("hero-capsule-guide", "70% 12%"),
-  outfitPlanner: home("hero-outfit-planner", "75% 8%"),
-  minimalist: blog("topic-capsule", "55% 50%"),
+  outfitPlanner: home("hero-outfit-planner-w", "75% 8%"),
+  minimalist: blog("topic-capsule-v2", "55% 16%"),
+} as const
+
+/** Photographs inside guide pages (decorative to the text around them, so each has its own alt). */
+export const INLINE_IMAGES = {
+  workWeek: home("work-week"),
+  tenPieces: home("minimalist-ten-pieces"),
 } as const
 
 export type Topic = "Wardrobe apps" | "Digital wardrobe" | "Capsule & minimalism" | "Wardrobe rules" | "Sustainability"
@@ -38,17 +44,17 @@ export const TOPICS: { name: Topic; slug: string; description: string }[] = [
 export const TOPIC_COVERS: Record<Topic, HeroImage> = {
   "Wardrobe apps": blog("topic-wardrobe-apps"),
   "Digital wardrobe": blog("topic-digital-wardrobe"),
-  "Capsule & minimalism": blog("topic-capsule"),
+  "Capsule & minimalism": blog("topic-capsule-v2"),
   "Wardrobe rules": blog("topic-rules"),
   Sustainability: blog("topic-sustainability"),
 }
 
 /** Posts with their own cover photo. */
 export const POST_COVERS: Partial<Record<string, HeroImage>> = {
-  "best-outfit-planning-apps-compared": blog("post-best-outfit-planning-apps-compared"),
-  "stylebook-alternative-android": blog("post-stylebook-alternative-android"),
+  "best-outfit-planning-apps-compared": blog("post-best-outfit-planning-apps-compared-v2"),
+  "stylebook-alternative-android": blog("post-stylebook-alternative-android-v2"),
   "what-is-a-digital-wardrobe": blog("post-what-is-a-digital-wardrobe"),
-  "best-digital-wardrobe-apps": blog("post-best-digital-wardrobe-apps"),
+  "best-digital-wardrobe-apps": blog("post-best-digital-wardrobe-apps-v2"),
   "disadvantages-digital-fashion": blog("post-disadvantages-digital-fashion"),
   "free-ai-wardrobe-tools": blog("post-free-ai-wardrobe-tools"),
 }

@@ -41,14 +41,14 @@ export const STRIP = [
   { icon: "calendar", title: "Every occasion", text: "Work, travel, dates, gym and more" },
 ] as const
 
-/** Style cards. Images: /images/home/look-<id>-<w>.* (AI-generated, illustrative). */
+/** Style cards. Images: /images/home/<image>-<w>.* (AI-generated, illustrative). */
 export const STYLES = [
-  { id: "casual", title: "Casual", text: "Everyday comfort", alt: "A man in an olive overshirt, white tee and cream chinos leaning on a sunlit wall" },
-  { id: "work", title: "Workwear", text: "Sharp for the office", alt: "A man in a navy blazer and light-blue oxford walking through an office lobby" },
-  { id: "street", title: "Streetwear", text: "Bold and relaxed", alt: "A man in a denim jacket, rust hoodie and black cap on a city street" },
-  { id: "travel", title: "Travel", text: "Light and versatile", alt: "A man with a tan weekender bag walking down an old stone street" },
-  { id: "gym", title: "Gym", text: "Built to move", alt: "A man in a black tee looping a towel around his neck in a gym" },
-  { id: "date", title: "Date night", text: "Make an impression", alt: "A man in a black leather jacket leaning on a bar counter at night" },
+  { id: "casual", image: "look-casual", title: "Casual", text: "Everyday comfort", alt: "A man in an olive overshirt, white tee and cream chinos leaning on a sunlit wall" },
+  { id: "work", image: "look-work-w", title: "Workwear", text: "Sharp for the office", alt: "A woman in a charcoal blazer, cream top and navy wide-leg trousers walking through an office lobby" },
+  { id: "street", image: "look-street", title: "Streetwear", text: "Bold and relaxed", alt: "A man in a denim jacket, rust hoodie and black cap on a city street" },
+  { id: "travel", image: "look-travel-w", title: "Travel", text: "Light and versatile", alt: "A woman in a camel trench coat with a tan weekender bag walking down an old stone street" },
+  { id: "gym", image: "look-gym", title: "Gym", text: "Built to move", alt: "A man in a black tee looping a towel around his neck in a gym" },
+  { id: "date", image: "look-date", title: "Date night", text: "Make an impression", alt: "A man in a black leather jacket leaning on a bar counter at night" },
 ] as const
 
 export const FEATURES = [
@@ -105,7 +105,8 @@ export const TRUST = [
   },
 ] as const
 
-export const FAQS = [
+/** Home FAQ. `link` adds a contextual link under the answer (not part of the FAQ schema text). */
+export const FAQS: { q: string; a: string; link?: { href: string; text: string } }[] = [
   {
     q: "What is FitWardrobe?",
     a: "FitWardrobe is a digital wardrobe app that suggests outfits using only the clothes you own. You photograph your clothes, it tags them, and it puts an outfit together for the occasion you choose, with a short reason for each pick.",
@@ -127,20 +128,33 @@ export const FAQS = [
     a: "Your photos, items and outfits are stored on your own device. To tag a piece or suggest an outfit, the photo or item details are sent to a cloud AI service for processing. We don't keep copies on our servers.",
   },
   {
+    q: "Can FitWardrobe tell me what to wear to work?",
+    a: "That's the main thing it's built for. Add your work clothes, choose Work or a job interview, and it suggests an outfit from the pieces you own, with one line on why it suits the day. It can get things wrong, and you can tell it when it does.",
+    link: { href: "/outfit-planner/", text: "How the AI outfit planner works" },
+  },
+  {
+    q: "Can it build a capsule wardrobe from my clothes?",
+    a: "It works as a capsule wardrobe planner rather than a shopping list. Add the pieces you want to keep in rotation and it builds outfits from only those, each with a reason, so a small wardrobe goes further.",
+    link: { href: "/capsule-wardrobe/", text: "Plan a capsule wardrobe from what you own" },
+  },
+  {
     q: "How does it choose an outfit?",
-    a: "It reads the type, colour, fabric and formality of each piece you add, learns from the outfits you keep or skip, and puts together combinations for the occasion you choose. Every suggestion comes with a short reason. It can get things wrong, and you can tell it when it does.",
+    a: "It reads the type, colour, pattern, season and formality of each piece you add, learns from the outfits you keep or skip, and puts together combinations for the occasion you choose. Every suggestion comes with a short reason. It can get things wrong, and you can tell it when it does.",
   },
   {
     q: "How is it different from Whering, Indyx or Stylebook?",
     a: "FitWardrobe focuses on one job: choosing an outfit for a specific occasion from clothes you already own, and telling you why it works. Our comparison guide sets out what each wardrobe app offers, based on their public feature lists.",
+    link: { href: "/blog/best-outfit-planning-apps-compared/", text: "Whering vs Indyx vs Stylebook, compared" },
   },
   {
     q: "Is there a Stylebook app for Android?",
     a: "No. Stylebook is only available for iPhone and iPad. FitWardrobe is a digital wardrobe app coming to Android and the web, and our guide to Stylebook alternatives for Android compares the options available today.",
+    link: { href: "/blog/stylebook-alternative-android/", text: "Stylebook alternatives for Android" },
   },
   {
     q: "What is a digital wardrobe app?",
     a: "A digital wardrobe app keeps a photo of every piece of clothing you own, tagged by type, colour and season, so you can see your whole wardrobe on your phone and plan outfits from it. FitWardrobe adds outfit suggestions for the occasion you pick, each with a short reason.",
+    link: { href: "/blog/what-is-a-digital-wardrobe/", text: "What a digital wardrobe is, and how to start one" },
   },
   {
     q: "Is it only for men?",
@@ -148,7 +162,7 @@ export const FAQS = [
   },
 ]
 
-/** Homepage links into the four topic clusters (pillar pages). */
+/** Homepage links into the most-searched guides and the two product guide pages. */
 export const GUIDES = [
   {
     href: "/blog/best-outfit-planning-apps-compared/",
@@ -169,6 +183,16 @@ export const GUIDES = [
     href: "/blog/what-is-a-digital-wardrobe/",
     topic: "Digital wardrobe",
     title: "What a digital wardrobe is, and how to start one",
+  },
+  {
+    href: "/outfit-planner/",
+    topic: "Outfit planner",
+    title: "AI outfit planner: outfits from the clothes you own",
+  },
+  {
+    href: "/capsule-wardrobe/",
+    topic: "Capsule wardrobe",
+    title: "An AI capsule wardrobe planner for what you already have",
   },
 ]
 

@@ -3,11 +3,12 @@ import Link from "next/link";
 import { getBreadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/site/page-hero";
 import { JoinBand } from "@/components/site/join-band";
-import { HERO_IMAGES } from "@/data/images";
+import { PageFigure } from "@/components/site/page-figure";
+import { HERO_IMAGES, INLINE_IMAGES } from "@/data/images";
 
 const TITLE = "AI outfit planner app for the clothes you own";
 const DESCRIPTION =
-  "An outfit planner app for Android and the web: pick the occasion and get an outfit from clothes you own, with a reason it works. Free in early access.";
+  "An AI outfit planner app for Android and the web: pick the occasion, get an outfit from clothes you own and a reason it works. Free in early access.";
 
 export const metadata: Metadata = pageMetadata("/outfit-planner/", TITLE, DESCRIPTION);
 
@@ -41,7 +42,7 @@ const OCCASIONS = [
 
 const FAQ = [
   {
-    q: "Is there an app that puts outfits together from my own clothes?",
+    q: "Is there an app that picks outfits from my own clothes?",
     a: "Yes. Several wardrobe apps build outfits from the clothes you photograph, either with you choosing the pieces or with AI suggestions. Our comparison of digital wardrobe apps lists what each one offers. FitWardrobe, coming soon to Android and the web, suggests a complete outfit for the occasion you pick, using only your clothes.",
   },
   {
@@ -97,7 +98,7 @@ export default function OutfitPlannerPage() {
 
       <PageHero
         eyebrow="AI outfit planner app · Coming soon"
-        title="Plan outfits from the clothes you already own."
+        title="An outfit planner app for the clothes you already own."
         lead="FitWardrobe is an outfit planner for Android and the web. Tell it where you're going and it puts together an outfit from your own wardrobe, with a short note on why it works."
         image={HERO_IMAGES.outfitPlanner}
         crumbs={[{ label: "Home", href: "/" }, { label: "Outfit planner" }]}
@@ -126,6 +127,11 @@ export default function OutfitPlannerPage() {
       <section className="fw-section fw-page__section fw-page__band" aria-labelledby="occ-title">
         <div className="fw-container fw-page__narrow">
           <h2 id="occ-title" className="fw-h2">What to wear, by occasion</h2>
+          <PageFigure
+            image={INLINE_IMAGES.workWeek}
+            alt="Five work outfits laid out side by side on a stone surface, each a top, trousers or skirt, and shoes from one small wardrobe"
+            caption="Five work outfits from one small wardrobe."
+          />
           <table className="fw-page__table">
             <thead>
               <tr>
@@ -169,7 +175,27 @@ export default function OutfitPlannerPage() {
         </div>
       </section>
 
-      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="op-faq-title">
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="piece-title">
+        <div className="fw-container fw-page__narrow fw-page__prose">
+          <h2 id="piece-title" className="fw-h2">Build an outfit around one piece</h2>
+          <p>
+            Sometimes the question is not where you are going but what you want to wear: a new
+            jacket, a shirt you have not worn in months, the trousers that finally came back from
+            the tailor. Choose that piece and FitWardrobe builds the rest of the outfit around it,
+            from your own clothes, with a line on why the pieces work together.
+          </p>
+          <p>
+            It is the same idea behind a capsule wardrobe: fewer pieces, more combinations. If you
+            are trimming your wardrobe down, our{" "}
+            <Link href="/capsule-wardrobe/" className="fw-link">
+              capsule wardrobe planner
+            </Link>{" "}
+            guide covers how many pieces to keep and how they fit together.
+          </p>
+        </div>
+      </section>
+
+      <section className="fw-section fw-page__section" aria-labelledby="op-faq-title">
         <div className="fw-container fw-page__narrow">
           <h2 id="op-faq-title" className="fw-h2">Outfit planner questions</h2>
           <dl className="fw-page__faq">
@@ -183,7 +209,7 @@ export default function OutfitPlannerPage() {
         </div>
       </section>
 
-      <section className="fw-section fw-page__section" aria-labelledby="op-more-title">
+      <section className="fw-section fw-page__section fw-page__band" aria-labelledby="op-more-title">
         <div className="fw-container fw-page__narrow">
           <h2 id="op-more-title" className="fw-h2">Outfit planning guides</h2>
           <ul className="fw-page__links">

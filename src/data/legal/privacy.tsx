@@ -8,7 +8,7 @@ export const privacyData: LegalPageData = {
   title: "Privacy Policy",
   organization: "FitWardrobe",
   effectiveDate: "February 3, 2026",
-  lastUpdated: "October 17, 2026",
+  lastUpdated: "October 18, 2026",
   version: "1.3",
   toc: [
     { id: "introduction", title: "1. Introduction" },
@@ -69,7 +69,11 @@ export const privacyData: LegalPageData = {
               </li>
               <li>
                 <strong>Optional answers</strong>, if you choose to give them after joining: which
-                phone you use (Android, iPhone or both) and what you would most like help with.
+                phone you use (Android, iPhone or both), what you would most like help with, how
+                you describe yourself (woman, man, non-binary or prefer not to say), your age
+                band and the country you live in. We use these only in total, to understand who
+                FitWardrobe is useful for and what to build first; they are never used for
+                advertising and never shared beyond the providers listed below.
               </li>
               <li>
                 <strong>Where you signed up:</strong> the part of the page and the page address,
