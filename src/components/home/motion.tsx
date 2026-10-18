@@ -40,10 +40,13 @@ export function RevealOnScroll() {
   return null
 }
 
-/** Mobile-only bar that appears once the hero form has scrolled away, and hides at the final sign-up. */
+/**
+ * Mobile-only bar that appears once the hero form has scrolled away and hides from the final sign-up
+ * onwards, so it never covers the footer (Cookie settings, legal links).
+ */
 export function StickyCta() {
   const [heroGone, setHeroGone] = useState(false)
-  const [joinVisible, setJoinVisible] = useState(false)
+  const [joinReached, setJoinReached] = useState(false)
   const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
@@ -53,7 +56,7 @@ export function StickyCta() {
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         if (e.target === hero) setHeroGone(!e.isIntersecting && e.boundingClientRect.top < 0)
-        if (e.target === join) setJoinVisible(e.isIntersecting)
+        if (e.target === join) setJoinReached(e.isIntersecting || e.boundingClientRect.top < 0)
       }
     })
     io.observe(hero)
@@ -61,7 +64,7 @@ export function StickyCta() {
     return () => io.disconnect()
   }, [])
 
-  const show = heroGone && !joinVisible && !dismissed
+  const show = heroGone && !joinReached && !dismissed
   return (
     <div className={`fw-sticky ${show ? "is-shown" : ""}`} aria-hidden={!show}>
       <Link href="/#join" className="fw-btn fw-btn--primary fw-sticky__btn" tabIndex={show ? 0 : -1}>

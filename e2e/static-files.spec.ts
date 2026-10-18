@@ -9,6 +9,7 @@ const redirects = allRedirects.filter((r) => !/[:(]/.test(r.source))
 const PATTERN_EXAMPLES = [
   ["/blog/stylebook-alternative-android.html", "/blog/stylebook-alternative-android/"],
   ["/about.html", "/about/"],
+  ["/blog/7-rs-sustainable-fashion/what-is-a-capsule-wardrobe.html", "/blog/what-is-a-capsule-wardrobe/"],
 ]
 
 test("robots.txt points at the canonical sitemap", async ({ request }) => {

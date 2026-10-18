@@ -36,10 +36,14 @@ async function resolveFile(urlPath) {
   }
 }
 
-createServer(async (req, res) => {
+const server = createServer(async (req, res) => {
   const file = await resolveFile(req.url ?? "/")
   const target = file ?? join(ROOT, "404.html")
   const body = await readFile(target).catch(() => Buffer.from("Not found"))
   res.writeHead(file ? 200 : 404, { "Content-Type": TYPES[extname(target)] ?? "application/octet-stream" })
   res.end(body)
-}).listen(PORT, "127.0.0.1", () => console.log(`Serving out/ on http://127.0.0.1:${PORT}`))
+})
+// Keep idle connections open longer than the test client does, so a reused socket is never reset.
+server.keepAliveTimeout = 65_000
+server.headersTimeout = 66_000
+server.listen(PORT, "127.0.0.1", () => console.log(`Serving out/ on http://127.0.0.1:${PORT}`))

@@ -33,6 +33,66 @@
   ],
   "redirects": [
     {
+      "source": "/blog/capsule-wardrobe",
+      "destination": "/capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/capsule-wardrobe/",
+      "destination": "/capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/capsule-wardrobe.html",
+      "destination": "/capsule-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/minimalist-wardrobe",
+      "destination": "/minimalist-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/minimalist-wardrobe/",
+      "destination": "/minimalist-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/minimalist-wardrobe.html",
+      "destination": "/minimalist-wardrobe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/30-wear-rule",
+      "destination": "/blog/30-wear-rule-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/30-wear-rule/",
+      "destination": "/blog/30-wear-rule-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/30-wear-rule.html",
+      "destination": "/blog/30-wear-rule-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/cdn-cgi/l/email-protection",
+      "destination": "/support/",
+      "permanent": true
+    },
+    {
+      "source": "/cdn-cgi/l/email-protection/",
+      "destination": "/support/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:parent/:slug.html",
+      "destination": "/blog/:slug/",
+      "permanent": true
+    },
+    {
       "source": "/blog/best-wardrobe-apps-2026",
       "destination": "/blog/best-digital-wardrobe-apps/",
       "permanent": true
