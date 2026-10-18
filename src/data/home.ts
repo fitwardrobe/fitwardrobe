@@ -130,7 +130,7 @@ export const FAQS: { q: string; a: string; link?: { href: string; text: string }
   {
     q: "Can FitWardrobe tell me what to wear to work?",
     a: "That's the main thing it's built for. Add your work clothes, choose Work or a job interview, and it suggests an outfit from the pieces you own, with one line on why it suits the day. It can get things wrong, and you can tell it when it does.",
-    link: { href: "/outfit-planner/", text: "How the AI outfit planner works" },
+    link: { href: "/what-to-wear-to-work/", text: "What to wear to work, by dress code" },
   },
   {
     q: "Can it build a capsule wardrobe from my clothes?",

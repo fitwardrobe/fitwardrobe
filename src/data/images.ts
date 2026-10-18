@@ -23,6 +23,7 @@ export const HERO_IMAGES = {
   capsule: home("hero-capsule-guide", "70% 12%"),
   outfitPlanner: home("hero-outfit-planner-w", "75% 8%"),
   minimalist: blog("topic-capsule-v2", "55% 16%"),
+  work: home("hero-work-guide", "66% 30%"),
 } as const
 
 /** Photographs inside guide pages (decorative to the text around them, so each has its own alt). */

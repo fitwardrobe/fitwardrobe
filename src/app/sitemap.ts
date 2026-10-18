@@ -8,6 +8,12 @@ export const dynamic = 'force-static'
 
 // Date the core pages last changed. Update when their content changes (not on every build).
 const SITE_UPDATED = '2026-10-18'
+// Core pages that changed after that date, with the release that changed them.
+const PAGE_UPDATED: Record<string, string> = {
+  '/what-to-wear-to-work': '2026-11-01',
+  '/minimalist-wardrobe': '2026-11-01',
+  '/outfit-planner': '2026-11-01',
+}
 
 // "October 23, 2026" -> "2026-10-23", never earlier than SITE_UPDATED (the redesign release).
 const legalDate = (lastUpdated: string) => {
@@ -39,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/capsule-wardrobe',
     '/outfit-planner',
+    '/what-to-wear-to-work',
     '/minimalist-wardrobe',
     '/ai-transparency',
     '/privacy',

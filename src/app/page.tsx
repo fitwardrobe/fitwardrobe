@@ -250,7 +250,11 @@ export default function HomePage() {
             </div>
             <p className="h13-lead">
               From the office to a weekend away. Tell it where you&apos;re going and it builds the
-              outfit from your own wardrobe.
+              outfit from your own wardrobe. Not sure what your office expects? Start with{" "}
+              <Link href="/what-to-wear-to-work/" className="fw-link">
+                what to wear to work
+              </Link>
+              .
             </p>
           </div>
         </div>

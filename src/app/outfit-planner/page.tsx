@@ -149,7 +149,11 @@ export default function OutfitPlannerPage() {
           </table>
           <p className="fw-page__note">
             Suggestions come only from the pieces you have added. It can get things wrong, and you
-            can tell it when it does.
+            can tell it when it does. Dressing for the office? Our guide shows how to{" "}
+            <Link href="/what-to-wear-to-work/" className="fw-link">
+              plan tomorrow&apos;s work outfit
+            </Link>{" "}
+            by dress code.
           </p>
         </div>
       </section>

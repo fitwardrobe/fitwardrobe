@@ -22,6 +22,7 @@ const COLUMNS = [
       { href: "/blog/", label: "Blog" },
       { href: "/capsule-wardrobe/", label: "Capsule wardrobe" },
       { href: "/outfit-planner/", label: "Outfit planner" },
+      { href: "/what-to-wear-to-work/", label: "What to wear to work" },
       { href: "/minimalist-wardrobe/", label: "Minimalist wardrobe" },
     ],
   },
