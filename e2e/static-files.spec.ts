@@ -55,11 +55,21 @@ test("every redirect lands on a live page", async ({ request }) => {
     const dest = r.destination.split("#")[0]
     expect.soft(live.has(dest) || dest === "/", `${r.source} -> ${dest} is in the sitemap`).toBe(true)
     if (!isLocal) {
-      // On the live site, check that Vercel answers the old URL with a permanent redirect.
-      const res = await request.get(r.source, { maxRedirects: 0 })
-      expect.soft([301, 308], `${r.source} answers with a permanent redirect`).toContain(res.status())
-      const location = res.headers()["location"] ?? ""
-      expect.soft(location.replace(SITE, ""), `${r.source} redirects to ${r.destination}`).toBe(r.destination)
+      // On the live site, follow the chain: every hop must be permanent and it must end on the
+      // destination with a 200. Vercel adds the trailing slash first, so some chains take two hops.
+      let url = r.source
+      let hops = 0
+      let res = await request.get(url, { maxRedirects: 0 })
+      while ([301, 302, 307, 308].includes(res.status()) && hops < 4) {
+        expect.soft([301, 308], `${r.source}: hop ${hops + 1} (${url}) is permanent`).toContain(res.status())
+        url = (res.headers()["location"] ?? "").replace(SITE, "")
+        hops++
+        res = await request.get(url, { maxRedirects: 0 })
+      }
+      expect.soft(hops, `${r.source} redirects at least once`).toBeGreaterThan(0)
+      expect.soft(hops, `${r.source} takes at most two hops`).toBeLessThanOrEqual(2)
+      expect.soft(url, `${r.source} ends on ${r.destination}`).toBe(r.destination)
+      expect.soft(res.status(), `${r.source} ends on a live page`).toBe(200)
     }
   }
 })
