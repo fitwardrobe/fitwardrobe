@@ -555,6 +555,19 @@ button.fw-btn--ghost {
 .fw-form__note--strong {
   color: var(--fw-body);
 }
+/* "Did you mean name@gmail.com?" - the suggested address, tappable */
+.fw-form__suggest {
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-all;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
 .fw-form__done {
   display: flex;
   gap: 16px;

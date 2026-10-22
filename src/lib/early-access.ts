@@ -87,8 +87,69 @@ export type EarlyAccessDetails = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
+/**
+ * Tidies an address the way phones mangle it. Full-width characters from some keyboards
+ * (＠, ．) become plain ones; invisible characters go; autocorrect's spaces around the @ or a
+ * dot ("name @gmail. com") are closed up; a full stop typed at the end is dropped. A space
+ * anywhere else is left in so emailProblem() reports it rather than guessing what was meant.
+ * The domain is lower-cased; the part before the @ is left as typed.
+ */
+export function normalizeEmail(raw: string): string {
+  const compact = raw
+    .normalize("NFKC")
+    .replace(/[​-‍⁠﻿]/g, "")
+    .trim()
+    .replace(/\s*([@.])\s*/g, "$1")
+    .replace(/[.,;]+$/, "")
+  const at = compact.lastIndexOf("@")
+  return at < 0 ? compact : compact.slice(0, at + 1) + compact.slice(at + 1).toLowerCase()
+}
+
+export type EmailProblem = "empty" | "missing_at" | "missing_domain" | "spaces" | "invalid"
+
+/** Why an (already normalised) address can't be used, or null if it looks fine. */
+export function emailProblem(value: string): EmailProblem | null {
+  if (value === "") return "empty"
+  if (/\s/.test(value)) return "spaces"
+  if (!value.includes("@")) return "missing_at"
+  const domain = value.slice(value.lastIndexOf("@") + 1)
+  if (!/\.[^.@]{2,}$/.test(domain)) return "missing_domain"
+  if (value.includes("..") || domain.startsWith(".")) return "invalid"
+  return EMAIL_PATTERN.test(value) ? null : "invalid"
+}
+
 export function isValidEmail(value: string): boolean {
-  return EMAIL_PATTERN.test(value.trim())
+  return emailProblem(normalizeEmail(value)) === null
+}
+
+/** Misspellings of the mail domains most visitors use, and what they meant. */
+const DOMAIN_TYPOS: Record<string, string> = {
+  "gmial.com": "gmail.com",
+  "gmai.com": "gmail.com",
+  "gamil.com": "gmail.com",
+  "gnail.com": "gmail.com",
+  "gmail.co": "gmail.com",
+  "gmail.con": "gmail.com",
+  "gmail.cm": "gmail.com",
+  "gmaill.com": "gmail.com",
+  "hotmial.com": "hotmail.com",
+  "hotmai.com": "hotmail.com",
+  "hotmail.co": "hotmail.com",
+  "outlok.com": "outlook.com",
+  "outlook.co": "outlook.com",
+  "yahooo.com": "yahoo.com",
+  "yaho.com": "yahoo.com",
+  "yahoo.co": "yahoo.com",
+  "icloud.co": "icloud.com",
+  "iclod.com": "icloud.com",
+}
+
+/** "name@gmial.com" -> "name@gmail.com"; null when the domain doesn't look like a typo. */
+export function suggestEmail(value: string): string | null {
+  const at = value.lastIndexOf("@")
+  if (at < 0) return null
+  const fixed = DOMAIN_TYPOS[value.slice(at + 1)]
+  return fixed ? value.slice(0, at + 1) + fixed : null
 }
 
 /** Form location, page path and any utm_* tags of the current visit. */

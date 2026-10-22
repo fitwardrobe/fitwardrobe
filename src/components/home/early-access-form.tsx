@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useState, type FormEvent } from "react"
+import { useEffect, useId, useRef, useState, type FormEvent } from "react"
 import { ArrowRight, Check } from "lucide-react"
 import { SITE_CONFIG } from "@/lib/config"
 import {
@@ -10,11 +10,14 @@ import {
   HELP_OPTIONS,
   PHONE_OPTIONS,
   PROFILE_QUESTIONS,
-  isValidEmail,
+  emailProblem,
+  normalizeEmail,
   signupSource,
   submitEarlyAccess,
+  suggestEmail,
   type Age,
   type Country,
+  type EmailProblem,
   type Gender,
   type Help,
   type Phone,
@@ -23,6 +26,14 @@ import { track } from "@/lib/analytics"
 
 type Status = "idle" | "submitting" | "success" | "error" | "not-configured"
 type Step = "ask" | "sending" | "thanks" | "skipped"
+
+const PROBLEM_MESSAGES: Record<EmailProblem, string> = {
+  empty: "Type your email address first.",
+  missing_at: "Add the @ and the rest of your address, like name@gmail.com.",
+  missing_domain: "Finish the part after the @, like name@gmail.com.",
+  spaces: "Email addresses can't contain spaces. Check the address and try again.",
+  invalid: "Enter an email address like name@example.com.",
+}
 
 export function EarlyAccessForm({
   tone = "light",
@@ -42,19 +53,65 @@ export function EarlyAccessForm({
   const [gender, setGender] = useState<Gender | "">("")
   const [age, setAge] = useState<Age | "">("")
   const [country, setCountry] = useState<Country | "">("")
+  const [suggestion, setSuggestion] = useState("")
+  /** An address the visitor chose to keep after we suggested a different spelling. */
+  const [keptAsTyped, setKeptAsTyped] = useState("")
+  const inputRef = useRef<HTMLInputElement>(null)
   const formLocation = location ?? (tone === "dark" ? "join" : "hero")
   // Never send the email address itself to analytics.
 
+  // A "Join early access" link elsewhere on the page scrolls here; put the cursor in the
+  // field too, so the next tap is typing rather than pressing the button on an empty form.
+  useEffect(() => {
+    const input = inputRef.current
+    if (!input?.closest("#join")) return
+    const focusField = () => {
+      input.focus({ preventScroll: true })
+      // The mobile menu makes the page inert while it is open, so the first attempt fails
+      // when its link is tapped; try again once the menu has closed.
+      if (document.activeElement !== input) setTimeout(() => input.focus({ preventScroll: true }), 50)
+    }
+    const onClick = (event: MouseEvent) => {
+      const link = (event.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null
+      if (!link) return
+      const url = new URL(link.href, window.location.href)
+      if (url.hash === "#join" && url.pathname === window.location.pathname) focusField()
+    }
+    document.addEventListener("click", onClick, true)
+    if (window.location.hash === "#join") focusField()
+    return () => document.removeEventListener("click", onClick, true)
+  }, [])
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!isValidEmail(email)) {
-      setFieldError("Enter an email address like name@example.com.")
-      track("form_error", { form_location: formLocation, error_type: "invalid_email" })
+    // Read the field itself, not only React state: a saved address picked from the phone's
+    // keyboard or autofill can appear in the field without the change ever reaching state.
+    const value = normalizeEmail(String(new FormData(event.currentTarget).get("email") ?? ""))
+    const stale = value !== normalizeEmail(email)
+    if (value !== email) setEmail(value)
+
+    const problem = emailProblem(value)
+    if (problem) {
+      setSuggestion("")
+      setFieldError(PROBLEM_MESSAGES[problem])
+      inputRef.current?.focus()
+      track("form_error", { form_location: formLocation, error_type: stale ? `${problem}_autofill` : problem })
       return
     }
+    const suggested = suggestEmail(value)
+    if (suggested && keptAsTyped !== value) {
+      setSuggestion(suggested)
+      setKeptAsTyped(value) // pressing Join again sends the address as typed
+      track("form_error", { form_location: formLocation, error_type: "domain_typo" })
+      return
+    }
+    // The field held an address that never reached state: the bug this guards against.
+    if (stale) track("form_autofill_recovered", { form_location: formLocation })
+
+    setSuggestion("")
     setFieldError("")
     setStatus("submitting")
-    const result = await submitEarlyAccess(email, { source: signupSource(formLocation) })
+    const result = await submitEarlyAccess(value, { source: signupSource(formLocation) })
     if (result.ok) {
       setStatus("success")
       track("generate_lead", { form_location: formLocation, method: "early_access_form", lead_source: "website" })
@@ -250,17 +307,23 @@ export function EarlyAccessForm({
       </label>
       <div className="fw-form__row">
         <input
+          ref={inputRef}
           id={`${id}-email`}
           name="email"
           type="email"
           inputMode="email"
           autoComplete="email"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          enterKeyHint="go"
           placeholder="you@example.com"
           className="fw-form__input"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value)
             if (fieldError) setFieldError("")
+            if (suggestion) setSuggestion("")
           }}
           aria-invalid={fieldError ? true : undefined}
           aria-describedby={fieldError || status === "error" ? errorId : noteId}
@@ -275,6 +338,22 @@ export function EarlyAccessForm({
         {fieldError ? (
           <p id={errorId} className="fw-form__error">
             {fieldError}
+          </p>
+        ) : suggestion ? (
+          <p id={noteId} className="fw-form__note fw-form__note--strong">
+            Did you mean{" "}
+            <button
+              type="button"
+              className="fw-form__suggest"
+              onClick={() => {
+                setEmail(suggestion)
+                setSuggestion("")
+                inputRef.current?.focus()
+              }}
+            >
+              {suggestion}
+            </button>
+            ? Tap it to fix, or press Join again to keep what you typed.
           </p>
         ) : status === "error" ? (
           <p id={errorId} className="fw-form__error">
