@@ -1307,3 +1307,24 @@
   background: var(--x-cream-2);
   border-radius: 12px;
 }
+
+/* Confirm / unsubscribe pages (links from our emails) */
+.h13 .fw-email-action {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  max-width: 40em;
+}
+.h13 .fw-email-action p {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+  color: rgba(248, 246, 241, 0.84);
+}
+.h13 .fw-email-action a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.h13 .fw-email-action .fw-email-action__result {
+  color: #f8f6f1;
+}
