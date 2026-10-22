@@ -10,6 +10,7 @@ import {
   HELP_OPTIONS,
   PHONE_OPTIONS,
   PROFILE_QUESTIONS,
+  UPDATES_CONSENT_TEXT,
   emailProblem,
   normalizeEmail,
   signupSource,
@@ -56,6 +57,7 @@ export function EarlyAccessForm({
   const [suggestion, setSuggestion] = useState("")
   /** An address the visitor chose to keep after we suggested a different spelling. */
   const [keptAsTyped, setKeptAsTyped] = useState("")
+  const [updates, setUpdates] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const formLocation = location ?? (tone === "dark" ? "join" : "hero")
   // Never send the email address itself to analytics.
@@ -111,10 +113,15 @@ export function EarlyAccessForm({
     setSuggestion("")
     setFieldError("")
     setStatus("submitting")
-    const result = await submitEarlyAccess(value, { source: signupSource(formLocation) })
+    const result = await submitEarlyAccess(value, { source: signupSource(formLocation, updates) })
     if (result.ok) {
       setStatus("success")
-      track("generate_lead", { form_location: formLocation, method: "early_access_form", lead_source: "website" })
+      track("generate_lead", {
+        form_location: formLocation,
+        method: "early_access_form",
+        lead_source: "website",
+        updates_opt_in: updates,
+      })
     } else {
       const reason = result.reason === "not-configured" ? "not-configured" : "error"
       setStatus(reason)
@@ -334,6 +341,16 @@ export function EarlyAccessForm({
           <ArrowRight size={18} strokeWidth={1.75} aria-hidden="true" className="fw-btn__arrow" />
         </button>
       </div>
+      <label className="fw-form__consent">
+        <input
+          type="checkbox"
+          name="updates"
+          value="yes"
+          checked={updates}
+          onChange={(e) => setUpdates(e.target.checked)}
+        />
+        <span>{UPDATES_CONSENT_TEXT}</span>
+      </label>
       <div aria-live="polite">
         {fieldError ? (
           <p id={errorId} className="fw-form__error">

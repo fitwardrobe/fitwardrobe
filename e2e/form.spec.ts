@@ -100,3 +100,32 @@ test("the mobile menu's Join early access link also puts the cursor in the email
   await page.locator("#fw-mobile-menu").getByRole("link", { name: "Join early access" }).click()
   await expect(page.locator("#join form").first().getByLabel("Email address")).toBeFocused()
 })
+
+test("the updates box starts unticked and its choice is sent with the sign-up", async ({ page }) => {
+  const posted: string[] = []
+  page.on("request", (req) => {
+    if (req.url().includes("docs.google.com/forms/") && req.method() === "POST") posted.push(req.postData() ?? "")
+  })
+  await page.goto("/#join")
+  const form = page.locator("#join form").first()
+  const box = form.getByLabel(/Also email me early-access updates/)
+  await expect(box).not.toBeChecked()
+  await box.check()
+  await form.getByLabel("Email address").fill("consent-e2e@example.com")
+  await form.getByRole("button", { name: /Join early access/ }).click()
+  await expect.poll(() => posted.length).toBe(1)
+  expect(decodeURIComponent(posted[0].replace(/\+/g, " "))).toContain("updates=yes-2026-10-23")
+})
+
+test("without the updates box ticked, no updates consent is sent", async ({ page }) => {
+  const posted: string[] = []
+  page.on("request", (req) => {
+    if (req.url().includes("docs.google.com/forms/") && req.method() === "POST") posted.push(req.postData() ?? "")
+  })
+  await page.goto("/#join")
+  const form = page.locator("#join form").first()
+  await form.getByLabel("Email address").fill("no-consent-e2e@example.com")
+  await form.getByRole("button", { name: /Join early access/ }).click()
+  await expect.poll(() => posted.length).toBe(1)
+  expect(posted[0]).not.toContain("updates")
+})

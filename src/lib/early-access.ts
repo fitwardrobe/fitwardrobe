@@ -152,14 +152,27 @@ export function suggestEmail(value: string): string | null {
   return fixed ? value.slice(0, at + 1) + fixed : null
 }
 
-/** Form location, page path and any utm_* tags of the current visit. */
-export function signupSource(location: string): string {
-  if (typeof window === "undefined") return location
+/**
+ * The optional, unticked "updates" box under the email field (UK PECR / GDPR consent for
+ * anything beyond the sign-up and launch emails). The version is the date this wording went
+ * live; it is stored with each sign-up so we can show what someone agreed to. Change the
+ * version whenever the wording changes.
+ */
+export const UPDATES_CONSENT_TEXT = "Also email me early-access updates and FitWardrobe news, about once a month."
+export const UPDATES_CONSENT_VERSION = "2026-10-23"
+
+/**
+ * Form location, page path, the updates choice (when given) and any utm_* tags of the
+ * current visit, e.g. "join · / · updates=yes-2026-10-23 · utm_source=instagram".
+ */
+export function signupSource(location: string, updates = false): string {
+  const consent = updates ? [`updates=yes-${UPDATES_CONSENT_VERSION}`] : []
+  if (typeof window === "undefined") return [location, ...consent].join(" · ")
   const params = new URLSearchParams(window.location.search)
   const utm = ["utm_source", "utm_medium", "utm_campaign"]
     .filter((k) => params.get(k))
     .map((k) => `${k}=${params.get(k)}`)
-  return [location, window.location.pathname, ...utm].join(" · ").slice(0, 300)
+  return [location, window.location.pathname, ...consent, ...utm].join(" · ").slice(0, 300)
 }
 
 /**

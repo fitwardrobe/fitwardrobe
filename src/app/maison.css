@@ -555,6 +555,28 @@ button.fw-btn--ghost {
 .fw-form__note--strong {
   color: var(--fw-body);
 }
+/* Optional, unticked updates consent under the email field */
+.fw-form__consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--fw-body);
+  cursor: pointer;
+}
+.fw-form__consent input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--c-gold);
+  cursor: pointer;
+}
+.fw-form--glass .fw-form__consent {
+  color: rgba(255, 255, 255, 0.85);
+}
 /* "Did you mean name@gmail.com?" - the suggested address, tappable */
 .fw-form__suggest {
   padding: 0;

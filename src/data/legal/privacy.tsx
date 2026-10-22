@@ -8,8 +8,8 @@ export const privacyData: LegalPageData = {
   title: "Privacy Policy",
   organization: "FitWardrobe",
   effectiveDate: "February 3, 2026",
-  lastUpdated: "October 18, 2026",
-  version: "1.3",
+  lastUpdated: "October 23, 2026",
+  version: "1.4",
   toc: [
     { id: "introduction", title: "1. Introduction" },
     { id: "information-collected", title: "2. Information We Collect" },
@@ -74,6 +74,11 @@ export const privacyData: LegalPageData = {
                 band and the country you live in. We use these only in total, to understand who
                 FitWardrobe is useful for and what to build first; they are never used for
                 advertising and never shared beyond the providers listed below.
+              </li>
+              <li>
+                <strong>Whether you want updates:</strong> an optional box, unticked unless you
+                tick it, for early-access updates and FitWardrobe news. We record your choice, the
+                date and the version of the wording you saw.
               </li>
               <li>
                 <strong>Where you signed up:</strong> the part of the page and the page address,
@@ -158,7 +163,8 @@ export const privacyData: LegalPageData = {
       content: (
         <>
           <ul>
-            <li>To email you when early access opens, and to send product updates you can unsubscribe from at any time</li>
+            <li>To email you about your sign-up (a welcome that says what happens next) and when early access opens</li>
+            <li>If you ticked the updates box, to send early-access updates, FitWardrobe news and invitations to help shape the app, about once a month. Every email has an unsubscribe link</li>
             <li>To decide what to build first, using the optional answers from the early-access list</li>
             <li>To understand which pages and campaigns bring visitors, and where people get stuck on the website, using analytics, Clarity recordings and sign-up sources</li>
             <li>To tag your clothes and suggest outfits from them in the app</li>
@@ -190,6 +196,15 @@ export const privacyData: LegalPageData = {
             <li>
               <strong>Google (Forms and Sheets):</strong> stores the early-access list: your email
               address, optional answers and sign-up source.
+            </li>
+            <li>
+              <strong>Resend:</strong> sends our emails, from its EU (Ireland) sending region, and
+              keeps the list we send to: your email address, your updates choice, optional answers
+              and sign-up source, and whether you have unsubscribed.
+            </li>
+            <li>
+              <strong>Zoho Mail:</strong> hosts our mailboxes, so if you reply to one of our emails or
+              write to us, your message is stored there.
             </li>
             <li>
               <strong>Google (Gemini API):</strong> receives a compressed photo of a clothing item
@@ -241,7 +256,12 @@ export const privacyData: LegalPageData = {
         <ul>
           <li>
             <strong>Early-access list:</strong> kept until you unsubscribe or ask us to remove
-            it, or until we close the list.
+            it, or until we close the list. If you unsubscribe, we keep only your address on a
+            do-not-email list, so you are not emailed again by mistake.
+          </li>
+          <li>
+            <strong>Email delivery records:</strong> Resend keeps logs of the emails we send (such
+            as whether one was delivered) for 30 days.
           </li>
           <li>
             <strong>Website analytics:</strong> Google Analytics data is kept for the retention
@@ -339,8 +359,8 @@ export const privacyData: LegalPageData = {
       title: "9. International Users",
       content: (
         <p>
-          FitWardrobe is run from India. Our service providers (Google, Microsoft, Groq, Supabase
-          and Vercel) may process data in India, the United States and other countries where they
+          FitWardrobe is run from India. Our service providers (Google, Microsoft, Groq, Supabase,
+          Vercel, Resend and Zoho) may process data in India, the United States and other countries where they
           operate. Wherever your data is processed, we protect it as this policy describes.
         </p>
       ),
