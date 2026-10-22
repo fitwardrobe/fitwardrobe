@@ -197,7 +197,7 @@ export const GUIDES = [
 ]
 
 export const SOCIAL_LINKS = [
-  { href: "https://instagram.com/fitwardrobe", label: "Instagram" },
+  { href: "https://instagram.com/fitwardrobe.me", label: "Instagram" },
   { href: "https://x.com/fitwardrobe", label: "X" },
   { href: SITE_CONFIG.telegramUrl, label: "Telegram" },
   { href: SITE_CONFIG.discordUrl, label: "Discord" },

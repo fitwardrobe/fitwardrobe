@@ -20,7 +20,7 @@ export const GLOBAL_SCHEMAS = [
       "contactType": "customer support"
     },
     "sameAs": [
-      "https://instagram.com/fitwardrobe",
+      "https://instagram.com/fitwardrobe.me",
       "https://x.com/fitwardrobe",
       SITE_CONFIG.telegramUrl,
       SITE_CONFIG.discordUrl,
