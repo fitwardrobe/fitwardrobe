@@ -129,3 +129,18 @@ test("without the updates box ticked, no updates consent is sent", async ({ page
   await expect.poll(() => posted.length).toBe(1)
   expect(posted[0]).not.toContain("updates")
 })
+
+test("a filled-in bot trap field marks the sign-up for review instead of blocking it", async ({ page }) => {
+  const posted: string[] = []
+  page.on("request", (req) => {
+    if (req.url().includes("docs.google.com/forms/") && req.method() === "POST") posted.push(req.postData() ?? "")
+  })
+  await page.goto("/#join")
+  const form = page.locator("#join form").first()
+  await expect(form.locator('input[name="fw_extra"]')).not.toBeInViewport()
+  await form.locator('input[name="fw_extra"]').fill("spam", { force: true })
+  await form.getByLabel("Email address").fill("bot-e2e@example.com")
+  await form.getByRole("button", { name: /Join early access/ }).click()
+  await expect.poll(() => posted.length).toBe(1)
+  expect(decodeURIComponent(posted[0].replace(/\+/g, " "))).toContain("hp=1")
+})

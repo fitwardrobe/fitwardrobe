@@ -165,8 +165,11 @@ export const UPDATES_CONSENT_VERSION = "2026-10-23"
  * Form location, page path, the updates choice (when given) and any utm_* tags of the
  * current visit, e.g. "join · / · updates=yes-2026-10-23 · utm_source=instagram".
  */
-export function signupSource(location: string, updates = false): string {
-  const consent = updates ? [`updates=yes-${UPDATES_CONSENT_VERSION}`] : []
+export function signupSource(location: string, updates = false, trapped = false): string {
+  // "hp=1": the hidden trap field (invisible to people) was filled in, which bots do. The
+  // sign-up still reaches the Sheet, where the email script holds it for review instead of
+  // emailing it, so a real person whose browser filled the field by mistake isn't lost.
+  const consent = [...(updates ? [`updates=yes-${UPDATES_CONSENT_VERSION}`] : []), ...(trapped ? ["hp=1"] : [])]
   if (typeof window === "undefined") return [location, ...consent].join(" · ")
   const params = new URLSearchParams(window.location.search)
   const utm = ["utm_source", "utm_medium", "utm_campaign"]

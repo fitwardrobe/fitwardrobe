@@ -88,8 +88,10 @@ export function EarlyAccessForm({
     event.preventDefault()
     // Read the field itself, not only React state: a saved address picked from the phone's
     // keyboard or autofill can appear in the field without the change ever reaching state.
-    const value = normalizeEmail(String(new FormData(event.currentTarget).get("email") ?? ""))
+    const fields = new FormData(event.currentTarget)
+    const value = normalizeEmail(String(fields.get("email") ?? ""))
     const stale = value !== normalizeEmail(email)
+    const trapped = String(fields.get("fw_extra") ?? "") !== ""
     if (value !== email) setEmail(value)
 
     const problem = emailProblem(value)
@@ -113,7 +115,7 @@ export function EarlyAccessForm({
     setSuggestion("")
     setFieldError("")
     setStatus("submitting")
-    const result = await submitEarlyAccess(value, { source: signupSource(formLocation, updates) })
+    const result = await submitEarlyAccess(value, { source: signupSource(formLocation, updates, trapped) })
     if (result.ok) {
       setStatus("success")
       track("generate_lead", {
@@ -340,6 +342,13 @@ export function EarlyAccessForm({
           {status === "submitting" ? "Joining…" : "Join early access"}
           <ArrowRight size={18} strokeWidth={1.75} aria-hidden="true" className="fw-btn__arrow" />
         </button>
+      </div>
+      {/* Trap for bots: hidden from people and screen readers, never filled by a person. */}
+      <div className="fw-form__trap" aria-hidden="true">
+        <label>
+          Leave this empty
+          <input type="text" name="fw_extra" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
       </div>
       <label className="fw-form__consent">
         <input

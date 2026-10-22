@@ -555,6 +555,14 @@ button.fw-btn--ghost {
 .fw-form__note--strong {
   color: var(--fw-body);
 }
+/* Bot trap field: off-screen rather than display:none, which some bots skip */
+.fw-form__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 /* Optional, unticked updates consent under the email field */
 .fw-form__consent {
   display: flex;
