@@ -7,13 +7,6 @@ import { readActionLink, runEmailAction, type EmailAction } from "@/lib/email-ac
 type State = "loading" | "ready" | "working" | "done" | "already" | "invalid" | "failed" | "not-configured"
 
 const COPY: Record<EmailAction, { intro: string; button: string; done: string; already: string }> = {
-  confirm: {
-    intro:
-      "Press the button to confirm this email address is yours. It keeps addresses people didn't give us off the early-access list.",
-    button: "Confirm my email",
-    done: "Thank you, you're confirmed. We'll email you when early access opens.",
-    already: "This address is already confirmed. There's nothing else to do.",
-  },
   unsubscribe: {
     intro: "Press the button and we'll stop emailing this address. You can join the list again whenever you like.",
     button: "Unsubscribe",
@@ -23,9 +16,9 @@ const COPY: Record<EmailAction, { intro: string; button: string; done: string; a
 }
 
 /**
- * The confirm and unsubscribe links in our emails land here. Nothing happens until the
- * visitor presses the button, so a mail security scanner that opens every link in an email
- * can't confirm or unsubscribe anyone.
+ * The unsubscribe link in our emails lands here. Nothing happens until the visitor presses
+ * the button, so a mail security scanner that opens every link in an email can't unsubscribe
+ * anyone.
  */
 export function EmailActionPanel({ action }: { action: EmailAction }) {
   const [state, setState] = useState<State>("loading")

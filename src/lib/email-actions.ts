@@ -1,7 +1,6 @@
 /**
- * Links in our emails ("confirm it's you", "unsubscribe") open pages on fitwardrobe.me, which
- * ask the email script for the early-access Sheet (a Google Apps Script web app) to record the
- * choice. The script's URL is public; NEXT_PUBLIC_EMAIL_ACTIONS_URL overrides the default.
+ * The unsubscribe link in our emails opens fitwardrobe.me/unsubscribe/, which asks the email
+ * script for the early-access Sheet (a Google Apps Script web app) to record it. The script's URL is public; NEXT_PUBLIC_EMAIL_ACTIONS_URL overrides the default.
  *
  * Each link carries the Resend contact id and a signed token after the # (never sent to a
  * server, a log or analytics), so no email address ever appears in a URL.
@@ -10,7 +9,7 @@ const DEFAULT_EMAIL_ACTIONS_URL =
   "https://script.google.com/macros/s/AKfycbxZYQRVfPInJPNegqqcxU1x3QjXToH6GCDqqhGx-pbKDXTs1NuM3bo7hFk9ecQvkV9blQ/exec"
 export const EMAIL_ACTIONS_URL = process.env.NEXT_PUBLIC_EMAIL_ACTIONS_URL?.trim() || DEFAULT_EMAIL_ACTIONS_URL
 
-export type EmailAction = "confirm" | "unsubscribe"
+export type EmailAction = "unsubscribe"
 
 export type EmailActionResult =
   | { ok: true; state: "done" | "already" }
