@@ -1498,3 +1498,109 @@
 .fw-menu .fw-btn--primary:hover {
   background: var(--c-forest-700);
 }
+
+/* "Become a founding member" invite on the sign-up success panel */
+.fw-founding {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--fw-rule);
+}
+.fw-founding__title {
+  font-family: var(--fw-serif);
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--fw-ink);
+}
+.fw-founding__lead {
+  margin-top: 6px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--fw-body);
+}
+.fw-founding__perks {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--fw-body);
+}
+.fw-founding__perks li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.fw-founding__perks svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--c-gold-700);
+}
+.fw-founding__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.fw-founding__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fw-ink);
+  text-decoration: none;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+.fw-founding__btn--solid {
+  color: var(--fw-ink);
+  background: var(--c-gold-200);
+  border-color: var(--c-gold-200);
+}
+.fw-founding__btn:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+.fw-founding__more {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--fw-body);
+}
+.fw-founding__more a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 479px) {
+  .fw-founding__btn {
+    flex: 1 1 100%;
+  }
+}
+/* Over the photo (glass panel) */
+.fw-form--glass .fw-founding {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+.fw-form--glass .fw-founding__title {
+  color: var(--c-gold);
+}
+.fw-form--glass .fw-founding__lead,
+.fw-form--glass .fw-founding__perks,
+.fw-form--glass .fw-founding__more {
+  color: rgba(255, 255, 255, 0.86);
+}
+.fw-form--glass .fw-founding__perks svg {
+  color: var(--c-gold);
+}
+.fw-form--glass .fw-founding__btn {
+  color: #fff;
+}
+.fw-form--glass .fw-founding__btn--solid {
+  color: var(--fw-ink);
+  background: var(--c-gold-200);
+  border-color: var(--c-gold-200);
+}

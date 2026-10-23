@@ -28,6 +28,51 @@ import { track } from "@/lib/analytics"
 type Status = "idle" | "submitting" | "success" | "error" | "not-configured"
 type Step = "ask" | "sending" | "thanks" | "skipped"
 
+/**
+ * Shown after someone joins. Only perks that exist today: the Discord role, polls and
+ * #ask-the-founder are live, and offers are promised as news, not as a gift (CAP Code s.8:
+ * a promised gift must be specific and honoured). Update when real offers are decided.
+ */
+const FOUNDING_PERKS = [
+  "A Founding member role in our Discord",
+  "Early previews of new features",
+  "A vote on what we build next",
+  "A direct line to the team",
+  "First to hear about founding-member offers",
+]
+
+function FoundingInvite() {
+  return (
+    <div className="fw-founding">
+      <p className="fw-founding__title">Become a founding member</p>
+      <p className="fw-founding__lead">Join the community while it&apos;s small and help shape FitWardrobe:</p>
+      <ul className="fw-founding__perks">
+        {FOUNDING_PERKS.map((perk) => (
+          <li key={perk}>
+            <Check size={15} strokeWidth={2.25} aria-hidden="true" />
+            {perk}
+          </li>
+        ))}
+      </ul>
+      <div className="fw-founding__actions">
+        <a href={SITE_CONFIG.telegramUrl} rel="noopener" className="fw-founding__btn fw-founding__btn--solid">
+          Join on Telegram
+        </a>
+        <a href={SITE_CONFIG.discordUrl} rel="noopener" className="fw-founding__btn">
+          Join on Discord
+        </a>
+      </div>
+      <p className="fw-founding__more">
+        Or follow along on{" "}
+        <a href={SITE_CONFIG.instagramUrl} rel="noopener">
+          Instagram
+        </a>
+        .
+      </p>
+    </div>
+  )
+}
+
 const PROBLEM_MESSAGES: Record<EmailProblem, string> = {
   empty: "Type your email address first.",
   missing_at: "Add the @ and the rest of your address, like name@gmail.com.",
@@ -290,17 +335,7 @@ export function EarlyAccessForm({
             </form>
           )}
 
-          <p className="fw-form__done-text fw-form__next">
-            While you wait, follow updates on{" "}
-            <a href={SITE_CONFIG.telegramUrl} rel="noopener">
-              Telegram
-            </a>{" "}
-            or share ideas on{" "}
-            <a href={SITE_CONFIG.discordUrl} rel="noopener">
-              Discord
-            </a>
-            .
-          </p>
+          <FoundingInvite />
         </div>
       </div>
     )

@@ -144,3 +144,15 @@ test("a filled-in bot trap field marks the sign-up for review instead of blockin
   await expect.poll(() => posted.length).toBe(1)
   expect(decodeURIComponent(posted[0].replace(/\+/g, " "))).toContain("hp=1")
 })
+
+test("after joining, the founding-member invite shows the Telegram, Discord and Instagram links", async ({ page }) => {
+  await page.goto("/#join")
+  const form = page.locator("#join form").first()
+  await form.getByLabel("Email address").fill("founding-e2e@example.com")
+  await form.getByRole("button", { name: /Join early access/ }).click()
+  const invite = page.locator("#join .fw-founding")
+  await expect(invite.getByText("Become a founding member")).toBeVisible()
+  await expect(invite.getByRole("link", { name: "Join on Telegram" })).toHaveAttribute("href", "https://t.me/fitwardrobe")
+  await expect(invite.getByRole("link", { name: "Join on Discord" })).toHaveAttribute("href", "https://discord.gg/dUw5csgje5")
+  await expect(invite.getByRole("link", { name: "Instagram" })).toHaveAttribute("href", "https://instagram.com/fitwardrobe.me")
+})
