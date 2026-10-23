@@ -29,31 +29,29 @@ type Status = "idle" | "submitting" | "success" | "error" | "not-configured"
 type Step = "ask" | "sending" | "thanks" | "skipped"
 
 /**
- * Shown after someone joins. Only perks that exist today: the Discord role, polls and
- * #ask-the-founder are live, and offers are promised as news, not as a gift (CAP Code s.8:
- * a promised gift must be specific and honoured). Update when real offers are decided.
+ * The last screen after joining (once the optional questions are answered or skipped). Only
+ * perks that exist today: polls, previews and #ask-the-founder are live. No gifts are promised
+ * (CAP Code s.8: a promised gift must be specific and honoured); add them once decided.
  */
-const FOUNDING_PERKS = [
-  "A Founding member role in our Discord",
-  "Early previews of new features",
-  "A vote on what we build next",
-  "A direct line to the team",
-  "First to hear about founding-member offers",
-]
-
-function FoundingInvite() {
+function FollowScreen() {
+  const heading = useRef<HTMLParagraphElement>(null)
+  // The questions just disappeared, so the panel got shorter: bring its top into view (below
+  // the fixed site header, see scroll-margin-top) and move focus here for keyboard and
+  // screen-reader users.
+  useEffect(() => {
+    const el = heading.current
+    if (!el) return
+    el.focus({ preventScroll: true })
+    el.closest(".fw-form__done")?.scrollIntoView({ block: "start", behavior: "smooth" })
+  }, [])
   return (
     <div className="fw-founding">
-      <p className="fw-founding__title">Become a founding member</p>
-      <p className="fw-founding__lead">Join the community while it&apos;s small and help shape FitWardrobe:</p>
-      <ul className="fw-founding__perks">
-        {FOUNDING_PERKS.map((perk) => (
-          <li key={perk}>
-            <Check size={15} strokeWidth={2.25} aria-hidden="true" />
-            {perk}
-          </li>
-        ))}
-      </ul>
+      <p className="fw-founding__title" ref={heading} tabIndex={-1}>
+        Follow along to get updates first
+      </p>
+      <p className="fw-founding__lead">
+        Founding members get early previews, a vote on what we build next and a direct line to the team.
+      </p>
       <div className="fw-founding__actions">
         <a href={SITE_CONFIG.telegramUrl} rel="noopener" className="fw-founding__btn fw-founding__btn--solid">
           Join on Telegram
@@ -61,14 +59,10 @@ function FoundingInvite() {
         <a href={SITE_CONFIG.discordUrl} rel="noopener" className="fw-founding__btn">
           Join on Discord
         </a>
-      </div>
-      <p className="fw-founding__more">
-        Or follow along on{" "}
-        <a href={SITE_CONFIG.instagramUrl} rel="noopener">
-          Instagram
+        <a href={SITE_CONFIG.instagramUrl} rel="noopener" className="fw-founding__btn">
+          Follow on Instagram
         </a>
-        .
-      </p>
+      </div>
     </div>
   )
 }
@@ -213,11 +207,12 @@ export function EarlyAccessForm({
         </span>
         <div className="fw-form__done-body">
           <div role="status">
-            <p className="fw-form__done-title">You&apos;re on the list.</p>
-            <p className="fw-form__done-text">
-              Thanks for joining FitWardrobe. We&apos;ll email you when early access opens.
-            </p>
-            {step === "thanks" && (
+            <p className="fw-form__done-title">{asking ? "You're on the list." : "You're all set."}</p>
+            {asking || step === "skipped" ? (
+              <p className="fw-form__done-text">
+                Thanks for joining FitWardrobe. We&apos;ll email you when early access opens.
+              </p>
+            ) : (
               <p className="fw-form__done-text fw-more__thanks">
                 Thank you. That helps us decide what to build first.
               </p>
@@ -335,7 +330,7 @@ export function EarlyAccessForm({
             </form>
           )}
 
-          <FoundingInvite />
+          {!asking && <FollowScreen />}
         </div>
       </div>
     )
