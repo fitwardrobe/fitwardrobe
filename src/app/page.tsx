@@ -466,7 +466,7 @@ export default function HomePage() {
             </p>
             <EarlyAccessForm tone="glass" location="join" />
             <ul className="h13-join__perks">
-              {["An email the day it opens", "Early previews of the new app", "A direct line to the founder"].map(
+              {["An email the day it opens", "Early previews of the new app", "A direct line to the team"].map(
                 (p) => (
                   <li key={p}>
                     <Check size={16} strokeWidth={2} aria-hidden="true" />

@@ -3,7 +3,7 @@ import { Check } from "lucide-react"
 import { Picture } from "@/components/home/picture"
 import { EarlyAccessForm } from "@/components/home/early-access-form"
 
-const PERKS = ["An email the day it opens", "Early previews of the new app", "A direct line to the founder"]
+const PERKS = ["An email the day it opens", "Early previews of the new app", "A direct line to the team"]
 
 /**
  * The early-access band from the homepage, for the end of inner pages and blog posts:

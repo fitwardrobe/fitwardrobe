@@ -1501,7 +1501,7 @@
 
 /* Follow screen shown after the optional questions on the sign-up success panel */
 .fw-form__done {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 112px;
 }
 .fw-founding {
   margin-top: 18px;

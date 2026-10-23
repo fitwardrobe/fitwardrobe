@@ -695,6 +695,18 @@ button.fw-btn--ghost {
   .fw-form--glass .fw-btn--primary {
     padding: 0 16px;
   }}
+/* Very small phones: the email field gets the full width, the button goes below it */
+@media (max-width: 400px) {
+  .fw-form--glass .fw-form__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    border-radius: 26px;
+  }
+  .fw-form--glass .fw-btn--primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
 @media (min-width: 761px) {
   @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .fw-form--glass .fw-form__row,
