@@ -43,6 +43,15 @@ export async function sitemapPaths(request: APIRequestContext): Promise<string[]
   return locs.map((loc) => new URL(loc).pathname)
 }
 
+/** Decodes the HTML entities React writes into text and attributes. */
+export const decode = (s: string) =>
+  s
+    .replace(/&amp;/g, "&")
+    .replace(/&#x27;|&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+
 /**
  * Brings every image into view (including ones inside sideways-scrolling rows, which lazy-load only
  * when visible), waits for it, and returns the address of any image that failed to load.

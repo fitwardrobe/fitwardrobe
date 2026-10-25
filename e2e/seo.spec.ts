@@ -1,12 +1,4 @@
-import { test, expect, SITE, sitemapPaths } from "./fixtures"
-
-const decode = (s: string) =>
-  s
-    .replace(/&amp;/g, "&")
-    .replace(/&#x27;|&#39;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
+import { test, expect, SITE, sitemapPaths, decode } from "./fixtures"
 
 test("every sitemap page has correct SEO basics on the canonical host", async ({ request }) => {
   const paths = await sitemapPaths(request)
