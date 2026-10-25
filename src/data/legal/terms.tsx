@@ -6,8 +6,8 @@ export const termsData: LegalPageData = {
   title: "Terms of Service",
   organization: "FitWardrobe",
   effectiveDate: "February 24, 2026",
-  lastUpdated: "October 17, 2026",
-  version: "1.3",
+  lastUpdated: "October 25, 2026",
+  version: "1.4",
   toc: [
     { id: "acceptance", title: "1. Acceptance of Terms" },
     { id: "eligibility", title: "2. Eligibility" },
@@ -196,6 +196,36 @@ export const termsData: LegalPageData = {
             FitWardrobe is free for everyone during early access. If we introduce
             paid plans later, we will tell early-access users well before anything
             changes, and nothing will be charged without your clear agreement.
+          </p>
+          <h3 id="founding-members">9.2 Founding members and invite order</h3>
+          <p>
+            Joining the early-access list with your email address is all you
+            need to do to get early access. Nothing else is required.
+          </p>
+          <p>
+            Founding members are people who also join our Telegram channel or
+            Discord server. This is optional. Founding members get:
+          </p>
+          <ul>
+            <li>
+              their early-access invite before the rest of the list: we share
+              each round of invites in Telegram and Discord first, then email
+              everyone else on the list;
+            </li>
+            <li>early previews of what we are building;</li>
+            <li>a vote in our polls on what we build next;</li>
+            <li>a direct line to the team.</li>
+          </ul>
+          <p>
+            Following us on Instagram or any other platform is not required and
+            does not change the order of invites. If you never join, or you leave
+            Telegram or Discord, you keep your place on the list and still get
+            your invite by email.
+          </p>
+          <p>
+            Being a founding member does not come with any payment, discount or
+            gift. If we offer anything like that later, we will set out who
+            qualifies and how in these Terms before it starts.
           </p>
         </>
       ),

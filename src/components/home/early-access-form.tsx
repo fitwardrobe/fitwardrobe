@@ -30,8 +30,10 @@ type Step = "ask" | "sending" | "thanks" | "skipped"
 
 /**
  * The last screen after joining (once the optional questions are answered or skipped). Only
- * perks that exist today: polls, previews and #ask-the-founder are live. No gifts are promised
- * (CAP Code s.8: a promised gift must be specific and honoured); add them once decided.
+ * perks that exist today: polls, previews and #ask-the-founder are live, and invites go to
+ * Telegram and Discord first. Joining is a bonus, never a condition of early access, and the
+ * wording matches Terms 9.2 (no hidden conditions: CAP 8.17, CCPA "forced action"). No gifts
+ * are promised (CAP Code s.8: a promised gift must be specific and honoured).
  */
 function FollowScreen() {
   const heading = useRef<HTMLParagraphElement>(null)
@@ -47,10 +49,12 @@ function FollowScreen() {
   return (
     <div className="fw-founding">
       <p className="fw-founding__title" ref={heading} tabIndex={-1}>
-        Follow along to get updates first
+        Get your invite first
       </p>
       <p className="fw-founding__lead">
-        Founding members get early previews, a vote on what we build next and a direct line to the team.
+        Join us on Telegram or Discord to become a founding member. Founding members get their early-access
+        invite before the rest of the list, plus early previews, a vote on what we build next and a direct line
+        to the team.
       </p>
       <div className="fw-founding__actions">
         <a href={SITE_CONFIG.telegramUrl} rel="noopener" className="fw-founding__btn fw-founding__btn--solid">
@@ -63,6 +67,9 @@ function FollowScreen() {
           Follow on Instagram
         </a>
       </div>
+      <p className="fw-founding__note">
+        Optional. Your place on the list is safe either way. <a href="/terms/#founding-members">How invites work</a>
+      </p>
     </div>
   )
 }

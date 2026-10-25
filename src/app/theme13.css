@@ -1554,6 +1554,17 @@
     flex: 1 1 100%;
   }
 }
+.fw-founding__note {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--fw-body);
+}
+.fw-founding__note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 /* Over the photo (glass panel) */
 .fw-form--glass .fw-founding {
   border-top-color: rgba(255, 255, 255, 0.2);
@@ -1561,7 +1572,8 @@
 .fw-form--glass .fw-founding__title {
   color: var(--c-gold);
 }
-.fw-form--glass .fw-founding__lead {
+.fw-form--glass .fw-founding__lead,
+.fw-form--glass .fw-founding__note {
   color: rgba(255, 255, 255, 0.86);
 }
 .fw-form--glass .fw-founding__btn {

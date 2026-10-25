@@ -155,7 +155,9 @@ test("after the optional questions, a follow screen shows Telegram, Discord and 
   await expect(done.locator(".fw-founding")).toHaveCount(0) // not while the questions are showing
   await done.getByRole("button", { name: "Skip" }).click()
   await expect(done.getByText("You're all set.")).toBeVisible()
-  await expect(done.getByText("Follow along to get updates first")).toBeFocused()
+  await expect(done.getByText("Get your invite first")).toBeFocused()
+  await expect(done.getByText("Optional. Your place on the list is safe either way.")).toBeVisible()
+  await expect(done.getByRole("link", { name: "How invites work" })).toHaveAttribute("href", "/terms/#founding-members")
   await expect(done.getByRole("link", { name: "Join on Telegram" })).toHaveAttribute("href", "https://t.me/fitwardrobe")
   await expect(done.getByRole("link", { name: "Join on Discord" })).toHaveAttribute("href", "https://discord.gg/dUw5csgje5")
   await expect(done.getByRole("link", { name: "Follow on Instagram" })).toHaveAttribute("href", "https://instagram.com/fitwardrobe.me")
