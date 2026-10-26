@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Temporary: the www URLs Google still had indexed on 26 Oct 2026. Every one 308-redirects to fitwardrobe.me (since 18 Oct).
+     Listed so Googlebot recrawls them and sees the redirects (Google site-move guidance). Submitted in Search Console only,
+     not in robots.txt. Remove once Search Console shows 0 indexed for this sitemap. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://www.fitwardrobe.me/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/accessibility/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/ai-transparency/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/30-wear-rule-guide</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/30-wear-rule-guide/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/7-rs-sustainable-fashion</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/7-rs-sustainable-fashion/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/7-rule-for-outfits</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/7-rule-for-outfits/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/70-30-wardrobe-rule</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/70-30-wardrobe-rule/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/90-90-rule-decluttering</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/are-wardrobe-apps-worth-it/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/best-outfit-planning-apps-compared</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/best-wardrobe-apps-2026/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/can-ai-design-wardrobe/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/capsule-wardrobe-essentials-checklist</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/capsule-wardrobe-essentials-checklist/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/capsule-wardrobe-mistakes/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/capsule-wardrobe-packing-guide/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/capsule-wardrobe-rules-explained/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/digital-clothes-future-fashion</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/digital-clothes-future-fashion/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/digital-transformation-fashion/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/fashion-outfit-rules-formulas/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/how-many-items-capsule-wardrobe/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/how-to-build-a-capsule-wardrobe/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/how-to-use-outfit-app/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/minimalist-wardrobe-essentials</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/minimalist-wardrobe-essentials/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/myntra-ai-indian-fashion/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/outfit-planning-apps-guide/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/smart-wardrobe-vs-app/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/stylebook-alternative-android/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/blog/what-is-a-capsule-wardrobe/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/capsule-wardrobe/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/cookies/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/minimalist-wardrobe/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/outfit-planner/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/privacy/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/security/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/support/</loc><lastmod>2026-10-18</lastmod></url>
+<url><loc>https://www.fitwardrobe.me/terms/</loc><lastmod>2026-10-18</lastmod></url>
+</urlset>

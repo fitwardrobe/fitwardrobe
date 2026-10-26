@@ -92,3 +92,37 @@ test("www and http variants redirect to https://fitwardrobe.me (live site only)"
     expect.soft(res.headers()["location"] ?? "", `${from} goes to the canonical host`).toMatch(/^https:\/\/fitwardrobe\.me\/?$/)
   }
 })
+
+test("the temporary www sitemap lists only www URLs that redirect to live pages", async ({ request }) => {
+  const res = await request.get("/sitemap-www-redirects.xml")
+  expect(res.status()).toBe(200)
+  const locs = [...(await res.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+  expect(locs.length).toBeGreaterThan(10)
+  // It is submitted in Search Console only: a robots.txt sitemap may list URLs of its own host only.
+  expect(await (await request.get("/robots.txt")).text()).not.toContain("sitemap-www-redirects")
+  const live = new Set(await sitemapPaths(request))
+  const sources = new Map(redirects.map((r) => [r.source, r.destination.split("#")[0]]))
+  for (const loc of locs) {
+    expect.soft(loc.startsWith("https://www.fitwardrobe.me/"), `${loc} is a www URL`).toBe(true)
+    // Vercel adds the trailing slash, then the redirect table applies.
+    const p = new URL(loc).pathname.replace(/([^/])$/, "$1/")
+    const dest = live.has(p) ? p : sources.get(p)
+    expect.soft(dest && live.has(dest), `${loc} ends on a live page`).toBe(true)
+    if (!isLocal) {
+      const hop = await request.get(loc, { maxRedirects: 0 })
+      expect.soft([301, 308], `${loc} answers with a permanent redirect`).toContain(hop.status())
+      expect.soft(hop.headers()["location"] ?? "", `${loc} goes to the canonical host`).toMatch(/^https:\/\/fitwardrobe\.me\//)
+    }
+  }
+})
+
+test("legal pages' sitemap dates match their Last updated line", async ({ request }) => {
+  const xml = await (await request.get("/sitemap.xml")).text()
+  for (const p of ["/privacy/", "/terms/"]) {
+    const lastmod = xml.match(new RegExp(`<loc>${SITE}${p}</loc>\\s*<lastmod>([^<]+)</lastmod>`))?.[1]
+    const shown = (await (await request.get(p)).text()).match(/Last updated (?:<!-- -->)?([A-Z][a-z]+ \d{1,2}, \d{4})/)?.[1]
+    expect(shown, `${p} shows a Last updated date`).toBeTruthy()
+    const iso = new Date(`${shown} 12:00 UTC`).toISOString().slice(0, 10)
+    expect(lastmod?.slice(0, 10), `${p} sitemap lastmod`).toBe(iso)
+  }
+})
