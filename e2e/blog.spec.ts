@@ -17,6 +17,15 @@ test("blog index filters by topic and search", async ({ page }) => {
   expect(await brokenImages(page)).toEqual([])
 })
 
+test("a post's topic breadcrumb opens the blog on that topic", async ({ page }) => {
+  await page.goto("/blog/what-is-a-capsule-wardrobe/")
+  const crumb = page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: /Capsule/ })
+  await expect(crumb).toHaveAttribute("href", /^\/blog\/#topic-[a-z-]+$/)
+  await crumb.click()
+  await expect(page).toHaveURL(/\/blog\/#topic-/)
+  await expect(page.getByRole("button", { name: /Capsule/ })).toHaveAttribute("aria-pressed", "true")
+})
+
 test("a post has its quick answer, contents, FAQ and cover", async ({ page }) => {
   await page.goto("/blog/stylebook-alternative-android/")
   await expect(page).toHaveTitle("Stylebook for Android? The Best Alternatives (2026)")

@@ -116,6 +116,27 @@ test("the temporary www sitemap lists only www URLs that redirect to live pages"
   }
 })
 
+test("font files are marked noindex (live site only)", async ({ request }) => {
+  test.skip(isLocal, "Vercel headers only exist on the deployed site")
+  // Googlebot finds fonts through preload links and reported them as "Crawled - currently not indexed".
+  const fonts = [...(await (await request.get("/")).text()).matchAll(/href="(\/_next\/static\/media\/[^"]+\.woff2)"/g)].map((m) => m[1])
+  expect(fonts.length).toBeGreaterThan(0)
+  for (const f of fonts) {
+    const res = await request.get(f)
+    expect.soft(res.status(), `${f} is served`).toBe(200)
+    expect.soft(res.headers()["x-robots-tag"], `${f} X-Robots-Tag`).toBe("noindex")
+  }
+})
+
+test("pages link to no query-string URLs", async ({ request }) => {
+  // ?topic= links were crawled as duplicates of /blog/ ("Alternate page with proper canonical tag").
+  for (const p of ["/blog/", "/blog/stylebook-alternative-android/", "/blog/what-is-a-capsule-wardrobe/"]) {
+    const html = await (await request.get(p)).text()
+    const internal = [...html.matchAll(/<a[^>]+href="([^"]+)"/g)].map((m) => m[1]).filter((h) => h.startsWith("/") || h.startsWith(SITE))
+    expect.soft(internal.filter((h) => h.includes("?")), `${p} internal links with a query`).toEqual([])
+  }
+})
+
 test("legal pages' sitemap dates match their Last updated line", async ({ request }) => {
   const xml = await (await request.get("/sitemap.xml")).text()
   for (const p of ["/privacy/", "/terms/"]) {

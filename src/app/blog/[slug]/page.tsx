@@ -135,7 +135,8 @@ export default async function BlogPost({ params }: Props) {
         crumbs={[
           { label: "Home", href: "/" },
           { label: "Blog", href: "/blog/" },
-          { label: post.topic, href: `/blog/?topic=${topic?.slug ?? ""}` },
+          // A fragment, not ?topic=: query URLs get crawled as duplicates of /blog/.
+          { label: post.topic, href: topic ? `/blog/#topic-${topic.slug}` : "/blog/" },
         ]}
         meta={
           <>

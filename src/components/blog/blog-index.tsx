@@ -16,9 +16,10 @@ export function BlogIndex({ posts }: { posts: BlogCardData[] }) {
   const [query, setQuery] = useState("")
   const [topic, setTopic] = useState<Filter>("All")
 
-  // ?topic=<slug> (linked from article headers) preselects a topic.
+  // #topic-<slug> (linked from article headers) preselects a topic; ?topic=<slug> still works for old links.
   useEffect(() => {
-    const t = new URLSearchParams(window.location.search).get("topic")
+    const hash = window.location.hash.match(/^#topic-(.+)$/)?.[1]
+    const t = hash ?? new URLSearchParams(window.location.search).get("topic")
     const match = TOPICS.find((x) => x.slug === t)
     if (match) setTopic(match.name)
   }, [])
