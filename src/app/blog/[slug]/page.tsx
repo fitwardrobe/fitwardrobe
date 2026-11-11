@@ -11,7 +11,7 @@ import { PageHero } from "@/components/site/page-hero"
 import { JoinBand } from "@/components/site/join-band"
 import { Picture } from "@/components/home/picture"
 import { LogoMark } from "@/components/site/logo"
-import { coverFor, coverUrl, TOPICS } from "@/data/images"
+import { coverFor, coverUrl, TOPICS, COVER_ALT } from "@/data/images"
 import type { Post } from "@/types/blog"
 
 interface Props {
@@ -83,12 +83,12 @@ export default async function BlogPost({ params }: Props) {
       url,
       mainEntityOfPage: url,
       datePublished: post.date,
-      ...(post.updated ? { dateModified: post.updated } : {}),
+      dateModified: post.updated ?? post.date,
       wordCount: post.words,
       articleSection: post.topic,
       inLanguage: "en",
       image: `${BASE_URL}${coverUrl(cover)}`,
-      author: { "@type": "Person", name: "Aryan Panwar", url: "https://aryanpanwar.in", jobTitle: "Founder, FitWardrobe" },
+      author: { "@type": "Person", "@id": `${BASE_URL}/about/#founder`, name: "Aryan Panwar", url: "https://aryanpanwar.in", jobTitle: "Founder, FitWardrobe", sameAs: ["https://aryanpanwar.in", "https://www.linkedin.com/in/aryan-panwar1", "https://github.com/Aryanpanwar10005"] },
       publisher: { "@type": "Organization", name: "FitWardrobe", url: `${BASE_URL}/`, logo: { "@type": "ImageObject", url: `${BASE_URL}/brand/icon-512.png` } },
     },
     getBreadcrumbSchema([
@@ -173,7 +173,7 @@ export default async function BlogPost({ params }: Props) {
             sizes="(min-width: 1400px) 1320px, 100vw"
             width={cover.width}
             height={cover.height}
-            alt=""
+            alt={COVER_ALT[cover.name] ?? ""}
             priority
           />
         </div>

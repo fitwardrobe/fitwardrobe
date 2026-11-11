@@ -50,6 +50,24 @@ export const TOPIC_COVERS: Record<Topic, HeroImage> = {
   Sustainability: blog("topic-sustainability"),
 }
 
+/** What each cover photo shows, for the alt text of the large image at the top of a post. */
+export const COVER_ALT: Record<string, string> = {
+  "post-best-digital-wardrobe-apps-v2": "An open wooden drawer with folded knitwear, rolled belts, socks and a watch, sorted into compartments",
+  "post-best-outfit-planning-apps-compared-v2": "A camel trench coat, a green cardigan and a grey blazer hanging side by side on a brass rail",
+  "post-disadvantages-digital-fashion": "A phone and a small brass padlock resting on a folded charcoal jumper on a wooden table",
+  "post-free-ai-wardrobe-tools": "Two outfits laid out on a bed: a navy blazer with cream trousers and loafers, and an olive overshirt with jeans and white trainers",
+  "post-smart-casual-vs-business-casual": "Two outfits side by side: a navy polo with chinos and white trainers, and a navy blazer with a blue shirt, grey trousers and loafers",
+  "post-stylebook-alternative-android-v2": "A phone beside a cream cable-knit cardigan, tan ballet flats, a watch and gold earrings in warm sunlight",
+  "post-what-is-a-digital-wardrobe": "Hands photographing a folded green jumper with a phone, surrounded by stacks of folded clothes",
+  "post-work-capsule-wardrobe": "A clothes rail of work shirts, knitwear and trousers, with loafers, boots, trainers and a tan bag below",
+  "topic-capsule-v2": "A small capsule wardrobe on a brass rail: a trench coat, blazer, shirts, knitwear and jeans, with three pairs of shoes",
+  "topic-digital-wardrobe": "Clothes laid out in a neat grid of squares: shirts, knitwear, jeans, a blazer, trainers and a belt",
+  "topic-rules": "Folded tops, trousers and jeans stacked on a table with loafers, trainers, boots and a tape measure",
+  "topic-sustainability": "A denim jacket with a green patch on the elbow next to thread, scissors and a mending kit",
+  "topic-wardrobe-apps": "A phone, a folded green overshirt and cream knit, brown loafers and a watch on a wooden table",
+  "topic-work": "Five work outfits laid out in a row, each with a top, trousers or a skirt, and shoes",
+}
+
 /** Posts with their own cover photo. */
 export const POST_COVERS: Partial<Record<string, HeroImage>> = {
   "best-outfit-planning-apps-compared": blog("post-best-outfit-planning-apps-compared-v2"),

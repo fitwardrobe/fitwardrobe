@@ -49,7 +49,7 @@ test.describe("each post page matches its source file", () => {
       const article = all.find((s) => s["@type"] === "BlogPosting")
       expect.soft(article?.url, "BlogPosting url").toBe(`${SITE}${url}`)
       expect.soft(article?.datePublished, "BlogPosting datePublished").toBe(post.date)
-      expect.soft(article?.dateModified, "BlogPosting dateModified").toBe(post.updated)
+      expect.soft(article?.dateModified, "BlogPosting dateModified").toBe(post.updated ?? post.date)
       const faq = all.find((s) => s["@type"] === "FAQPage") as { mainEntity?: unknown[] } | undefined
       expect.soft(faq?.mainEntity?.length ?? 0, "FAQPage questions").toBe(post.faq.length)
 
@@ -68,8 +68,15 @@ test("updated dates are honest and match the sitemap", async ({ request }) => {
   const xml = await (await request.get("/sitemap.xml")).text()
   const lastmod = new Map([...xml.matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)].map((m) => [m[1], m[2].slice(0, 10)]))
 
+  // Google: lastmod must be the last significant change, so never a date that hasn't happened yet.
+  for (const [loc, date] of lastmod) {
+    expect.soft(date <= today, `${loc}: sitemap lastmod ${date} is later than today (${today})`).toBe(true)
+  }
+
   for (const post of posts) {
     // Publish dates never move; an Updated date is the day its wave went live, so it can't be in the future.
+    // A new post's publish date is its release day, so that can't be in the future either.
+    expect.soft(post.date <= today, `${post.slug}: published ${post.date} is not later than today (${today}); release on that date or change it`).toBe(true)
     if (post.updated) {
       expect.soft(post.updated > post.date, `${post.slug}: updated ${post.updated} is after published ${post.date}`).toBe(true)
       expect.soft(post.updated <= today, `${post.slug}: updated ${post.updated} is not later than today (${today}); release on that date or change it`).toBe(true)

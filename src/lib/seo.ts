@@ -84,11 +84,12 @@ export function getGlobalMetadata(): Metadata {
     },
     twitter: {
       card: 'summary_large_image',
-      site: '@fitwardrobe',
     },
     robots: {
       index: true,
       follow: true,
+      // Lets Google show large image previews (Discover, Images); without it previews stay small.
+      'max-image-preview': 'large',
     },
   };
 }

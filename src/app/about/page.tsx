@@ -44,11 +44,13 @@ export default function AboutPage() {
     about: { "@type": "Organization", name: "FitWardrobe", url: `${SITE_CONFIG.landingUrl}/` },
     mainEntity: {
       "@type": "Person",
+      "@id": `${SITE_CONFIG.landingUrl}/about/#founder`,
       name: "Aryan Panwar",
       jobTitle: "Founder",
       worksFor: { "@type": "Organization", name: "FitWardrobe" },
       homeLocation: { "@type": "Place", name: "Meerut, India" },
       url: "https://aryanpanwar.in",
+      sameAs: ["https://aryanpanwar.in", "https://www.linkedin.com/in/aryan-panwar1", "https://github.com/Aryanpanwar10005"],
     },
   };
 

@@ -92,7 +92,7 @@ export const TRUST = [
   {
     icon: "spark",
     title: "AI only when it's needed",
-    text: "To tag a piece or plan an outfit, the photo or item details are sent to Google's Gemini API or to Groq for processing. We don't keep copies.",
+    text: "To tag a piece, the photo goes to Google's Gemini API. To plan an outfit, your item details, the occasion and your style preferences go to Groq. We don't keep copies.",
     href: "/ai-transparency/",
     link: "How our AI works",
   },
@@ -198,7 +198,6 @@ export const GUIDES = [
 
 export const SOCIAL_LINKS = [
   { href: "https://instagram.com/fitwardrobe.me", label: "Instagram" },
-  { href: "https://x.com/fitwardrobe", label: "X" },
   { href: SITE_CONFIG.telegramUrl, label: "Telegram" },
   { href: SITE_CONFIG.discordUrl, label: "Discord" },
   { href: SITE_CONFIG.social.github, label: "GitHub" },

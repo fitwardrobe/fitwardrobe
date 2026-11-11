@@ -76,7 +76,7 @@ const FAQ: { q: string; a: string; link?: { href: string; text: string } }[] = [
   },
   {
     q: "What is the difference between a minimalist and a capsule wardrobe?",
-    a: "Minimalism is a general aim: own less, and keep only what you use. A capsule wardrobe is a specific method: a set of pieces chosen to combine with each other, usually with a target size and a review each season. Most capsules are fairly minimal, but a small wardrobe isn't a capsule if its pieces don't go together.",
+    a: "Minimalism is a general aim: own less, and keep only what you use. A capsule wardrobe is one way to get there: you pick pieces that all work together, often to a set number, and look at them again each season. Most capsules are fairly minimal, but a small wardrobe isn't a capsule if its pieces don't go together.",
     link: { href: "/blog/what-is-a-capsule-wardrobe/", text: "What a capsule wardrobe is, and how to build one" },
   },
   {

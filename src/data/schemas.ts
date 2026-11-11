@@ -11,8 +11,10 @@ export const GLOBAL_SCHEMAS = [
     "logo": `${SITE_CONFIG.landingUrl}/brand/icon-512.png`,
     "founder": {
       "@type": "Person",
+      "@id": `${SITE_CONFIG.landingUrl}/about/#founder`,
       "name": "Aryan Panwar",
-      "url": "https://aryanpanwar.in"
+      "url": "https://aryanpanwar.in",
+      "sameAs": ["https://aryanpanwar.in", "https://www.linkedin.com/in/aryan-panwar1", "https://github.com/Aryanpanwar10005"]
     },
     "contactPoint": {
       "@type": "ContactPoint",
@@ -21,7 +23,6 @@ export const GLOBAL_SCHEMAS = [
     },
     "sameAs": [
       "https://instagram.com/fitwardrobe.me",
-      "https://x.com/fitwardrobe",
       SITE_CONFIG.telegramUrl,
       SITE_CONFIG.discordUrl,
       SITE_CONFIG.social.github

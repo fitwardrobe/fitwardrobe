@@ -54,7 +54,12 @@ test("every redirect lands on a live page", async ({ request }) => {
   const live = new Set(await sitemapPaths(request))
   for (const r of redirects) {
     const dest = r.destination.split("#")[0]
-    expect.soft(live.has(dest) || dest === "/", `${r.source} -> ${dest} is in the sitemap`).toBe(true)
+    if (/\.[a-z0-9]+$/i.test(dest)) {
+      // Old image addresses Google still requests go to the current file, which must exist.
+      expect.soft((await request.get(dest)).status(), `${r.source} -> ${dest} is a live file`).toBe(200)
+    } else {
+      expect.soft(live.has(dest) || dest === "/", `${r.source} -> ${dest} is in the sitemap`).toBe(true)
+    }
     if (!isLocal) {
       // On the live site, follow the chain: every hop must be permanent and it must end on the
       // destination with a 200. Vercel adds the trailing slash first, so some chains take two hops.

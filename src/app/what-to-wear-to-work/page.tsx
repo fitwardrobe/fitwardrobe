@@ -134,12 +134,12 @@ const FAQ = [
     a: "In casual and most smart casual workplaces, yes, if they're dark, clean and free of rips and worn with a smarter top. Business casual offices often allow them only on Fridays; business formal offices don't. If you're new, watch what colleagues wear first.",
   },
   {
-    q: "What is business casual?",
-    a: "Business casual is office wear without a suit: tailored trousers, chinos or a knee-length skirt, a shirt, blouse or fine knit, an optional blazer and leather shoes, usually with no tie. It's the standard office dress code in much of the US, but definitions vary, so check what your employer means.",
+    q: "What does business formal mean?",
+    a: "Business formal means a suit, or a dress or skirt with a matching jacket, in a dark colour, worn with a plain shirt or top and polished shoes. Men usually add a tie. You'll mostly meet it in law, banking and some client-facing roles, and at interviews in those fields.",
   },
   {
-    q: "What is smart casual?",
-    a: "Smart casual means casual clothes made sharper: dark jeans or chinos, a collared shirt, polo or fine knit, and clean trainers or loafers, plus a blazer when needed. Most guides put it a step below business casual, but in the UK it's the usual office term and often covers a similar standard.",
+    q: "What should I wear for a video interview?",
+    a: "Dress as you would for the interview in person, in plain colours that look calm on camera. Wear the whole outfit, not just the top half, in case you need to stand up.",
   },
   {
     q: "What should I wear on my first day?",

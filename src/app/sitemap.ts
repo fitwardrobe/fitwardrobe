@@ -16,9 +16,8 @@ const legalDate = (lastUpdated: string) => {
 
 // Core pages that changed after SITE_UPDATED. Legal pages follow their "Last updated" line.
 const PAGE_UPDATED: Record<string, string> = {
-  '/what-to-wear-to-work': '2026-11-01',
-  '/minimalist-wardrobe': '2026-11-01',
-  '/outfit-planner': '2026-11-01',
+  '/what-to-wear-to-work': '2026-11-11',
+  '/minimalist-wardrobe': '2026-11-11',
   '/privacy': legalDate(privacyData.lastUpdated),
   '/terms': legalDate(termsData.lastUpdated),
 }
